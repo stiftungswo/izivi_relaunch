@@ -28,7 +28,7 @@ abstract class Entity
 	 *
 	 * @JMS\MaxDepth(1)
 	 * @Gedmo\Blameable(on="create")
-	 * @ORM\ManyToOne(targetEntity="Dime\TimetrackerBundle\Entity\User")
+	 * @ORM\ManyToOne(targetEntity="IZiviPlanningBundle\Entity\User")
 	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
 	 */
 	protected $user;
