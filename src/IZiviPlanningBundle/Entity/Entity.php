@@ -24,16 +24,6 @@ abstract class Entity
 	protected $id;
 
 	/**
-	 * @var User $user
-	 *
-	 * @JMS\MaxDepth(1)
-	 * @Gedmo\Blameable(on="create")
-	 * @ORM\ManyToOne(targetEntity="IZiviPlanningBundle\Entity\User")
-	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
-	 */
-	protected $user;
-
-	/**
 	 * @var datetime $createdAt
 	 *
 	 * @Gedmo\Timestampable(on="create")
@@ -59,29 +49,6 @@ abstract class Entity
 	public function getId()
 	{
 		return $this->id;
-	}
-
-	/**
-	 * Set user
-	 *
-	 * @param  User $user
-	 * @return Entity
-	 */
-	public function setUser(User $user)
-	{
-		$this->user = $user;
-
-		return $this;
-	}
-
-	/**
-	 * Get user
-	 *
-	 * @return User
-	 */
-	public function getUser()
-	{
-		return $this->user;
 	}
 
 	/**

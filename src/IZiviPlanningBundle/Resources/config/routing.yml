@@ -1,3 +1,11 @@
 i_zivi_planning_homepage:
     path:     /
     defaults: { _controller: IZiviPlanningBundle:Default:index }
+
+
+codes:
+    type:     rest
+    resource: IZiviPlanningBundle\Controller\CodeController
+    prefix:   /v1
+    name_prefix:  api_1_
+    defaults: { _format: json }

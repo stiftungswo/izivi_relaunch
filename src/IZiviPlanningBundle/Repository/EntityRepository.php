@@ -1,6 +1,6 @@
 <?php
 
-namespace IZiviPlanningBundle\Entity;
+namespace IZiviPlanningBundle\Repository;
 
 use Doctrine\ORM\EntityRepository as Base;
 use Doctrine\ORM\QueryBuilder;

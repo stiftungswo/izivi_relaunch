@@ -74,8 +74,8 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email_canonical` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `enabled` tinyint(1) NOT NULL,
-  `salt` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `hashType` ENUM('MD5', 'BCRYPT') NOT NULL,
   `last_login` datetime DEFAULT NULL,
   `locked` tinyint(1) NOT NULL,
   `expired` tinyint(1) NOT NULL,
@@ -89,7 +89,6 @@ CREATE TABLE `users` (
   `lastname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `employeeholiday` int(11) DEFAULT NULL,
   `discr` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_1483A5E992FC23A8` (`username_canonical`),
@@ -102,6 +101,7 @@ CREATE TABLE `users` (
 --
 
 LOCK TABLES `users` WRITE;
+INSERT INTO `users` VALUES (1,'admin','admin','admin@example.org','admin@example.org',1,'$2a$06$ND7Tv/aHYbS7rGbaeyNc3ea.TS8fpXn58cfzaNmgtjb7o86I2DpoG','BCRYPT',NULL,0,0,NULL,NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0,NULL,'Default','User','2016-07-01 00:00:00','2016-07-01 00:00:00','employee');
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -115,4 +115,25 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-15  1:50:54
+--
+-- Table structure for table `codes`
+--
+
+DROP TABLE IF EXISTS `codes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `codes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `type` ENUM('REGISTRATION', 'SERVICE_APPLICATION') NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `codes` WRITE;
+INSERT INTO `codes` VALUES (1, 'TESTCODE', 'REGISTRATION','2016-07-01 00:00:00','2016-07-01 00:00:00');
+/*!40000 ALTER TABLE `codes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `codes` ENABLE KEYS */;
+UNLOCK TABLES;

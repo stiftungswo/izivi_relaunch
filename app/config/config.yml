@@ -78,7 +78,7 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-#nelmio_api_doc: ~
+nelmio_api_doc: ~
 
 tbbc_money:
     currencies: ["CHF"]

@@ -10,11 +10,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @UniqueEntity(fields={"username"})
  * @ORM\Table(name="users")
- * @ORM\Entity(repositoryClass="IZiviPlanningBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="IZiviPlanningBundle\Repository\UserRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr",type="string")
  */
-class User extends BaseUser
+class User extends BaseUser implements EntityInterface
 {
 
     /**
