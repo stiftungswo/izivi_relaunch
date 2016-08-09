@@ -1,0 +1,4 @@
+izivi_planning:
+    #type: rest
+    resource: "@IZiviPlanningBundle/Resources/config/routing.yml"
+    prefix:   /api

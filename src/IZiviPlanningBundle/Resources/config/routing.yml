@@ -1,0 +1,3 @@
+i_zivi_planning_homepage:
+    path:     /
+    defaults: { _controller: IZiviPlanningBundle:Default:index }

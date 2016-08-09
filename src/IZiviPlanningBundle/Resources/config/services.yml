@@ -1,0 +1,4 @@
+services:
+#    i_zivi_planning.example:
+#        class: IZiviPlanningBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
