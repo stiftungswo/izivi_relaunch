@@ -1,5 +1,4 @@
 /web/bundles/
-/app/bootstrap.php.cache
 /var/cache/
 /var/logs/
 /var/sessions/
@@ -7,6 +6,5 @@
 !/var/logs/.gitkeep
 !/var/sessions/.gitkeep
 /vendor/
-/composer.phar
 /env/.vagrant/
 .idea/
