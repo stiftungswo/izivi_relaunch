@@ -1,5 +1,5 @@
 <?php
-namespace IZiviPlanningBundle\Type;
+namespace IZiviPlanningBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,20 +13,13 @@ class CodeFormType extends AbstractType
         $resolver->setDefaults(
             array(
                 'data_class' => 'IZiviPlanningBundle\Entity\Code',
-                'csrf_protection' => true,
-                'allow_extra_fields' => false,
+                'allow_extra_fields' => false
             )
         );
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type');
+        $builder->add('type')->add('code');
     }
-
-    public function getName()
-    {
-        return 'iziviplanningbundle_codeformtype';
-    }
-
 }

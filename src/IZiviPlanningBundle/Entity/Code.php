@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Code extends Entity implements EntityInterface
 {
+    const TYPES = array('REGISTRATION', 'SERVICE_APPLICATION');
+
     /**
      * @var int
      *

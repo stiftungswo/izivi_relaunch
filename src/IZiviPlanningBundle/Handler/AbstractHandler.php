@@ -103,6 +103,7 @@ abstract class AbstractHandler
     protected function processForm(EntityInterface $entity, array $parameters, $form, $method = "PUT", $formoptions = array())
     {
         $formoptions['method'] = $method;
+		$formoptions['csrf_protection'] = false;
         $form = $this->formFactory->create($form, $entity, $formoptions);
         $form->submit($parameters, 'PUT' !== $method);
         if ($form->isValid()) {

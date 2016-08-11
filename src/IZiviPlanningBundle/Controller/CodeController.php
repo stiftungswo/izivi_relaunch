@@ -5,10 +5,10 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use IZiviPlanningBundle\Exception\InvalidFormException;
 use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Request\ParamFetcherInterface;
-use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -39,7 +39,7 @@ class CodeController extends BaseController
      * @Annotations\Route(requirements={"_format"="json|xml"})
      *
      * @param ParamFetcherInterface $paramFetcher
-     *            param fetcher customer
+     *            param fetcher codes
      *
      * @return array
      */
@@ -56,7 +56,7 @@ class CodeController extends BaseController
      * description = "Creates a new code from the submitted data.",
      * input = "IZiviPlanningBundle\Type\CodeFormType",
      * output = "IZiviPlanningBundle\Type\CodeFormType",
-     * section="customers",
+     * section="codes",
      * statusCodes = {
      * 201 = "Returned when successful",
      * 400 = "Returned when the form has errors"
@@ -74,11 +74,11 @@ class CodeController extends BaseController
      *
      * @return FormTypeInterface|View
      */
-    public function postCustomerAction(Request $request)
+    public function postCodeAction(Request $request)
     {
         try {
-            $newCustomer = $this->container->get($this->handlerSerivce)->post($request->request->all());
-            return $this->view($newCustomer, Codes::HTTP_CREATED);
+            $newCode = $this->container->get($this->handlerSerivce)->post($request->request->all());
+            return $this->view($newCode, Response::HTTP_CREATED);
         } catch (InvalidFormException $exception) {
             return $exception->getForm();
         }
@@ -89,10 +89,10 @@ class CodeController extends BaseController
      *
      * @ApiDoc(
      * resource = true,
-     * section="customers",
+     * section="codes",
      * statusCodes = {
      * 204 = "Returned when successful",
-     * 404 = "Returned when Customer does not exist."
+     * 404 = "Returned when Code does not exist."
      * }
      * )
      *
@@ -108,9 +108,9 @@ class CodeController extends BaseController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function deleteCustomerAction($id)
+    public function deleteCodeAction($id)
     {
         $this->container->get($this->handlerSerivce)->delete($this->getOr404($id, $this->handlerSerivce));
-        return $this->view(null, Codes::HTTP_NO_CONTENT);
+        return $this->view(null, Response::HTTP_NO_CONTENT);
     }
 }
