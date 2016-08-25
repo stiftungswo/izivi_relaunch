@@ -36,7 +36,7 @@ class CodeController extends BaseController
      * serializerGroups={"List"}
      * )
      *
-     * @Annotations\Route(requirements={"_format"="json|xml"})
+     * @Annotations\Route(requirements={"_format"="json"})
      *
      * @param ParamFetcherInterface $paramFetcher
      *            param fetcher codes
@@ -45,7 +45,7 @@ class CodeController extends BaseController
      */
     public function getCodesAction(ParamFetcherInterface $paramFetcher)
     {
-        return $this->container->get($this->handlerSerivce)->all($paramFetcher->all());
+        return $this->view($this->container->get($this->handlerSerivce)->all($paramFetcher->all()), Response::HTTP_OK);
     }
 
     /**
@@ -55,7 +55,7 @@ class CodeController extends BaseController
      * resource = true,
      * description = "Creates a new code from the submitted data.",
      * input = "IZiviPlanningBundle\Type\CodeFormType",
-     * output = "IZiviPlanningBundle\Type\CodeFormType",
+     * output = "IZiviPlanningBundle\Entity\Code",
      * section="codes",
      * statusCodes = {
      * 201 = "Returned when successful",
@@ -102,7 +102,7 @@ class CodeController extends BaseController
      * )
      *
      * @param int $id
-     *            the page id
+     *            id of entry
      *
      * @return FormTypeInterface|View
      *

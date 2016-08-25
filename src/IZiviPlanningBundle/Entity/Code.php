@@ -3,6 +3,7 @@
 namespace IZiviPlanningBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Code
@@ -15,43 +16,27 @@ class Code extends Entity implements EntityInterface
     const TYPES = array('REGISTRATION', 'SERVICE_APPLICATION');
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
      * @var string
      *
+     * @JMS\Groups({"List"})
      * @ORM\Column(name="code", type="string", length=50)
      */
-    private $code;
+    public $code;
 
     /**
      * @var string
      *
+     * @JMS\Groups({"List"})
      * @ORM\Column(name="type", type="string", length=255)
      */
-    private $type;
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    public $type;
 
     /**
      * Set code
      *
      * @param string $code
      *
+     * @JMS\Groups({"List"})
      * @return Code
      */
     public function setCode($code)

@@ -4,6 +4,15 @@ parameters:
 services:
     izivi.code.handler:
         class: IZiviPlanningBundle\Handler\CodeHandler
-        arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\Code,  "@service_container", "c", "izivi.code.form.type"]
+        arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\Code,  "@service_container", "c"]
 
+    izivi.users.handler:
+        class: IZiviPlanningBundle\Handler\UserHandler
+        arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\User,  "@service_container", "u"]
+
+    object_normalizer:
+            class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+            # Important! Tag this service or it wouldn't work
+            tags:
+                - { name: serializer.normalizer }
 

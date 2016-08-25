@@ -24,13 +24,11 @@ abstract class AbstractHandler
 
 	protected $alias;
 
-	protected $formType;
-
     protected $container;
 
 	protected $eventDispatcher;
 
-    public function __construct(ObjectManager $om, $entityClass, Container $container, $alias, $formType)
+    public function __construct(ObjectManager $om, $entityClass, Container $container, $alias)
     {
         $this->om = $om;
         $this->entityClass = $entityClass;
@@ -40,7 +38,6 @@ abstract class AbstractHandler
 	    $this->eventDispatcher = $container->get('event_dispatcher');
         $this->container = $container;
 	    $this->alias = $alias;
-	    $this->formType = $formType;
     }
 
 	/**
@@ -117,22 +114,6 @@ abstract class AbstractHandler
         }
         throw new InvalidFormException('Invalid submitted data', $form);
     }
-
-	/**
-	 * Make a Form from an Entity
-	 *
-	 * @param EntityInterface $entity
-	 * @param                     $formtype
-	 * @param array               $values
-	 * @param array               $formoptions
-	 *
-	 * @return \Symfony\Component\Form\FormInterface
-	 */
-	protected function createForm(EntityInterface $entity, $formtype, array $values, $formoptions = array()){
-		$form = $this->formFactory->create($formtype, $entity, $formoptions);
-		$form->submit($values, true);
-		return $form;
-	}
 
 	/**
 	 * Remove The Entity From Database.

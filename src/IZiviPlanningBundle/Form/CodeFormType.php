@@ -13,7 +13,7 @@ class CodeFormType extends AbstractType
         $resolver->setDefaults(
             array(
                 'data_class' => 'IZiviPlanningBundle\Entity\Code',
-                'allow_extra_fields' => false
+                'allow_extra_fields' => true
             )
         );
     }

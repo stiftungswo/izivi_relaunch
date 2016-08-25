@@ -9,3 +9,10 @@ codes:
     prefix:   /v1
     name_prefix:  api_1_
     defaults: { _format: json }
+
+users:
+    type:     rest
+    resource: IZiviPlanningBundle\Controller\UsersController
+    prefix:   /v1
+    name_prefix:  api_1_
+    defaults: { _format: json }
