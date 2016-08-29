@@ -75,6 +75,7 @@ CREATE TABLE `users` (
   `email_canonical` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `enabled` tinyint(1) NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `salt` varchar(255) COLLATE utf8_unicode_ci,
   `hashType` ENUM('MD5', 'BCRYPT') NOT NULL,
   `last_login` datetime DEFAULT NULL,
   `locked` tinyint(1) NOT NULL,
@@ -101,7 +102,7 @@ CREATE TABLE `users` (
 --
 
 LOCK TABLES `users` WRITE;
-INSERT INTO `users` VALUES (1,'admin','admin','admin@example.org','admin@example.org',1,'$2a$06$ND7Tv/aHYbS7rGbaeyNc3ea.TS8fpXn58cfzaNmgtjb7o86I2DpoG','BCRYPT',NULL,0,0,NULL,NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0,NULL,'Default','User','2016-07-01 00:00:00','2016-07-01 00:00:00','employee');
+INSERT INTO `users` VALUES (1,'admin','admin','admin@example.org','admin@example.org',1,'$2a$06$ND7Tv/aHYbS7rGbaeyNc3ea.TS8fpXn58cfzaNmgtjb7o86I2DpoG', NULL,'BCRYPT',NULL,0,0,NULL,NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0,NULL,'Default','User','2016-07-01 00:00:00','2016-07-01 00:00:00','employee');
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -133,7 +134,6 @@ CREATE TABLE `codes` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `codes` WRITE;
-INSERT INTO `codes` VALUES (1, 'TESTCODE', 'REGISTRATION','2016-07-01 00:00:00','2016-07-01 00:00:00');
 /*!40000 ALTER TABLE `codes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `codes` ENABLE KEYS */;
 UNLOCK TABLES;
