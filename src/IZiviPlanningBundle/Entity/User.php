@@ -16,6 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class User extends BaseUser implements EntityInterface
 {
+    const PASSWORD_HASH_TYPE = array('md5', 'bcrypt');
 
     /**
      * @var integer $id

@@ -7,6 +7,24 @@ use IZiviPlanningBundle\Form\CodeFormType;
 
 class CodeHandler extends GenericHandler
 {
+
+    /**
+     * Finds an entity for the given code and type
+     *
+     * @api
+     *
+     * @param mixed $code
+     * @param mixed $type
+     *
+     * @return EntityInterface
+     */
+    public function findByCodeAndType($code, $type) {
+        return $this->repository->findOneBy(array(
+            'code' => $code,
+            'type' => $type
+        ));
+    }
+
     public function post(array $parameters)
     {
         $type = $parameters['type'];

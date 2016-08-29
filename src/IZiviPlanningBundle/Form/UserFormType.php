@@ -5,14 +5,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CodeFormType extends AbstractType
+class UserFormType extends AbstractType
 {
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'IZiviPlanningBundle\Entity\Code',
+                'data_class' => 'IZiviPlanningBundle\Entity\User',
                 'allow_extra_fields' => false
             )
         );
@@ -20,6 +20,9 @@ class CodeFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type')->add('code');
+        $builder->add('username')
+            ->add('email')
+            ->add('plainPassword');
     }
+
 }

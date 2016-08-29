@@ -13,7 +13,9 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Code extends Entity implements EntityInterface
 {
-    const TYPES = array('REGISTRATION', 'SERVICE_APPLICATION');
+    const REGISTRATION_TYPE = 'REGISTRATION';
+    const SERVICE_APPLICATION_TYPE = 'SERVICE_APPLICATION';
+    const TYPES = array(Code::REGISTRATION_TYPE, Code::SERVICE_APPLICATION_TYPE);
 
     /**
      * @var string
