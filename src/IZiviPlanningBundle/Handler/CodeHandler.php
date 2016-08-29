@@ -16,7 +16,7 @@ class CodeHandler extends GenericHandler
         $entity = $this->newClassInstance();
         $parameters = $this->flattenEtityReference($parameters);
         $parameters['code'] = $this->readable_random_string();
-        return $this->processForm($entity, $parameters, CodeFormType::class, 'POST');
+        return $this->processForm($entity, $parameters, $this->formType, 'POST');
     }
 
     /**

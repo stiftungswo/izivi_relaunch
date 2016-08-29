@@ -28,7 +28,9 @@ abstract class AbstractHandler
 
 	protected $eventDispatcher;
 
-    public function __construct(ObjectManager $om, $entityClass, Container $container, $alias)
+	protected $formType;
+
+    public function __construct(ObjectManager $om, $entityClass, Container $container, $alias, $formType)
     {
         $this->om = $om;
         $this->entityClass = $entityClass;
@@ -38,6 +40,7 @@ abstract class AbstractHandler
 	    $this->eventDispatcher = $container->get('event_dispatcher');
         $this->container = $container;
 	    $this->alias = $alias;
+		$this->formType = $formType;
     }
 
 	/**

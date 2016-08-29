@@ -4,7 +4,7 @@ parameters:
 services:
     izivi.code.handler:
         class: IZiviPlanningBundle\Handler\CodeHandler
-        arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\Code,  "@service_container", "c"]
+        arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\Code,  "@service_container", "c", IZiviPlanningBundle\Form\CodeFormType]
 
     izivi.users.handler:
         class: IZiviPlanningBundle\Handler\UserHandler
