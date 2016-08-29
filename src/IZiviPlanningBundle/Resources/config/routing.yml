@@ -12,7 +12,21 @@ codes:
 
 users:
     type:     rest
-    resource: IZiviPlanningBundle\Controller\UsersController
+    resource: IZiviPlanningBundle\Controller\UserController
+    prefix:   /v1
+    name_prefix:  api_1_
+    defaults: { _format: json }
+
+states:
+    type:     rest
+    resource: IZiviPlanningBundle\Controller\StateController
+    prefix:   /v1
+    name_prefix:  api_1_
+    defaults: { _format: json }
+
+registration_centers:
+    type:     rest
+    resource: IZiviPlanningBundle\Controller\RegistrationCenterController
     prefix:   /v1
     name_prefix:  api_1_
     defaults: { _format: json }

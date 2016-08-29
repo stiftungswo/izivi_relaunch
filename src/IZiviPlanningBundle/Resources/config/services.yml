@@ -10,6 +10,14 @@ services:
         class: IZiviPlanningBundle\Handler\UserHandler
         arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\User,  "@service_container", "u", IZiviPlanningBundle\Form\UserFormType]
 
+    izivi.state.handler:
+        class: %generic_handler%
+        arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\State,  "@service_container", "c"]
+
+    izivi.registration_center.handler:
+        class: %generic_handler%
+        arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\RegistrationCenter,  "@service_container", "c"]
+
     object_normalizer:
             class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
             # Important! Tag this service or it wouldn't work

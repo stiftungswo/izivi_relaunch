@@ -38,7 +38,6 @@ class Code extends Entity implements EntityInterface
      *
      * @param string $code
      *
-     * @JMS\Groups({"List"})
      * @return Code
      */
     public function setCode($code)

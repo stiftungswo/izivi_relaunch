@@ -22,7 +22,28 @@ class UserFormType extends AbstractType
     {
         $builder->add('username')
             ->add('email')
-            ->add('plainPassword');
+            ->add('plainPassword')
+            ->add('firstname')
+            ->add('lastname')
+            ->add('street')
+            ->add('postCode')
+            ->add('city')
+            ->add('birthday')
+            ->add('phone')
+            ->add('hometown')
+            ->add('hometownState')
+            ->add('bankType')
+            ->add('accountNumber')
+            ->add('bankName')
+            ->add('clearingNumber')
+            ->add('iban')
+            ->add('insuranceName')
+            ->add('insuranceNumber')
+            ->add('experience')
+            ->add('driversLicence')
+            ->add('trainTicket')
+            ->add('registrationCenter')
+        ;
     }
 
 }

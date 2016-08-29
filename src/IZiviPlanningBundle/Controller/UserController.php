@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class UsersController extends BaseController
+class UserController extends BaseController
 {
 
     private $handlerSerivce = 'izivi.user.handler';
@@ -148,7 +148,7 @@ class UsersController extends BaseController
         try {
             $entity = $this->getOr404($id, $this->handlerSerivce);
             $entity = $this->container->get($this->handlerSerivce)->put($entity, $request->request->all());
-            return $this->view($entity, Codes::HTTP_OK);
+            return $this->view($entity, Response::HTTP_OK);
         } catch (InvalidFormException $exception) {
             return $exception->getForm();
         }
@@ -227,6 +227,6 @@ class UsersController extends BaseController
     public function enableEmployeeAction($id)
     {
         $this->container->get($this->handlerSerivce)->enable($this->getOr404($id, $this->handlerSerivce));
-        return $this->view(null, Codes::HTTP_NO_CONTENT);
+        return $this->view(null, Response::HTTP_NO_CONTENT);
     }
 }

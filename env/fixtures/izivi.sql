@@ -60,6 +60,36 @@ LOCK TABLES `tbbc_money_ratio_history` WRITE;
 /*!40000 ALTER TABLE `tbbc_money_ratio_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+--
+-- Table structure for table `registration_centers`
+--
+
+DROP TABLE IF EXISTS `registration_centers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `registration_centers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `registration_centers` WRITE;
+INSERT INTO registration_centers VALUES
+  (1, 'Regionalzentrum Thun','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (2, 'Regionalzentrum Rueti/ZH','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (3, 'Regionalzentrum Luzern','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (4, 'Centre régional Lausanne','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (5, 'Regionalzentrum Rivera','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (6, 'Regionalzentrum Aarau','2016-07-01 00:00:00','2016-07-01 00:00:00')
+;
+/*!40000 ALTER TABLE `registration_centers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `registration_centers` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `users`
 --
@@ -88,10 +118,29 @@ CREATE TABLE `users` (
   `credentials_expire_at` datetime DEFAULT NULL,
   `firstname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `lastname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `street` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `postCode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `birthday` datetime DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `hometown` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `hometownState` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `bankType` ENUM('BANK', 'POST') DEFAULT NULL,
+  `accountNumber` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `bankName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `clearingNumber` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `iban` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `insuranceName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `insuranceNumber` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `experience` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `driversLicence` tinyint(1) DEFAULT 0,
+  `trainTicket` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `registrationCenter_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `discr` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
+  FOREIGN KEY (`registrationCenter_id`) REFERENCES `registration_centers` (`id`) ON DELETE SET NULL,
   UNIQUE KEY `UNIQ_1483A5E992FC23A8` (`username_canonical`),
   UNIQUE KEY `UNIQ_1483A5E9A0D96FBF` (`email_canonical`)
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -102,7 +151,8 @@ CREATE TABLE `users` (
 --
 
 LOCK TABLES `users` WRITE;
-INSERT INTO `users` VALUES (1,'admin','admin','admin@example.org','admin@example.org',1,'$2a$06$ND7Tv/aHYbS7rGbaeyNc3ea.TS8fpXn58cfzaNmgtjb7o86I2DpoG', NULL,'BCRYPT',NULL,0,0,NULL,NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0,NULL,'Default','User','2016-07-01 00:00:00','2016-07-01 00:00:00','employee');
+INSERT INTO `users` (id, username, username_canonical, email, email_canonical, enabled, password, hashType, locked, expired, roles, credentials_expired, created_at, updated_at, discr)
+VALUES (1,'admin','admin','admin@example.org','admin@example.org',1,'$2a$06$ND7Tv/aHYbS7rGbaeyNc3ea.TS8fpXn58cfzaNmgtjb7o86I2DpoG', 'BCRYPT',0,0,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0,'2016-07-01 00:00:00','2016-07-01 00:00:00','employee');
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -136,4 +186,54 @@ CREATE TABLE `codes` (
 LOCK TABLES `codes` WRITE;
 /*!40000 ALTER TABLE `codes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `codes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
+-- Table structure for table `states`
+--
+
+DROP TABLE IF EXISTS `states`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `states` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shortCode` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `states` WRITE;
+INSERT INTO states VALUES
+  (1, 'AG','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (2, 'AI','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (3, 'AR','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (4, 'BL','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (5, 'BS','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (6, 'BE','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (7, 'FR','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (8, 'GE','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (9, 'GL','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (10, 'GR','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (11, 'JU','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (12, 'LU','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (13, 'NE','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (14, 'NW','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (15, 'OW','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (16, 'SH','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (17, 'SZ','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (18, 'SG','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (19, 'SO','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (20, 'TI','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (21, 'TG','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (22, 'UR','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (23, 'VD','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (24, 'VS','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (25, 'ZG','2016-07-01 00:00:00','2016-07-01 00:00:00'),
+  (26, 'ZH','2016-07-01 00:00:00','2016-07-01 00:00:00')
+;
+/*!40000 ALTER TABLE `states` DISABLE KEYS */;
+/*!40000 ALTER TABLE `states` ENABLE KEYS */;
 UNLOCK TABLES;

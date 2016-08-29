@@ -30,7 +30,7 @@ abstract class AbstractHandler
 
 	protected $formType;
 
-    public function __construct(ObjectManager $om, $entityClass, Container $container, $alias, $formType)
+    public function __construct(ObjectManager $om, $entityClass, Container $container, $alias, $formType = NULL)
     {
         $this->om = $om;
         $this->entityClass = $entityClass;
