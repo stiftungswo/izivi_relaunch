@@ -1,6 +1,9 @@
 <?php
 namespace IZiviPlanningBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 class UserEntity extends Entity
 {

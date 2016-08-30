@@ -286,3 +286,32 @@ INSERT INTO `tenders` (`id`, `name`, `shortCode`, `working_clothes_expense`, `wo
 /*!40000 ALTER TABLE `tenders` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tenders` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+--
+-- Table structure for table `employments`
+--
+
+DROP TABLE IF EXISTS `employments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `employments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `tender_id` int(11) DEFAULT NULL,
+  `start` datetime DEFAULT NULL,
+  `end` datetime DEFAULT NULL,
+  `draft_date` datetime DEFAULT NULL,
+  `employment_type` ENUM('FIRST', 'LAST') NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL,
+  FOREIGN KEY (`tender_id`) REFERENCES `tenders` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `employments` WRITE;
+/*!40000 ALTER TABLE `employments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `employments` ENABLE KEYS */;
+UNLOCK TABLES;
