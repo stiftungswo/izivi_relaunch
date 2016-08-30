@@ -240,7 +240,7 @@ UNLOCK TABLES;
 
 
 --
--- Table structure for table `work_documents`
+-- Table structure for table `tenders`
 --
 
 DROP TABLE IF EXISTS `tenders`;
