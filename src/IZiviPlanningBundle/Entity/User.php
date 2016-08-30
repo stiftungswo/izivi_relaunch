@@ -180,7 +180,7 @@ class User extends BaseUser implements EntityInterface
      *
      * @JMS\Groups({"List"})
      * @JMS\SerializedName("driversLicence")
-     * @ORM\Column(type="smallint", length=255, nullable=true)
+     * @ORM\Column(type="smallint", nullable=true)
      */
     protected $driversLicence;
 
