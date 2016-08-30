@@ -87,7 +87,7 @@ class UserController extends BaseController
      * description = "Creates a new user from the submitted data.",
      * input = "IZiviPlanningBundle\Type\UserFormType",
      * output = "IZiviPlanningBundle\Entity\User",
-     * section="codes",
+     * section="users",
      * statusCodes = {
      * 201 = "Returned when successful",
      * 400 = "Returned when the form has errors"
