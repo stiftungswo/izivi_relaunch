@@ -103,7 +103,9 @@ class GenericHandler extends AbstractHandler implements HandlerInterface {
 	public function put(EntityInterface $entity, array $parameters)
 	{
 		$parameters = $this->flattenEtityReference($parameters);
-		$parameters['user'] = $this->getCurrentUser()->getId();
+		if(property_exists($entity, 'user')) {
+			$parameters['user'] = $this->getCurrentUser()->getId();
+		}
 		return $this->processForm($entity, $parameters, $this->formType, 'PUT');
 	}
 
