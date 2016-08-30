@@ -11,6 +11,9 @@ class UserHandler extends GenericHandler
 
     public function post(array $parameters)
     {
+        if (!isset($parameters['code'])) {
+            throw new InvalidArgumentException("No registration code given.");
+        }
         $codeHandler = $this->container->get($this->codeHandler);
         $code = $parameters['code'];
         $codeEntry = $codeHandler->findByCodeAndType($code, Code::REGISTRATION_TYPE);
