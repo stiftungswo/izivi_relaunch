@@ -18,6 +18,10 @@ services:
         class: %generic_handler%
         arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\RegistrationCenter,  "@service_container", "c"]
 
+    izivi.tender.handler:
+            class: %generic_handler%
+            arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\Tender,  "@service_container", "c"]
+
     object_normalizer:
             class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
             # Important! Tag this service or it wouldn't work

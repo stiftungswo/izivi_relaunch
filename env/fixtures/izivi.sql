@@ -133,7 +133,7 @@ CREATE TABLE `users` (
   `insuranceName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `insuranceNumber` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `experience` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `driversLicence` tinyint(1) DEFAULT 0,
+  `driversLicence` tinyint(1) DEFAULT '0',
   `trainTicket` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `registrationCenter_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
@@ -236,4 +236,53 @@ INSERT INTO states VALUES
 ;
 /*!40000 ALTER TABLE `states` DISABLE KEYS */;
 /*!40000 ALTER TABLE `states` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
+-- Table structure for table `work_documents`
+--
+
+DROP TABLE IF EXISTS `tenders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tenders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `shortCode` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `working_clothes_expense` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `working_breakfast_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `working_lunch_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `working_dinner_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sparetime_breakfast_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sparetime_lunch_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sparetime_dinner_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `firstday_breakfast_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `firstday_lunch_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `firstday_dinner_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lastday_breakfast_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lastday_lunch_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lastday_dinner_expenses` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `working_time_weekly` decimal(4,2) NOT NULL DEFAULT '42.00',
+  `accommodation` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pocket_money` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tenders` WRITE;
+
+INSERT INTO `tenders` (`id`, `name`, `shortCode`, `working_clothes_expense`, `working_breakfast_expenses`, `working_lunch_expenses`, `working_dinner_expenses`, `sparetime_breakfast_expenses`, `sparetime_lunch_expenses`, `sparetime_dinner_expenses`, `firstday_breakfast_expenses`, `firstday_lunch_expenses`, `firstday_dinner_expenses`, `lastday_breakfast_expenses`, `lastday_lunch_expenses`, `lastday_dinner_expenses`, `working_time_weekly`, `accommodation`, `pocket_money`, `active`) VALUES
+  (1, 'Feldarbeiten (ab 1. Februar 2011)', 'F', 'CHF 230', 'CHF 400', 'CHF 900', 'CHF 700', 'CHF 400', 'CHF 900', 'CHF 700', 'CHF 0', 'CHF 900', 'CHF 700', 'CHF 400', 'CHF 900', 'CHF 0', '42.00', 'CHF 500', 'CHF 500', 1),
+  (2, 'Admin (ab 1. Februar 2011)', 'A', 'CHF 000', 'CHF 400', 'CHF 900', 'CHF 700', 'CHF 400', 'CHF 900', 'CHF 700', 'CHF 0', 'CHF 900', 'CHF 700', 'CHF 400', 'CHF 900', 'CHF 0', '42.00', 'CHF 500', 'CHF 500', 1),
+  (3, 'Feldarbeiten (ab 06.07.2016)', 'F', 'CHF 230', 'CHF 400', 'CHF 900', 'CHF 700', 'CHF 400', 'CHF 900', 'CHF 700', 'CHF 0', 'CHF 900', 'CHF 700', 'CHF 400', 'CHF 900', 'CHF 0', '42.00', 'CHF 0', 'CHF 500', 1),
+  (4, 'Admin (ab 06.07.2016)', 'A', 'CHF 000', 'CHF 400', 'CHF 900', 'CHF 700', 'CHF 400', 'CHF 900', 'CHF 700', 'CHF 0', 'CHF 900', 'CHF 700', 'CHF 400', 'CHF 900', 'CHF 0', '42.00', 'CHF 0', 'CHF 500', 1),
+  (5, 'Admin; Ressourcen-, Arten- und Naturschutz (ab 06.07.2016)', 'A', 'CHF 000', 'CHF 400', 'CHF 900', 'CHF 700', 'CHF 400', 'CHF 900', 'CHF 700', 'CHF 0', 'CHF 900', 'CHF 700', 'CHF 400', 'CHF 900', 'CHF 0', '42.00', 'CHF 0', 'CHF 500', 1);
+
+
+/*!40000 ALTER TABLE `tenders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tenders` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -30,3 +30,10 @@ registration_centers:
     prefix:   /v1
     name_prefix:  api_1_
     defaults: { _format: json }
+
+tenders:
+    type:     rest
+    resource: IZiviPlanningBundle\Controller\TenderController
+    prefix:   /v1
+    name_prefix:  api_1_
+    defaults: { _format: json }
