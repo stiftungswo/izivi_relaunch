@@ -1,6 +1,7 @@
 <?php
 namespace IZiviPlanningBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -43,7 +44,7 @@ class UserFormType extends AbstractType
             ->add('experience')
             ->add('driversLicence')
             ->add('trainTicket')
-            ->add('registrationCenter')
+            ->add('registrationCenter', EntityType::class, array('class' => 'IZiviPlanningBundle:RegistrationCenter'))
         ;
     }
 
