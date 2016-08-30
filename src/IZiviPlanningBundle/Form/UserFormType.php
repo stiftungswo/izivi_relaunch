@@ -2,6 +2,7 @@
 namespace IZiviPlanningBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -28,7 +29,7 @@ class UserFormType extends AbstractType
             ->add('street')
             ->add('postCode')
             ->add('city')
-            ->add('birthday')
+            ->add('birthday', DateTimeType::class, array('required' => false, 'widget' => 'single_text'))
             ->add('phone')
             ->add('hometown')
             ->add('hometownState')
