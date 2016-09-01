@@ -1,11 +1,13 @@
 <?php
 namespace IZiviPlanningBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserFormType extends AbstractType
+class EmploymentFormType extends AbstractType
 {
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -25,7 +27,6 @@ class UserFormType extends AbstractType
             ->add('start', DateTimeType::class, array('required' => false, 'widget' => 'single_text'))
             ->add('end', DateTimeType::class, array('required' => false, 'widget' => 'single_text'))
             ->add('draftDate', DateTimeType::class, array('required' => false, 'widget' => 'single_text'))
-            ->add('firsttime')
             ->add('employmentType')
         ;
     }

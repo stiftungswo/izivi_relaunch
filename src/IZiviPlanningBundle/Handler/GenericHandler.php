@@ -84,7 +84,7 @@ class GenericHandler extends AbstractHandler implements HandlerInterface {
 	{
 		$entity = $this->newClassInstance();
 		$parameters = $this->flattenEtityReference($parameters);
-		if(property_exists($entity, 'user')) {
+		if(property_exists($entity, 'user') && !isset($parameters['user'])) { // TODO: remove the isset part after login is implemented
 			$parameters['user'] = $this->getCurrentUser()->getId();
 		}
 		return $this->processForm($entity, $parameters, $this->formType, 'POST');
@@ -103,7 +103,7 @@ class GenericHandler extends AbstractHandler implements HandlerInterface {
 	public function put(EntityInterface $entity, array $parameters)
 	{
 		$parameters = $this->flattenEtityReference($parameters);
-		if(property_exists($entity, 'user')) {
+		if(property_exists($entity, 'user') && !isset($parameters['user'])) { // TODO: remove the isset part after login is implemented
 			$parameters['user'] = $this->getCurrentUser()->getId();
 		}
 		return $this->processForm($entity, $parameters, $this->formType, 'PUT');

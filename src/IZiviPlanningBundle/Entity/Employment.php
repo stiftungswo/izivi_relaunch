@@ -109,17 +109,17 @@ class Employment extends UserEntity implements EntityInterface
     /**
      * @return string
      */
-    public function getDraft()
+    public function getDraftDate()
     {
-        return $this->draft;
+        return $this->draftDate;
     }
 
     /**
-     * @param string $draft
+     * @param string $draftDate
      */
-    public function setDraft($draft)
+    public function setDraftDate($draftDate)
     {
-        $this->draft = $draft;
+        $this->draftDate = $draftDate;
     }
 
     /**

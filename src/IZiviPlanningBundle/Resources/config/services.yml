@@ -24,7 +24,7 @@ services:
 
     izivi.employment.handler:
           class: %generic_handler%
-          arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\Employment,  "@service_container", "c"]
+          arguments: [ "@doctrine.orm.entity_manager", IZiviPlanningBundle\Entity\Employment,  "@service_container", "c", IZiviPlanningBundle\Form\EmploymentFormType]
 
     object_normalizer:
             class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
