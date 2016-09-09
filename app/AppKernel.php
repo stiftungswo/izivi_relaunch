@@ -28,7 +28,8 @@ class AppKernel extends Kernel
             new \Swo\CommonsBundle\SwoCommonsBundle(),
             new \Tbbc\MoneyBundle\TbbcMoneyBundle(),
 
-            new IZiviPlanningBundle\IZiviPlanningBundle()
+            new IZiviPlanningBundle\IZiviPlanningBundle(),
+            new IZiviFrontendBundle\IZiviFrontendBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

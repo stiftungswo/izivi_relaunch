@@ -6,11 +6,11 @@ parameters:
     database_name: izivi
     database_user: izivi
     database_password: izivi
+    database_path: null
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
-    secret: ThisTokenIsNotSoSecretChangeIt
     locale: en
+    secret: ThisTokenIsNotSoSecretChangeIt
     izivi_release_mode: false
-    database_path: null

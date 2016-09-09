@@ -1,0 +1,169 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A portfolio template that uses Material Design Lite.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>iZivi SWO</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="{{ asset('bundles/izivifrontend/web/styles/material.grey-pink.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/izivifrontend/web/styles/styles.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/izivifrontend/web/styles/main.css?nocache=' ~ date().timestamp) }}" />
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+        <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">iZivi Stiftung Wirtschaft und &Ouml;kologie</span>
+                </span>
+        </div>
+        <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
+                <a class="mdl-navigation__link" href="blog.html">Blog</a>
+                <a class="mdl-navigation__link" href="about.html">About</a>
+                <a class="mdl-navigation__link" href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+        <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+            <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
+            <a class="mdl-navigation__link" href="blog.html">Blog</a>
+            <a class="mdl-navigation__link" href="about.html">About</a>
+            <a class="mdl-navigation__link" href="contact.html">Contact</a>
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="mdl-grid portfolio-max-width">
+
+            <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Hilfe</h2>
+                </div>
+                <!--div class="mdl-card__media">
+                    <img class="article-image" src="images/help.jpg" border="0" alt="">
+                </div-->
+
+                <div class="mdl-grid portfolio-copy">
+                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Einf&uuml;hrung</h3>
+                    <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding ">
+                        <p>iZivi soll</p>
+                        <ul>
+                            <li>Eine einfache Planung und &Uuml;bersicht der Zivildiensteins&auml;tze erm&ouml;glichen</li>
+                            <li>Interne Abl&auml;ufe zur Zivi-Administration vereinfachen</li>
+                            <li>Zuk&uuml;nftigen Zivis das Ausf&uuml;llen der Einsatzplanung vereinfachen</li>
+                            <li>F&uuml;r die Regionalstellen leserliche Einsatzplanungen erstellen</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Ablauf der Planung eines Einsatzes</h3>
+
+                    <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding ">
+                        <ol>
+                            <li>Als zuk&uuml;nftiger Zivi musst du dich zuerst erkundigen, ob zum gew&uuml;nschten Zeitpunkt ein Einsatz m&ouml;glich ist. Erkundige dich bei <a href="mailto:zivildienst@stiftungswo.ch">Marc Pfeuti</a>.</li>
+                            <li>Ist ein Einsatz grunds&auml;tzlich m&ouml;glich, wirst du im allgemeinen einen halben Schnuppertag absolvieren m&uuml;ssen.</li>
+                            <li>Hat dir der Schnuppertag gefallen und die Einsatzleistung ist mit deiner Motivation / Leistung zufrieden so wird dir die Einsatzleitung ein Community Passwort bekannt geben, mit welchem du dir auf dieser Seite einen Account er&ouml;ffnen und die Einsatzplanung erstellen kannst.</li>
+                            <li>Danach gibst du deine pers&ouml;hnlichen Daten und die Einsatzplanung ein und druckst diese aus.</li>
+                            <li>Die Einsatzplanung brauchst du nun nur noch zu unterschreiben und an den Einsatzbetrieb zur&uuml;ckzuschicken.</li>
+                            <li>Der Einsatzbetrieb unterschreibt dann die Einsatzplanung und leitet sie an die <b>Regionalstelle</b> weiter.</li>
+                            <li>Das Aufgebot erh&auml;ltst du dann automatisch von der Regionalstelle.</li>
+                        </ol>
+                    </div>
+
+                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Account erstellen</h3>
+
+                    <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding ">
+                        <p>F&uuml;r einen Account werden folgende Daten ben&ouml;tigt:</p>
+                        <ul>
+                            <li><b>Zivildienst Nummer (ZDP):</b> Dies wird dein zuk&uuml;nftiger Benutzername sein, mit welchem du dich jederzeit wieder auf dieser Seite einloggen kannst.</li>
+                            <li><b>Vorname, Nachname:</b> werden in der Men&uuml;leiste angezeigt, wenn du eingeloggt bist.</li>
+                            <li><b>Email:</b> Wird ben&uuml;tzt um Nachrichten vom System zu senden</li>
+                            <li><b>Pers&ouml;nliches Passwort und Best&auml;tigung:</b> Ein frei w&auml;hlbares Passwort. Mit diesem wirst du dich in Zukunft einloggen.</li>
+                            <li><b>Code:</b> Ein Code welches dich gegen&uuml;ber das System berechtigt einen Account zu er&ouml;ffnen. Es wird dir von der Einsatzleitung bekannt gegeben.</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Pers&ouml;nliche Daten eingeben</h3>
+
+                    <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding ">
+                        <p>Auf dieser Seite kannst du deine pers&ouml;hnlichen Daten erfassen und editieren. Prim&auml;r werden diese zur Erstellung der Einsatzplanung ben&ouml;tigt. Einige andere sind uns bei der Administration des Zivi Projektes (Bsp. KontoNr.) hilfreich. Bitte f&uuml;lle alle Felder korrekt aus. Du erleichterst uns und dir deinen Zivieinsatz. Zu folgenden Feldern einige Erl&auml;uterungen:</p>
+                        <ul>
+                            <li><b>Konto-Nr.:</b> Die Konto-Nr. wird zur&Uuml;berweisung deiner Spesen ben&uuml;tzt. In der Vergangenheit ist es einige Male passiert, dass Spesen versp&auml;tet ausbezahlt werden mussten, da uns Zivis die Kontonummer nicht rechtzeitig mitgeteilt hatten.</li>
+                            <li><b>Berufserfahrung:</b> Wir profitieren gerne von deiner Erfahrung. Wenn wir genau wissen, wann wer mit welchen Erfahrungen einen Einsatz t&auml;tigt, k&ouml;nnen wir z.T. Projekte speziell planen.</li>
+                            <li><b>F&uuml;hrerausweis:</b> Wir brauchen immer wieder Zivis welche bei Bedarf das Steuer&Uuml;bernehmen.</li>
+                            <li><b>GA/Halbtax:</b> Informationen&Uuml;ber allf&auml;llig vorhandene GAs/Halbtax brauchen wir f&uuml;r die Spesenabrechnung</li>
+                        </ul>
+                        <p><b>Wichtig:</b> Vergiss nicht zu speichern (Daten speichern) bevor du die Seite verl&auml;sst oder eine Einsatzplanung erfasst.</p>
+                        <p>Am Ende der Seite findest du eine Liste deiner Einsatzplanungen. Ist diese leer, so hast du noch keine Einsatzplanung erfasst. Siehe n&auml;chstes Kapitel. Klicke auf den Link drucken so wird ein PDF der Einsatzplanung generiert und in einem neuen Fenster angezeigt. Dieses kannst du dann drucken und an den Einsatzbetrieb schicken.</p>
+                    </div>
+
+                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Einsatzplanung erfassen</h3>
+
+                    <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding ">
+                        <p>Um eine Einsatzplanung zu erfassen musst du nur das Pflichtenheft ausw&auml;hlen und Start- und Enddatum eingeben. Beachte : Zivieins&auml;tze im Naturschutz m&uuml;ssen an einem Montag beginnen und an einem Freitag enden, ausser es handelt sich um deinen letzten Zivi Einsatz und du leistest nur noch die verbleibenden Resttage.</p>
+                    </div>
+
+                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Einsatzverl&auml;ngerung</h3>
+
+                    <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding ">
+                        <p>Nach Absprache mit der Einsatzleitung kannst du auch einen Einsatz verl&auml;ngern. Erfasse dazu eine neue Einsatzplanung, welche als Startdatum den Tag nach Einsatzende der vorhergehenden Einsatzplanung hat. Drucke diese Einsatzplanung und lasse sie von der Einsatzleitung unterschreiben.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+    <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo">iZivi</div>
+        </div>
+        <div class="mdl-mini-footer__right-section">
+            <ul class="mdl-mini-footer__link-list">
+                <li><a href="/help">Hilfe</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<script src="{{ asset('bundles/izivifrontend/web/js/material.min.js') }}">
+
+</script><script type="application/dart" src="{{ asset('bundles/izivifrontend/web/main.dart?nocache=' ~ date().timestamp) }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/izivifrontend/web/packages/browser/dart.js?nocache=' ~ date().timestamp) }}"></script>
+
+{#
+<!-- required scripts for iZivi (Dart or JS files) -->
+{% if izivi_release_mode == "true" %}
+    <script type="text/javascript" src="{{ asset('bundles/izivifrontend/build/web/main.dart.js?nocache=' ~ date().timestamp) }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/izivifrontend/build/web/packages/browser/dart.js?nocache=' ~ date().timestamp) }}"></script>
+{% else %}
+    <script type="application/dart" src="{{ asset('bundles/izivifrontend/web/main.dart?nocache=' ~ date().timestamp) }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/izivifrontend/web/packages/browser/dart.js?nocache=' ~ date().timestamp) }}"></script>
+{% endif %}#}
+</body>
+
+</html>

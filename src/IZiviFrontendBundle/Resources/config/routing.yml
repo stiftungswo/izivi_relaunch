@@ -1,0 +1,7 @@
+izivi_frontend:
+    resource: "@IZiviFrontendBundle/Controller"
+    type: annotation
+    #path:   /{route}
+    #requirements:
+    #    route:    '.*'
+    #defaults:  { _controller: IZiviFrontendBundle:Default:index }

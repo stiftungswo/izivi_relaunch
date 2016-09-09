@@ -9,3 +9,5 @@
 /vendor/
 /env/.vagrant/
 .idea/
+src/IZiviFrontendBundle/Resources/public/node_modules
+npm-debug.log

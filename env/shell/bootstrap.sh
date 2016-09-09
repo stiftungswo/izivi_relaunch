@@ -43,6 +43,10 @@ yum install gcc gcc-c++ autoconf automake
 pecl install Xdebug
 service httpd restart
 
+# install npm
+yum -y install nodejs npm
+npm install -g npm
+
 # configure autostart on boot
 sudo systemctl enable httpd.service
 sudo systemctl enable mariadb.service
