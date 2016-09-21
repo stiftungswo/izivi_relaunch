@@ -19,5 +19,3 @@ mysql -u izivi -pizivi izivi < env/fixtures/izivi.sql
 # prepare assets
 php app/console assetic:dump
 php bin/console asset:install --symlink
-
-/vagrant/env/npmInstall.sh
