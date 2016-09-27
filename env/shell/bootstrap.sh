@@ -59,5 +59,10 @@ else
 fi
 
 # Install izivi (we need to run this as vagrant user)
+/bin/su - vagrant -c "chmod +x /vagrant/env/shell/install_izivi.sh" # make install_izivi.sh executable
 /bin/su - vagrant -c "/vagrant/env/shell/install_izivi.sh"
 
+# make cache and logs folder writable
+HTTPDUSER=`ps aux | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`
+sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX /vagrant/var/cache /vagrant/var/logs
+sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX /vagrant/var/cache /vagrant/var/logs
