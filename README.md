@@ -1,68 +1,157 @@
-Symfony Standard Edition
-========================
+# iZivi
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+A tool to plan zivi employments
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+## General Purpose
 
-What's inside?
---------------
+The project's purpose is enable planning of zivis, when they start their employment and when they finish.
 
-The Symfony Standard Edition is configured with the following defaults:
+## Demo
 
-  * An AppBundle you can use to start coding;
+See the Vagrant VM in env Folder
 
-  * Twig as the only configured template engine;
+## Installation
 
-  * Doctrine ORM/DBAL;
+### Windows
 
-  * Swiftmailer;
+Download and install VirtualBox:
 
-  * Annotations enabled for everything.
+	https://www.virtualbox.org/
+	
+Download and install Cygwin:
 
-It comes pre-configured with the following bundles:
+	https://cygwin.com/
+	In the package selection of the setup, search rsync and add it
+	
+Modify the hosts file:
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+	In C:\Windows\System32\drivers\etc\hosts add the line
+	192.168.50.51 izivi.test.local
+	
+Download and install a Git client:
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+	e.g. https://www.sourcetreeapp.com/
+	Check out the current version
+	
+Start the virtual machine via the cygwin terminal:
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+	cd /cygdrive/c/Users/YourName/Dime/env
+	vagrant up
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+### OSX
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+Generally the same steps as for Windows:
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+  * Install VirtualBox, Vagrant and Dartium
+  * run "vagrant up" in the env/ folder
+  * Open in Dartium: http://izivi.test.local
+  
+Default Vagrant File Sync on OSX is very slow, you may want to use rsync or nfs to speed things up
+	
+## Update
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+Update to last version
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
+    git pull
+    git submodule update
+    php composer.phar self-update
+    php composer.phar update -v
+    app/console assetic:dump
+    app/console assets:install --symlink
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
+If you have any problem remove vendor and install again
 
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
+    rm -fR vendor
 
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
+Update database
 
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
+    app/console doctrine:migrations:migrate
 
-Enjoy!
+## Bundles
 
-[1]:  https://symfony.com/doc/3.0/book/installation.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.0/book/doctrine.html
-[8]:  https://symfony.com/doc/3.0/book/templating.html
-[9]:  https://symfony.com/doc/3.0/book/security.html
-[10]: https://symfony.com/doc/3.0/cookbook/email.html
-[11]: https://symfony.com/doc/3.0/cookbook/logging/monolog.html
-[13]: https://symfony.com/doc/3.0/bundles/SensioGeneratorBundle/index.html
+There are Multiple Bundle Seperated by features:
+    IZiviPlanningBundle Contains the entities
+    FrontendBundle The Javascript GUI
+
+## Contributing
+
+Please feel free to contribute issues, improvements and feedback.
+
+For code contributions, [Symfony2 Coding Standards] are the way we want to go.
+
+Please write in English and use the `doc` folders for documentation and proposals rather than Github wiki.
+
+[Symfony2 Coding Standards]: http://symfony.com/doc/master/contributing/code/standards.html
+
+## Development-Branches
+
+Create remote feature branch:
+
+    git pull origin master
+    git push origin ISSUENO-and-a-short-description
+    git checkout -t ISSUENO-and-a-short-description
+
+or for short bugfixing create only a local branch:
+
+    git pull origin master
+    git checkout -b ISSUENO-and-a-short-description
+
+keep up to date with the master (not sure with this - have to test it):
+
+    git fetch origin master
+    git rebase orgin/master
+
+if your work is done, merge back to master:
+
+    git checkout master
+    git fetch
+    git rebase
+    git merge ISSUENO-and-a-short-description
+
+Finally remove remote feature branch:
+
+    git push origin :ISSUENO-and-a-short-description
+
+and the local branch too:
+
+    git branch -d ISSUENO-and-a-short-description
+
+## Run Test
+
+Run tests:
+
+    phpunit -c app/
+
+Run a single test:
+
+    phpunit -c app/ --filter {Controller}::{test-method}
+
+## Database Schema Management
+
+Update Database Schema to the latest version:
+
+    php app/console doctrine:migrations:migrate
+
+Migrate Database Schema to a specific version:
+
+    php app/console doctrine:migrations:migrate <version>
+
+Generate new Empty Migration Class:
+
+    php app/console doctrine:migrations:generate
+
+## Fixtures
+
+The fixtures are an example dataset that can be used while developing. But more important: the tests run against this database.
+
+Load fixtures into the database:
+
+    /vagrant/env/fixtures/load_fixtures.sh
+
+When the database schema changed, you need to regenerate the fixtures. You can do this with the following command:
+
+    cd /vagrant/env/fixtures/ && ./regenerate_fixtures.sh
+
+Then export the changes again and check in the new dime.sql into git
+
+    cd /vagrant/env/fixtures/ && ./export_fixtures.sh 
