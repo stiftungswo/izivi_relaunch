@@ -1,0 +1,32 @@
+version: '2'
+services:
+  izivi-backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    container_name: izivi-backend
+    hostname: izivi-backend
+    ports:
+      - "3001:8080"
+      - "9000:9000"
+    links:
+      - izivi-mariadb:mysql
+    volumes:
+      - ./backend:/var/www/html
+    environment:
+      - VIRTUAL_HOST=localhost
+      - PHP_MEMLIMIT="512M"
+      - CACHE_ROOT="/tmp/app"
+    restart: always
+
+  izivi-mariadb:
+    image: mariadb:10
+    container_name: izivi-mariadb
+    hostname: izivi-mariadb
+    volumes:
+      - .izivi-db/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_USER=izivi
+      - MYSQL_PASSWORD=izivi
+    restart: always

@@ -1,0 +1,52 @@
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+          timestampable: true
+          sluggable: true
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: IZiviPlanningBundle\Entity\User
+    from_email:
+      address: "%sender_mail%"
+      sender_name: Izivi
+
+jms_serializer:
+    handlers:
+        datetime:
+            default_format: "Y-m-d H:i:s"
+            default_timezone: "UTC"
+
+    property_naming:
+        separator: _
+        lower_case: true
+
+    metadata:
+        cache: file
+        debug: "%kernel.debug%"
+        file_cache:
+            dir: "%kernel.cache_dir%/serializer"
+        auto_detection: true
+        directories:
+            FOSUB:
+                namespace_prefix: "FOS\\UserBundle"
+                path: "@IZiviPlanningBundle/Resources/config/serializer"
+
+fos_rest:
+    routing_loader:
+        default_format: json
+        include_format: false
+    param_fetcher_listener: true
+    body_listener: true
+    allowed_methods_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+            xml: true
+    format_listener:
+        rules:
+            - { path: '^/api', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+            - { path: '^/', stop: true }
