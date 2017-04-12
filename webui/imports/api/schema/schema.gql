@@ -1,0 +1,6 @@
+type Say {
+  test: String,
+},
+type Query {
+  say: Say
+}
