@@ -11,3 +11,5 @@ standard-minifier-js@2.0.0    # JS minifier run for production mode
 ecmascript@0.7.2              # Enable ECMAScript2015+ syntax in app code
 shell-server@0.2.3            # Server-side component of the `meteor shell` command
 apollo@0.7.2
+nicolaslopezj:apollo-accounts
+accounts-password

@@ -1,4 +1,3 @@
-export default (root, args/* , context */) => {
-  const { name } = args;
-  return `hello world ${name}`;
+export default (root, args, context) => {
+  console.log(args);
 };

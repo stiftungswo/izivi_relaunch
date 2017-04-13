@@ -1,3 +1,3 @@
-import Say from './say.graphql';
+import User from './user.graphql';
 
-export default [Say].join('');
+export default [User];
