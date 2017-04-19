@@ -6,17 +6,17 @@ let apolloClient = null;
 function doInitClient(headers, initialState) {
   const networkInterface = createNetworkInterface({
     uri: 'http://localhost:3010/graphql',
-    opts: {
-      credentials: 'same-origin',
-      // Pass headers here if your graphql server requires them
-    },
+    // opts: {
+    //   credentials: 'same-origin',
+    //   // Pass headers here if your graphql server requires them
+    // },
   });
   networkInterface.use([{
-    applyMiddleware(req, next) {
+    async applyMiddleware(req, next) {
       if (!req.options.headers) {
         req.options.headers = {};
       }
-      req.options.headers.authorization = getLoginToken() || null;
+      req.options.headers.authorization = await getLoginToken() || null;
       next();
     },
   }]);
