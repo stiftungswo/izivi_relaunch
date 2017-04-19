@@ -1,8 +1,10 @@
 import { compose, pure } from 'recompose';
 import App from '../components/App';
-import withData from '../lib/withData';
+import connectApollo from '../lib/connectApollo';
+import me from '../lib/queries/me';
 
 export default compose(
-  withData,
+  connectApollo,
+  me,
   pure,
 )(App);

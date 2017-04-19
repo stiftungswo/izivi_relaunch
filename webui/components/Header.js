@@ -1,28 +1,28 @@
 import React from 'react';
+import { Menu } from 'semantic-ui-react';
+import Head from 'next/head';
 import Link from 'next/link';
 
 export default ({ pathname }) => (
-  <header>
+  <Menu>
+    <Head>
+      <link
+        rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"
+      />
+    </Head>
+    <Menu.Item>
+      <h2>iZivi</h2>
+    </Menu.Item>
     <Link prefetch href="/">
-      <a className={pathname === '/' && 'is-active'}>Home</a>
+      <Menu.Item className={pathname === '/' ? 'active' : ''}>
+        <span>Übersicht</span>
+      </Menu.Item>
     </Link>
-
     <Link prefetch href="/about">
-      <a className={pathname === '/about' && 'is-active'}>About</a>
+      <Menu.Item className={pathname === '/about' ? 'active' : ''}>
+        <span>Impressum</span>
+      </Menu.Item>
     </Link>
-
-    <style jsx>{`
-      header {
-        margin-bottom: 25px;
-      }
-      a {
-        font-size: 14px;
-        margin-right: 15px;
-        text-decoration: none;
-      }
-      .is-active {
-        text-decoration: underline;
-      }
-    `}</style>
-  </header>
+  </Menu>
 );

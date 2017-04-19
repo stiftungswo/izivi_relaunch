@@ -11,14 +11,19 @@
   },
   "dependencies": {
     "graphql": "^0.9.3",
+    "graphql-tag": "^2.0.0",
     "isomorphic-fetch": "^2.2.1",
+    "meteor-apollo-accounts": "^2.0.1",
     "next": "latest",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-apollo": "^1.0.2",
-    "graphql-tag": "^2.0.0",
-    "meteor-apollo-accounts": "^2.0.1",
-    "recompose": "^0.23.1"
+    "react-dom": "^15.5.4",
+    "recompose": "^0.23.1",
+    "semantic-ui-react": "^0.68.0",
+    "simpl-schema": "^0.2.3",
+    "uniforms": "^1.17.2",
+    "uniforms-semantic": "^1.17.2"
   },
   "devDependencies": {
     "eslint": "^3.19.0",

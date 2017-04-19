@@ -8,7 +8,7 @@ function doInitClient(headers, initialState) {
     ssrMode: !process.browser,
     dataIdFromObject: result => result.id || null,
     networkInterface: createNetworkInterface({
-      uri: 'http://localhost:3010',
+      uri: 'http://localhost:3010/graphql',
       opts: {
         credentials: 'same-origin',
         // Pass headers here if your graphql server requires them
