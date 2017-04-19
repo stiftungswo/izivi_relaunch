@@ -1,9 +1,8 @@
 import { Segment, Dimmer, Loader } from 'semantic-ui-react';
 import React from 'react';
 import Header from './Header';
-import LoginForms from './LoginForms';
 
-export default ({ url, data: { loading, me }, children }) => (
+export default ({ url, loading, children }) => (
   <main>
     <Header pathname={url.pathname} />
     <Segment vertical>
@@ -12,7 +11,7 @@ export default ({ url, data: { loading, me }, children }) => (
           <Loader size="large" inverted>Laden</Loader>
         </Dimmer>
       ) }
-      {me ? children : <LoginForms /> }
+      {children}
     </Segment>
   </main>
 );
