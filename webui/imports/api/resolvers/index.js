@@ -1,8 +1,13 @@
-import changeHello from './change-hello';
+import Query from './queries';
+import Mutation from './mutations';
+import Date from './scalar-date';
+import JSON from './scalar-json';
+import Types from './types';
 
-export const Query = {
-};
-
-export const Mutation = {
-  changeHello,
+export default {
+  ...Types,
+  JSON,
+  Date,
+  Query,
+  Mutation,
 };

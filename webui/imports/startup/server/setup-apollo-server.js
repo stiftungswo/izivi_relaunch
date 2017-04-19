@@ -1,7 +1,9 @@
-import { createApolloServer } from 'meteor/apollo';
+import { createApolloServer } from 'meteor/orionsoft:apollo';
 import { initAccounts } from 'meteor/nicolaslopezj:apollo-accounts';
 import { loadSchema, getSchema } from 'graphql-loader';
-import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
+import { makeExecutableSchema } from 'graphql-tools';
+import 'paginated-graphql';
+import cors from 'cors';
 import typeDefs from '../../api/schema';
 import resolvers from '../../api/resolvers';
 
@@ -17,11 +19,10 @@ console.log(info); // eslint-disable-line
 
 const schema = makeExecutableSchema(graphqlConfiguration);
 
-const mock = false;
-if (mock) {
-  addMockFunctionsToSchema({ schema });
-}
-
 createApolloServer({
   schema,
+}, {
+  configServer(graphQLServer) {
+    graphQLServer.use(cors());
+  },
 });

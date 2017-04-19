@@ -1,16 +1,16 @@
 type User {
-  _id: ID
-  emails: [Email]
+  _id: ID!
+  email: String!
   profile: UserProfile
-}
-
-type Email {
-  address: String
-  verified: Boolean
+  emails: [UserEmail]
+  roles: [ID]
 }
 
 type UserProfile {
-  firstname: String
-  lastname: String
   name: String
+}
+
+type UserEmail {
+  address: String!
+  verified: Boolean!
 }
