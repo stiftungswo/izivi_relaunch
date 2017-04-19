@@ -1,11 +1,11 @@
 version: '2'
 services:
-  izivi-backend:
+  izivi-symfony-backend:
     build:
-      context: backend
+      context: symfony-backend
       dockerfile: Dockerfile
-    container_name: izivi-backend
-    hostname: izivi-backend
+    container_name: izivi-symfony-backend
+    hostname: izivi-symfony-backend
     ports:
       - "3001:8080"
       - "9000:9000"
