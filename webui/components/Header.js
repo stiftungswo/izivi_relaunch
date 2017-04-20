@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 export default ({ pathname, loggedInUser, logout }) => (
-  <Menu>
+  <Menu color="blue" inverted attached>
     <Head>
       <link
         rel="stylesheet"
@@ -12,7 +12,7 @@ export default ({ pathname, loggedInUser, logout }) => (
       />
     </Head>
     <Menu.Item>
-      <h2>iZivi</h2>
+      <h2>iZivi 2.0</h2>
     </Menu.Item>
     <Link prefetch href="/">
       <Menu.Item className={pathname === '/' ? 'active' : ''}>
