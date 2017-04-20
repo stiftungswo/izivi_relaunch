@@ -8,6 +8,12 @@ const handlers = withHandlers({
     if (message === 'User not found [403]') {
       updateServerError('Benutzer nicht gefunden');
       return;
+    } else if (message === 'Username already exists. [403]') {
+      updateServerError('Benutzer existiert bereits im System, zurücksetzen?');
+      return;
+    } else if (message === 'Email already exists. [403]') {
+      updateServerError('E-Mail existiert bereits im System, zurücksetzen?');
+      return;
     }
     updateServerError(error.message);
   },

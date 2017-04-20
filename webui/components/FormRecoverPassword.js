@@ -4,20 +4,17 @@ import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import AutoForm from 'uniforms-semantic/AutoForm';
 
-const FormSignUp = ({
+const FormRecoverPassword = ({
   onSubmit, schema,
   onSubmitSuccess, onSubmitFailure,
 }) => (
   <AutoForm
     {...({ schema, onSubmit, onSubmitSuccess, onSubmitFailure })}
   >
-    <AutoField name="username" />
-    <AutoField name="email" type="email" />
-    <AutoField name="password" type="password" />
+    <AutoField name="email" />
     <ErrorsField />
-    <SubmitField value="Registrieren" className="primary" />
+    <SubmitField value="Passwort zurücksetzen" className="primary" />
   </AutoForm>
 );
 
-
-export default FormSignUp;
+export default FormRecoverPassword;

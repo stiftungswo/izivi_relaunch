@@ -1,13 +1,16 @@
 type User {
   _id: ID!
+  username: String!
   email: String!
+  name: String!
   profile: UserProfile
   emails: [UserEmail]
   roles: [ID]
 }
 
 type UserProfile {
-  name: String
+  firstName: String
+  lastName: String
 }
 
 type UserEmail {

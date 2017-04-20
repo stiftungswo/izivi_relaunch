@@ -15,8 +15,8 @@ export default ({ ...rest }) => (
         <Grid stackable padded columns={2}>
           <Grid.Column>
             <Segment textAlign="center" basic size="mini">
-              <Link prefetch href="/signup">
-                <Button as="a" href="/signup" primary basic fluid>
+              <Link prefetch href="/sign-up">
+                <Button as="a" href="/sign-up" primary basic fluid>
                   Noch keinen Benutzer? Registrieren
                 </Button>
               </Link>
@@ -24,8 +24,8 @@ export default ({ ...rest }) => (
           </Grid.Column>
           <Grid.Column>
             <Segment textAlign="center" basic size="mini">
-              <Link prefetch href="/recover-password">
-                <Button as="a" href="/signup" basic secondary fluid>
+              <Link prefetch href="/forgot-password">
+                <Button as="a" href="/forgot-password" basic secondary fluid>
                   Passwort zurücksetzen
                 </Button>
               </Link>

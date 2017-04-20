@@ -1,22 +1,31 @@
 import React from 'react';
 import { Grid, Segment, Button, Container } from 'semantic-ui-react';
 import Link from 'next/link';
-import FormSignUp from '../containers/formSignUp';
+import FormRecoverPassword from '../containers/formRecoverPassword';
 import App from '../containers/app';
 
 export default ({ ...rest }) => (
   <App {...rest} allowAnonymousAccess>
     <Container>
       <Segment>
-        <h3 className="title">Registrieren</h3>
-        <FormSignUp />
+        <h3 className="title">Passwort zurücksetzen</h3>
+        <FormRecoverPassword />
       </Segment>
       <Segment>
         <Grid stackable padded columns={2}>
           <Grid.Column>
             <Segment textAlign="center" basic size="mini">
-              <Link prefetch href="/signin">
-                <Button as="a" href="/signin" primary basic fluid>
+              <Link prefetch href="/sign-up">
+                <Button as="a" href="/sign-up" primary basic fluid>
+                  Noch keinen Benutzer? Registrieren
+                </Button>
+              </Link>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column>
+            <Segment textAlign="center" basic size="mini">
+              <Link prefetch href="/sign-in">
+                <Button as="a" href="/sign-in" primary basic fluid>
                   Du hast bereits einen Benutzer? Hier anmelden
                 </Button>
               </Link>

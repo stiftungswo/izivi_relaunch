@@ -5,7 +5,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "BABEL_DISABLE_CACHE=1 meteor -p 3010"
+    "dev": "UI_ENDPOINT=http://localhost:3000 BABEL_DISABLE_CACHE=1 meteor -p 3010"
   },
   "dependencies": {
     "apollo-client": "^1.0.3",

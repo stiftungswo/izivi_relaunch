@@ -3,6 +3,19 @@ import { Accounts } from 'meteor/accounts-base';
 import cloneDeep from 'lodash/cloneDeep';
 import Users from '../../api/collections/users';
 
+Accounts.urls.resetPassword = token =>
+  `${process.env.UI_ENDPOINT}/reset-password?reset=${token}`;
+
+Accounts.urls.verifyEmail = token =>
+  `${process.env.UI_ENDPOINT}/?verify=${token}`;
+
+Accounts.validateNewUser((user) => {
+  const clone = cloneDeep(user);
+  delete clone._id;
+  Users.simpleSchema().validate(clone);
+  return true;
+});
+
 Accounts.onCreateUser((options, user = {}) => {
   const newUser = user;
   newUser.profile = options.profile || {};
@@ -22,10 +35,6 @@ Accounts.onCreateUser((options, user = {}) => {
     };
     newUser.emails = [{ address: newUser.services.facebook.email, verified: true }];
   }
-
-  const clone = cloneDeep(newUser);
-  delete clone._id;
-  Users.simpleSchema().validate(clone);
 
   Meteor.defer(() => {
     Accounts.sendVerificationEmail(newUser._id);

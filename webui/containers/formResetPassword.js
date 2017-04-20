@@ -1,32 +1,28 @@
 import { compose, pure, withProps, withHandlers } from 'recompose';
-import { createUser } from 'meteor-apollo-accounts';
+import { resetPassword } from 'meteor-apollo-accounts';
 import SimpleSchema from 'simpl-schema';
 import { withApollo } from 'react-apollo';
 import handleFormErrors from '../lib/handleFormErrors';
-import FormSignUp from '../components/FormSignUp';
+import FormResetPassword from '../components/FormResetPassword';
 
 export default compose(
   handleFormErrors,
   withApollo,
   withProps(() => ({
     schema: new SimpleSchema({
-      username: {
-        type: String,
-        label: 'ZDP Nummber',
-      },
-      email: {
-        type: String,
-        label: 'E-Mail Adresse',
-      },
       password: {
         type: String,
-        label: 'Passwort',
+        label: 'Neues Passwort',
+      },
+      passwordConfirm: {
+        type: String,
+        label: 'Neues Passwort bestätigen',
       },
     }),
   })),
   withHandlers({
-    onSubmit: ({ client }) => ({ username, email, password }) =>
-      createUser({ username, email, password }, client),
+    onSubmit: ({ client, url: { query: { reset: token } } }) => ({ password: newPassword }) =>
+      resetPassword({ newPassword, token }, client),
   }),
   pure,
-)(FormSignUp);
+)(FormResetPassword);

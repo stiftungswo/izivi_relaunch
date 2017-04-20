@@ -22,7 +22,7 @@ export default compose(
   lifecycle({
     async componentWillReceiveProps({ loggedInUser, allowAnonymousAccess, url, loading }) {
       if (!allowAnonymousAccess && !loading && !loggedInUser) {
-        url.replace('/signin');
+        url.replace('/sign-in');
       }
       if (allowAnonymousAccess && !loading && loggedInUser) {
         url.replace('/');

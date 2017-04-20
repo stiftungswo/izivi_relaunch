@@ -5,8 +5,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
+    "dev": "GRAPHQL_ENDPOINT=http://localhost:3010/graphql next",
+    "build": "GRAPHQL_ENDPOINT=http://localhost:3010/graphql next build",
     "start": "next start"
   },
   "dependencies": {
@@ -26,6 +26,7 @@
     "uniforms-semantic": "^1.17.2"
   },
   "devDependencies": {
+    "babel-plugin-transform-inline-environment-variables": "0.0.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",

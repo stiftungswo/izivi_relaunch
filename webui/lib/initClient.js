@@ -1,15 +1,14 @@
 import { ApolloClient, createNetworkInterface } from 'react-apollo';
-import { getLoginToken } from 'meteor-apollo-accounts';
+import { getLoginToken, onTokenChange } from 'meteor-apollo-accounts';
 
 let apolloClient = null;
 
 function doInitClient(headers, initialState) {
   const networkInterface = createNetworkInterface({
-    uri: 'http://localhost:3010/graphql',
-    // opts: {
-    //   credentials: 'same-origin',
-    //   // Pass headers here if your graphql server requires them
-    // },
+    uri: process.env.GRAPHQL_ENDPOINT,
+    opts: {
+      credentials: 'same-origin',
+    },
   });
   networkInterface.use([{
     async applyMiddleware(req, next) {
@@ -41,5 +40,9 @@ export default (headers, initialState = {}) => {
   if (!apolloClient) {
     apolloClient = doInitClient(headers, initialState);
   }
+  onTokenChange(() => {
+    console.log('token did change'); // eslint-disable-line
+    apolloClient.resetStore();
+  });
   return apolloClient;
 };

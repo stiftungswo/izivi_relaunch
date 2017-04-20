@@ -1,13 +1,21 @@
 import SimpleSchema from 'simpl-schema';
 
 export const Profile = new SimpleSchema({
-  name: {
+  firstName: {
+    type: String,
+    optional: true,
+  },
+  lastName: {
     type: String,
     optional: true,
   },
 });
 
 export default new SimpleSchema({
+  username: {
+    type: String,
+    regEx: /^[0-9]*$/,
+  },
   emails: {
     type: Array,
   },
