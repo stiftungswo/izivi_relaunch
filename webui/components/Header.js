@@ -1,9 +1,9 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Dropdown } from 'semantic-ui-react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-export default ({ pathname, loggedInUser }) => (
+export default ({ pathname, loggedInUser, logout }) => (
   <Menu>
     <Head>
       <link
@@ -19,10 +19,19 @@ export default ({ pathname, loggedInUser }) => (
         <span>Übersicht</span>
       </Menu.Item>
     </Link>
-    <Link prefetch href="/profile">
-      <Menu.Item className={pathname === '/profile' ? 'active' : ''}>
-        <span>{loggedInUser.email}</span>
-      </Menu.Item>
-    </Link>
+    {loggedInUser && (
+      <Menu.Menu position="right">
+        <Dropdown item text={loggedInUser.email} className={pathname === '/profile' ? 'active' : ''}>
+          <Dropdown.Menu>
+            <Link href="/profile">
+              <Dropdown.Item className={pathname === '/profile' ? 'active' : ''}>
+                <span>Profil</span>
+              </Dropdown.Item>
+            </Link>
+            <Dropdown.Item onClick={logout}>Abmelden</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Menu.Menu>
+    )}
   </Menu>
 );
