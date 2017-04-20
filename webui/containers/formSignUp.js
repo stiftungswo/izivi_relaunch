@@ -22,6 +22,10 @@ const schema = withProps(() => ({
 const handlers = withHandlers({
   onSubmit: ({ client }) => ({ email, password }) =>
     createUser({ email, password }, client),
+  onSubmitSuccess: ({ updateServerError, client }) => () => {
+    client.resetStore();
+    updateServerError(null);
+  },
 });
 
 export default compose(

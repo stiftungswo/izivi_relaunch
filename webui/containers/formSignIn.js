@@ -17,10 +17,8 @@ const schema = withProps(() => ({
 }));
 
 const handlers = withHandlers({
-  onSubmit: ({ client }) => async ({ email, password }) => {
-    const result = await loginWithPassword({ email, password }, client);
-    console.log(result);
-  },
+  onSubmit: ({ client }) => ({ email, password }) =>
+    loginWithPassword({ email, password }, client),
   onSubmitSuccess: ({ updateServerError, client }) => () => {
     client.resetStore();
     updateServerError(null);

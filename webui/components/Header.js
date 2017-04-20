@@ -3,7 +3,7 @@ import { Menu } from 'semantic-ui-react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-export default ({ pathname }) => (
+export default ({ pathname, loggedInUser }) => (
   <Menu>
     <Head>
       <link
@@ -19,9 +19,9 @@ export default ({ pathname }) => (
         <span>Übersicht</span>
       </Menu.Item>
     </Link>
-    <Link prefetch href="/about">
-      <Menu.Item className={pathname === '/about' ? 'active' : ''}>
-        <span>Impressum</span>
+    <Link prefetch href="/profile">
+      <Menu.Item className={pathname === '/profile' ? 'active' : ''}>
+        <span>{loggedInUser.email}</span>
       </Menu.Item>
     </Link>
   </Menu>
