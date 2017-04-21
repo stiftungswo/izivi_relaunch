@@ -1,6 +1,7 @@
 import React from 'react';
+import Link from 'next/link';
 import { Card, Container, Progress, Button } from 'semantic-ui-react';
-import App from '../containers/app';
+import App from '../lib/AppContainer';
 
 export default ({ ...rest }) => (
   <App {...rest}>
@@ -20,7 +21,11 @@ export default ({ ...rest }) => (
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <Button basic primary>Angaben komplettieren</Button>
+            <Link prefetch href="/profile">
+              <Button as="a" href="/profile" basic primary>
+                Angaben komplettieren
+              </Button>
+            </Link>
           </Card.Content>
         </Card>
         <Card>

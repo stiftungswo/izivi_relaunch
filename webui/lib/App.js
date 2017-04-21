@@ -1,6 +1,6 @@
-import { Segment, Dimmer, Loader } from 'semantic-ui-react';
 import React from 'react';
-import Header from '../containers/header';
+import { Segment, Dimmer, Loader } from 'semantic-ui-react';
+import Header from './HeaderContainer';
 
 export default ({ url, loggedInUser, loading, children }) => (
   <main>

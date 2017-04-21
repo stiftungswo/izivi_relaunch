@@ -2,8 +2,8 @@ import { compose, pure, withProps, withHandlers } from 'recompose';
 import { forgotPassword } from 'meteor-apollo-accounts';
 import SimpleSchema from 'simpl-schema';
 import { withApollo } from 'react-apollo';
-import handleFormErrors from '../lib/handleFormErrors';
-import FormRecoverPassword from '../components/FormRecoverPassword';
+import handleFormErrors from '../../lib/handleFormErrors';
+import FormRecoverPassword from './FormRecoverPassword';
 
 export default compose(
   handleFormErrors,

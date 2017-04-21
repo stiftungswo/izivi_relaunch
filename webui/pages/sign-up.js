@@ -1,8 +1,8 @@
 import React from 'react';
-import { Grid, Segment, Button, Container } from 'semantic-ui-react';
 import Link from 'next/link';
-import FormSignUp from '../containers/formSignUp';
-import App from '../containers/app';
+import { Grid, Segment, Button, Container } from 'semantic-ui-react';
+import App from '../lib/AppContainer';
+import FormSignUp from '../modules/account/FormSignUpContainer';
 
 export default ({ ...rest }) => (
   <App {...rest} allowAnonymousAccess>

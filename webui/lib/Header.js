@@ -1,7 +1,7 @@
 import React from 'react';
-import { Menu, Dropdown } from 'semantic-ui-react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { Menu, Dropdown } from 'semantic-ui-react';
 
 export default ({ pathname, loggedInUser, logout }) => (
   <Menu color="blue" inverted attached>
@@ -21,7 +21,7 @@ export default ({ pathname, loggedInUser, logout }) => (
     </Link>
     {loggedInUser && (
       <Menu.Menu position="right">
-        <Dropdown item text={loggedInUser.email} className={pathname === '/profile' ? 'active' : ''}>
+        <Dropdown item text={loggedInUser.name} className={pathname === '/profile' ? 'active' : ''}>
           <Dropdown.Menu>
             <Link href="/profile">
               <Dropdown.Item className={pathname === '/profile' ? 'active' : ''}>

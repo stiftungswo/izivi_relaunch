@@ -41,6 +41,22 @@ export default new SimpleSchema({
     optional: true,
     blackbox: true,
   },
+  profileStepsCompleted: {
+    type: Array,
+    optional: true,
+  },
+  'profileStepsCompleted.$': {
+    type: Object,
+    optional: true,
+  },
+  'profileStepsCompleted.$.timestamp': {
+    type: Date,
+    optional: false,
+  },
+  'profileStepsCompleted.$.step': {
+    type: String,
+    optional: false,
+  },
   roles: {
     type: Array,
     optional: true,

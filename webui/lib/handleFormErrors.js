@@ -1,5 +1,5 @@
 import { compose, withHandlers, withState, renderComponent, branch } from 'recompose';
-import FormError from '../components/FormError';
+import FormError from './FormError';
 
 const errorState = withState('serverError', 'updateServerError', '');
 const handlers = withHandlers({

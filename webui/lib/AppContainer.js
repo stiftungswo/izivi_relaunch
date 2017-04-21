@@ -1,8 +1,8 @@
 import { compose, pure, lifecycle, withProps } from 'recompose';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import App from '../components/App';
-import connectApollo from '../lib/connectApollo';
+import connectApollo from './connectApollo';
+import App from './App';
 
 export default compose(
   connectApollo,
@@ -10,8 +10,7 @@ export default compose(
     query getCurrentUser {
       me {
        _id
-       email
-       roles
+       name
      }
     }
   `),

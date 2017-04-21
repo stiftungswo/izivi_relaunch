@@ -1,7 +1,7 @@
 import { compose, pure, withHandlers } from 'recompose';
 import { logout } from 'meteor-apollo-accounts';
 import { withApollo } from 'react-apollo';
-import Header from '../components/Header';
+import Header from './Header';
 
 export default compose(
   withApollo,
