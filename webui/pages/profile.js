@@ -2,6 +2,7 @@ import React from 'react';
 import { Step, Segment, Container } from 'semantic-ui-react';
 import App from '../lib/AppContainer';
 import ProfileStepItem from '../modules/profile/StepItemContainer';
+import FormPersonalData from '../modules/profile/FormPersonalDataContainer';
 
 export default ({ url, ...rest }) => (
   <App url={url} {...rest}>
@@ -31,7 +32,7 @@ export default ({ url, ...rest }) => (
       </Step.Group>
       <Segment attached>
         {(url.query.step === 'profile' || !url.query.step) && (
-          <span>Profile</span>
+          <FormPersonalData />
         )}
         {(url.query.step === 'bank') && (
           <span>Bank</span>
