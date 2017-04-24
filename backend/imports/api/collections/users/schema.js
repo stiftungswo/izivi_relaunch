@@ -9,6 +9,32 @@ export const Profile = new SimpleSchema({
     type: String,
     optional: true,
   },
+  street: {
+    type: String,
+    optional: true,
+  },
+  city: {
+    type: String,
+    optional: true,
+  },
+  postalNumber: {
+    type: Number,
+    min: 1000,
+    max: 99999,
+    optional: true,
+  },
+  birthday: {
+    type: Date,
+    optional: true,
+  },
+  phoneMobile: {
+    type: String,
+    optional: true,
+  },
+  phoneWork: {
+    type: String,
+    optional: true,
+  },
 });
 
 export default new SimpleSchema({

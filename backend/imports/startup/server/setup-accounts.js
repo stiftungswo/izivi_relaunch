@@ -18,8 +18,7 @@ Accounts.validateNewUser((user) => {
 
 Accounts.onCreateUser((options, user = {}) => {
   const newUser = user;
-  newUser.profile = options.profile || {};
-
+  newUser.profile = null;
   if (newUser.services.google) {
     newUser.profile = {
       name: newUser.services.google.name,

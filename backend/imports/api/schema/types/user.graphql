@@ -11,8 +11,14 @@ type User {
 }
 
 type UserProfile {
-  firstName: String?
-  lastName: String
+  firstName: String!
+  lastName: String!
+  street: String!
+  postalNumber: Int!
+  city: String!
+  birthday: Date!,
+  phoneMobile: String,
+  phoneWork: String,
 }
 
 type UserEmail {

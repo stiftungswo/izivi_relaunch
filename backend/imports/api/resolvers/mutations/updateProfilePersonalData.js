@@ -1,7 +1,8 @@
 import Users from '../../collections/users';
 
-export default function (root, { input: profile, userId }, context) {
+export default function (root, { profile, userId }, context) {
   const normalizedUserId = userId || context.userId;
+  console.log(profile);
   Users.update(normalizedUserId, {
     $set: {
       profile,
@@ -10,11 +11,7 @@ export default function (root, { input: profile, userId }, context) {
 
   Users.update({
     _id: normalizedUserId,
-    profileStepsCompleted: {
-      $elemMatch: {
-        step: { $ne: 'profile' },
-      },
-    },
+    'profileStepsCompleted.step': { $ne: 'profile' },
   }, {
     $addToSet: {
       profileStepsCompleted: {
