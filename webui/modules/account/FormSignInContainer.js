@@ -1,32 +1,29 @@
-import { compose, pure, withProps, withHandlers, withState } from 'recompose';
+import { compose, pure, mapProps, withHandlers, withState } from 'recompose';
 import { loginWithPassword } from 'meteor-apollo-accounts';
-import SimpleSchema from 'simpl-schema';
 import { withApollo } from 'react-apollo';
-import handleFormErrors from '../../lib/handleFormErrors';
+import withFormSchema from '../../lib/withFormSchema';
+import withFormErrorHandlers from '../../lib/withFormErrorHandlers';
 import FormSignIn from './FormSignIn';
 
 export default compose(
-  handleFormErrors,
   withApollo,
   withState('loginType', 'updateLoginType', 'email'),
-  withProps(() => ({
-    schema: new SimpleSchema({
-      email: {
-        type: String,
-        optional: true,
-        label: 'E-Mail Adresse',
-      },
-      username: {
-        type: String,
-        optional: true,
-        label: 'Zivildienstnummer',
-      },
-      password: {
-        type: String,
-        label: 'Passwort',
-      },
-    }),
-  })),
+  withFormSchema({
+    email: {
+      type: String,
+      optional: true,
+      label: 'E-Mail Adresse',
+    },
+    username: {
+      type: String,
+      optional: true,
+      label: 'Zivildienstnummer',
+    },
+    password: {
+      type: String,
+      label: 'Passwort',
+    },
+  }),
   withHandlers({
     onSubmit: ({ client }) => ({ email, username, password }) =>
       loginWithPassword({ email, username, password }, client),
@@ -34,5 +31,7 @@ export default compose(
       updateLoginType(name);
     },
   }),
+  withFormErrorHandlers,
+  mapProps(({ updateLoginType, client, ...rest }) => ({ ...rest })),
   pure,
 )(FormSignIn);

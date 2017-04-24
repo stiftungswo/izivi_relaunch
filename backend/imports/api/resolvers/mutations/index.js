@@ -1,3 +1,5 @@
-export default {
+import updateProfilePersonalData from './updateProfilePersonalData';
 
+export default {
+  updateProfilePersonalData,
 };

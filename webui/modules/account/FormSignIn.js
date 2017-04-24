@@ -5,13 +5,8 @@ import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import AutoForm from 'uniforms-semantic/AutoForm';
 
-const FormSignIn = ({
-  onSubmit, schema, loginType, changeLoginType,
-  onSubmitSuccess, onSubmitFailure,
-}) => (
-  <AutoForm
-    {...({ schema, onSubmit, onSubmitSuccess, onSubmitFailure })}
-  >
+const FormSignIn = ({ loginType, changeLoginType, ...formProps }) => (
+  <AutoForm {...formProps} >
     <Menu tabular>
       <Menu.Item name="email" active={loginType === 'email'} onClick={changeLoginType}>
         E-Mail

@@ -1,3 +1,18 @@
+input ProfilePersonalDataInput {
+  firstName: String
+  lastName: String
+}
+
+input ProfileBankInput {
+  internationalAccountNumber: String
+}
+
+input ProfileInsuranceInput {
+  insuranceNumber: String
+}
+
 type Mutation {
-  # changeHello(name: String): String
+  updateProfilePersonalData(input: ProfilePersonalDataInput, userId: ID): User
+  updateProfileBank(input: ProfileBankInput, userId: ID): User
+  updateProfileInsurance(input: ProfileInsuranceInput, userId: ID): User
 }

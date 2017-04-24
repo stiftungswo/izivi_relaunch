@@ -4,15 +4,14 @@ import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import AutoForm from 'uniforms-semantic/AutoForm';
 
-const FormSignUp = ({ model, schema, onSubmit, onSubmitSuccess, onSubmitFailure }) => (
-  <AutoForm {...({ model, schema, onSubmit, onSubmitSuccess, onSubmitFailure })} >
+const FormPersonalData = formProps => (
+  <AutoForm showInlineError {...formProps} >
     <AutoField name="username" disabled />
-    <AutoField name="firstName" type="firstName" />
-    <AutoField name="lastName" type="lastName" />
+    <AutoField name="profile.firstName" />
+    <AutoField name="profile.lastName" />
     <ErrorsField />
     <SubmitField value="Speichern" className="primary" />
   </AutoForm>
 );
 
-
-export default FormSignUp;
+export default FormPersonalData;

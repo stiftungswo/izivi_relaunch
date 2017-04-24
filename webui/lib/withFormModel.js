@@ -1,4 +1,8 @@
+import { withProps } from 'recompose';
+
 const removeNull = (obj) => {
+  // uniforms does not accept null values in a model,
+  // but graphql always sends null
   const newObj = obj;
   Object.keys(obj).forEach((key) => {
     const val = obj[key];
@@ -10,4 +14,6 @@ const removeNull = (obj) => {
   return newObj;
 };
 
-export default removeNull;
+export default mapFn => withProps(props => ({
+  model: removeNull(mapFn(props)),
+}));

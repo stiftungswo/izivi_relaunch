@@ -4,13 +4,8 @@ import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import AutoForm from 'uniforms-semantic/AutoForm';
 
-const FormResetPassword = ({
-  onSubmit, schema,
-  onSubmitSuccess, onSubmitFailure,
-}) => (
-  <AutoForm
-    {...({ schema, onSubmit, onSubmitSuccess, onSubmitFailure })}
-  >
+const FormResetPassword = formProps => (
+  <AutoForm {...formProps} >
     <AutoField name="password" type="password" />
     <AutoField name="passwordConfirm" type="password" />
     <ErrorsField />

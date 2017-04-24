@@ -4,13 +4,8 @@ import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import AutoForm from 'uniforms-semantic/AutoForm';
 
-const FormSignUp = ({
-  onSubmit, schema,
-  onSubmitSuccess, onSubmitFailure,
-}) => (
-  <AutoForm
-    {...({ schema, onSubmit, onSubmitSuccess, onSubmitFailure })}
-  >
+const FormSignUp = formProps => (
+  <AutoForm {...formProps} >
     <AutoField name="username" />
     <AutoField name="email" type="email" />
     <AutoField name="password" type="password" />

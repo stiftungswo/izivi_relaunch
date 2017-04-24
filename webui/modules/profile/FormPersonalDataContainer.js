@@ -1,13 +1,12 @@
-import { compose, pure, withProps, withHandlers } from 'recompose';
-import SimpleSchema from 'simpl-schema';
+import { compose, pure, mapProps, withHandlers } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import handleFormErrors from '../../lib/handleFormErrors';
-import removeNullFromResult from '../../lib/removeNullFromResult';
+import withFormErrorHandlers from '../../lib/withFormErrorHandlers';
+import withFormSchema from '../../lib/withFormSchema';
+import withFormModel from '../../lib/withFormModel';
 import FormPersonalData from './FormPersonalData';
 
 export default compose(
-  handleFormErrors,
   graphql(gql`
     query getPersonalData {
       me {
@@ -21,35 +20,47 @@ export default compose(
     }
   `),
   graphql(gql`
-    mutation storePersonalData($model: Any) {
-      submitPersonalData(model: $model) {
-        createdAt
+    mutation storePersonalData($input: ProfilePersonalDataInput) {
+      updateProfilePersonalData(input: $input) {
+        _id
+        username
+        isProfileStepComplete(step: "profile")
+        profile {
+          firstName
+          lastName
+        }
       }
     }
   `),
-  withHandlers({
-    onSubmit: ({ mutate, model }) => () =>
-      mutate({ variables: { model } }),
+  withFormSchema({
+    username: {
+      type: String,
+      label: 'Zivildienstnummer',
+    },
+    profile: {
+      type: 'Object',
+    },
+    'profile.firstName': {
+      type: String,
+      label: 'Vorname',
+    },
+    'profile.lastName': {
+      type: String,
+      label: 'Nachname',
+    },
   }),
-  withProps(({ data: { me: { profile, ...rest } = {} } }) => ({
-    model: removeNullFromResult({
-      ...profile,
-      ...rest,
-    }),
-    schema: new SimpleSchema({
-      username: {
-        type: String,
-        label: 'Zivildienstnummer',
-      },
-      firstName: {
-        type: String,
-        label: 'Vorname',
-      },
-      lastName: {
-        type: String,
-        label: 'Nachname',
-      },
-    }),
+  withFormModel(({ data: { me: { profile, username } = {} } }) => ({
+    profile,
+    username,
   })),
+  withHandlers({
+    onSubmit: ({ mutate, schema }) => ({ username, ...dirtyInput }) =>
+      mutate({ variables: schema.clean(dirtyInput) }),
+    onSubmitSuccess: () => () => {
+      alert('Erfolgreich gespeichert');
+    },
+  }),
+  withFormErrorHandlers,
+  mapProps(({ mutate, ...rest }) => ({ ...rest })),
   pure,
 )(FormPersonalData);
