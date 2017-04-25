@@ -18,6 +18,7 @@ input UpdateUserInsuranceInput {
 }
 
 type Mutation {
+  updateEmail(email: String!): User
   updateUserProfile(profile: UpdateUserProfileInput, userId: ID): User
   updateUserBank(bank: UpdateUserBankInput, userId: ID): User
   updateUserInsurance(insurance: UpdateUserInsuranceInput, userId: ID): User

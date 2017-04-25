@@ -8,6 +8,7 @@ type User {
   _id: ID!
   username: String!
   email: String!
+  isEmailVerified: Boolean!
   name: String!
 
   profile: UserProfile
