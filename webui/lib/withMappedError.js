@@ -15,6 +15,9 @@ export default compose(
       } else if (message === 'Email already exists. [403]') {
         updateMappedError(new Error('E-Mail existiert bereits im System, zurücksetzen?'));
         return;
+      } else if (message === 'Incorrect password [403]') {
+        updateMappedError(new Error('Bitte überprüfe dein Passwort'));
+        return;
       }
       if (graphQLError) {
         updateMappedError(graphQLError);
