@@ -8,7 +8,6 @@ export default compose(
     query getProfileProgress {
       me {
         _id
-        username
         stepsPercentageComplete
       }
     }

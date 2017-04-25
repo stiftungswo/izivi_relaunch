@@ -12,7 +12,6 @@ export const BANK = 'BANK';
 const FRAGMENT_BANK = gql`
   fragment bankFields on User {
     _id
-    username
     bank {
       internationalAccountNumber
     }
@@ -44,12 +43,11 @@ export default compose(
       optional: false,
     },
   }),
-  withFormModel(({ data: { me: { bank = null, username = '' } = {} } }) => ({
+  withFormModel(({ data: { me: { bank = null } = {} } }) => ({
     bank,
-    username,
   })),
   withHandlers({
-    onSubmit: ({ mutate, schema }) => ({ username, ...dirtyInput }) =>
+    onSubmit: ({ mutate, schema }) => ({ ...dirtyInput }) =>
       mutate({ variables: schema.clean(dirtyInput) }),
   }),
   withFormErrorHandlers,
