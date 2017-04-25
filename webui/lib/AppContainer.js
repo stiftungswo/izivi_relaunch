@@ -1,5 +1,6 @@
 import { compose, pure, lifecycle, withProps } from 'recompose';
 import { graphql } from 'react-apollo';
+import Router from 'next/router';
 import gql from 'graphql-tag';
 import connectApollo from './connectApollo';
 import App from './App';
@@ -19,12 +20,13 @@ export default compose(
     loading,
   })),
   lifecycle({
-    async componentWillReceiveProps({ loggedInUser, allowAnonymousAccess, url, loading }) {
+    async componentWillReceiveProps({ loggedInUser, noRedirect, allowAnonymousAccess, loading }) {
+      if (noRedirect) return;
       if (!allowAnonymousAccess && !loading && !loggedInUser) {
-        url.replace('/sign-in');
+        Router.push('/sign-in');
       }
       if (allowAnonymousAccess && !loading && loggedInUser) {
-        url.replace('/');
+        Router.push('/');
       }
     },
   }),

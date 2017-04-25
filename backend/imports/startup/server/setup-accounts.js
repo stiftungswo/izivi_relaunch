@@ -7,7 +7,7 @@ Accounts.urls.resetPassword = token =>
   `${process.env.UI_ENDPOINT}/reset-password?reset=${token}`;
 
 Accounts.urls.verifyEmail = token =>
-  `${process.env.UI_ENDPOINT}/?verify=${token}`;
+  `${process.env.UI_ENDPOINT}/verify-email?verify=${token}`;
 
 Accounts.validateNewUser((user) => {
   const clone = cloneDeep(user);
