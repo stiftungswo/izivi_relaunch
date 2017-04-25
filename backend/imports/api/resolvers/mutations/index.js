@@ -1,5 +1,9 @@
-import updateProfilePersonalData from './updateProfilePersonalData';
+import updateUserProfile from './updateUserProfile';
+import updateUserBank from './updateUserBank';
+import updateUserInsurance from './updateUserInsurance';
 
 export default {
-  updateProfilePersonalData,
+  updateUserProfile,
+  updateUserBank,
+  updateUserInsurance,
 };

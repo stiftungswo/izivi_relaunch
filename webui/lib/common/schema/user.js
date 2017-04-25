@@ -45,6 +45,22 @@ export const Profile = new SimpleSchema({
   },
 });
 
+export const Bank = new SimpleSchema({
+  internationalAccountNumber: {
+    type: String,
+    optional: false,
+    label: 'IBAN',
+  },
+});
+
+export const Insurance = new SimpleSchema({
+  insuranceNumber: {
+    type: String,
+    optional: false,
+    label: 'Versichertennummer',
+  },
+});
+
 export default new SimpleSchema({
   username: {
     type: String,
@@ -71,24 +87,32 @@ export default new SimpleSchema({
     type: Profile,
     optional: true,
   },
+  bank: {
+    type: Bank,
+    optional: true,
+  },
+  insurance: {
+    type: Insurance,
+    optional: true,
+  },
   services: {
     type: Object,
     optional: true,
     blackbox: true,
   },
-  profileStepsCompleted: {
+  stepsCompleted: {
     type: Array,
     optional: true,
   },
-  'profileStepsCompleted.$': {
+  'stepsCompleted.$': {
     type: Object,
     optional: true,
   },
-  'profileStepsCompleted.$.timestamp': {
+  'stepsCompleted.$.timestamp': {
     type: Date,
     optional: false,
   },
-  'profileStepsCompleted.$.step': {
+  'stepsCompleted.$.step': {
     type: String,
     optional: false,
   },

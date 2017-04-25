@@ -6,7 +6,7 @@ import AutoForm from 'uniforms-semantic/AutoForm';
 import PhoneField from '../../lib/FormPhoneInput';
 import DateField from '../../lib/FormDateInput';
 
-const FormPersonalData = formProps => (
+const FormProfile = formProps => (
   <AutoForm showInlineError {...formProps} >
     <AutoField name="username" disabled label="Zivildienstnummer" />
     <AutoField name="profile.firstName" />
@@ -22,4 +22,4 @@ const FormPersonalData = formProps => (
   </AutoForm>
 );
 
-export default FormPersonalData;
+export default FormProfile;

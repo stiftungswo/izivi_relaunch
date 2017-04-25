@@ -11,8 +11,8 @@ export default {
     }
     return nameParts.join(' ');
   },
-  isProfileStepComplete(user, { step }) {
-    const stepsCompleted = user.profileStepsCompleted || [];
+  isStepComplete(user, { step }) {
+    const stepsCompleted = user.stepsCompleted || [];
     return stepsCompleted.reduce((isMaybeCompleted, { step: completedStep }) => {
       if (completedStep === step) return true;
       return isMaybeCompleted;

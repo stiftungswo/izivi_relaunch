@@ -5,12 +5,12 @@ import withFormErrorHandlers from '../../lib/withFormErrorHandlers';
 import withFormSchema from '../../lib/withFormSchema';
 import withFormModel from '../../lib/withFormModel';
 import { Profile } from '../../lib/common/schema/user';
-import FormPersonalData from './FormPersonalData';
+import FormProfile from './FormProfile';
 
-export const PERSONAL_DATA = 'PERSONAL_DATA';
+export const PROFILE = 'PROFILE';
 
-const FRAGMENT_PERSONAL_DATA = gql`
-  fragment personalDataFields on User {
+const FRAGMENT_PROFILE = gql`
+  fragment profileFields on User {
     _id
     username
     profile {
@@ -23,26 +23,26 @@ const FRAGMENT_PERSONAL_DATA = gql`
       phoneMobile
       phoneWork
     }
-    isProfileStepComplete(step: PERSONAL_DATA)
+    isStepComplete(step: PROFILE)
   }
 `;
 
 export default compose(
   graphql(gql`
-    query getPersonalData {
+    query getProfile {
       me {
-        ...personalDataFields
+        ...profileFields
       }
     }
-    ${FRAGMENT_PERSONAL_DATA}
+    ${FRAGMENT_PROFILE}
   `),
   graphql(gql`
-    mutation storePersonalData($profile: ProfilePersonalDataInput) {
-      updateProfilePersonalData(profile: $profile) {
-        ...personalDataFields
+    mutation updateUserProfile($profile: UpdateUserProfileInput) {
+      updateUserProfile(profile: $profile) {
+        ...profileFields
       }
     }
-    ${FRAGMENT_PERSONAL_DATA}
+    ${FRAGMENT_PROFILE}
   `),
   withFormSchema({
     username: {
@@ -53,7 +53,7 @@ export default compose(
       optional: false,
     },
   }),
-  withFormModel(({ data: { me: { profile = null, username = '' } } }) => ({
+  withFormModel(({ data: { me: { profile = null, username = '' } = {} } }) => ({
     profile,
     username,
   })),
@@ -64,4 +64,4 @@ export default compose(
   withFormErrorHandlers,
   mapProps(({ mutate, ...rest }) => ({ ...rest })),
   pure,
-)(FormPersonalData);
+)(FormProfile);

@@ -5,14 +5,14 @@ import StepItem from './StepItem';
 
 export default compose(
   graphql(gql`
-    query checkIfCurrentUserCompletedStep($step: UserProfileStep!) {
+    query checkIfCurrentUserCompletedStep($step: UserStep!) {
       me {
         _id
-       isProfileStepComplete(step: $step)
+       isStepComplete(step: $step)
      }
    }`),
   withProps(({ data: { me = null, loading = true } }) => ({
-    completed: me && me.isProfileStepComplete,
+    completed: me && me.isStepComplete,
     loading,
   })),
   pure,
