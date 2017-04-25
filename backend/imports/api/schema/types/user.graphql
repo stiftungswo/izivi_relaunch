@@ -1,3 +1,9 @@
+enum UserStep {
+  PROFILE
+  BANK
+  INSURANCE
+}
+
 type User {
   _id: ID!
   username: String!
@@ -5,8 +11,11 @@ type User {
   name: String!
 
   profile: UserProfile
+  bank: UserBank
+  insurance: UserInsurance
   emails: [UserEmail]
-  isProfileStepComplete(step: String!): Boolean
+  isStepComplete(step: UserStep!): Boolean
+  stepsPercentageComplete: Float
   roles: [ID]
 }
 
@@ -19,6 +28,14 @@ type UserProfile {
   birthday: Date!,
   phoneMobile: String,
   phoneWork: String,
+}
+
+type UserBank {
+  internationalAccountNumber: String!
+}
+
+type UserInsurance {
+  insuranceNumber: String!
 }
 
 type UserEmail {

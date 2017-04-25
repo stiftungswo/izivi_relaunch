@@ -1,4 +1,4 @@
-input ProfilePersonalDataInput {
+input UpdateUserProfileInput {
   firstName: String!
   lastName: String!
   street: String!
@@ -9,16 +9,16 @@ input ProfilePersonalDataInput {
   phoneWork: String,
 }
 
-input ProfileBankInput {
+input UpdateUserBankInput {
   internationalAccountNumber: String
 }
 
-input ProfileInsuranceInput {
+input UpdateUserInsuranceInput {
   insuranceNumber: String
 }
 
 type Mutation {
-  updateProfilePersonalData(profile: ProfilePersonalDataInput, userId: ID): User
-  updateProfileBank(input: ProfileBankInput, userId: ID): User
-  updateProfileInsurance(input: ProfileInsuranceInput, userId: ID): User
+  updateUserProfile(profile: UpdateUserProfileInput, userId: ID): User
+  updateUserBank(bank: UpdateUserBankInput, userId: ID): User
+  updateUserInsurance(insurance: UpdateUserInsuranceInput, userId: ID): User
 }

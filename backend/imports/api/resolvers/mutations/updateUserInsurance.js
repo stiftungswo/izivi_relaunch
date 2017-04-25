@@ -1,22 +1,21 @@
 import Users from '../../collections/users';
 
-export default function (root, { profile, userId }, context) {
+export default function (root, { insurance, userId }, context) {
   const normalizedUserId = userId || context.userId;
-  console.log(profile);
   Users.update(normalizedUserId, {
     $set: {
-      profile,
+      insurance,
     },
   });
 
   Users.update({
     _id: normalizedUserId,
-    'profileStepsCompleted.step': { $ne: 'profile' },
+    'stepsCompleted.step': { $ne: 'INSURANCE' },
   }, {
     $addToSet: {
-      profileStepsCompleted: {
+      stepsCompleted: {
         timestamp: new Date(),
-        step: 'profile',
+        step: 'INSURANCE',
       },
     },
   });
