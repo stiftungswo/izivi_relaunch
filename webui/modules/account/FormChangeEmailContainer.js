@@ -33,8 +33,8 @@ export default compose(
       label: 'E-Mail',
     },
   }),
-  withFormModel(({ data: { me: { email = null } = {} } = {} }) => ({
-    email,
+  withFormModel(({ data: { me } }) => ({
+    email: (me && me.email) || null,
   })),
   withHandlers({
     onSubmit: ({ mutate, schema }) => ({ ...dirtyInput }) =>

@@ -43,8 +43,8 @@ export default compose(
       optional: false,
     },
   }),
-  withFormModel(({ data: { me: { insurance = null } = {} } }) => ({
-    insurance,
+  withFormModel(({ data: { me } }) => ({
+    insurance: (me && me.insurance) || null,
   })),
   withHandlers({
     onSubmit: ({ mutate, schema }) => ({ ...dirtyInput }) =>

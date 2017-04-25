@@ -12,7 +12,7 @@ export default compose(
       }
     }
   `),
-  mapProps(({ data: { me: { stepsPercentageComplete = 0 } = {} } }) =>
-    ({ stepsPercentageComplete })),
+  mapProps(({ data: { me } }) =>
+    ({ stepsPercentageComplete: (me && me.stepsPercentageComplete) || 0 })),
   pure,
 )(CardProfileProgress);

@@ -55,9 +55,9 @@ export default compose(
       optional: false,
     },
   }),
-  withFormModel(({ data: { me: { profile = null, username = '' } = {} } }) => ({
-    profile,
-    username,
+  withFormModel(({ data: { me } }) => ({
+    profile: (me && me.profile) || null,
+    username: (me && me.username) || '',
   })),
   withHandlers({
     onSubmit: ({ mutate, schema }) => ({ username, ...dirtyInput }) =>
