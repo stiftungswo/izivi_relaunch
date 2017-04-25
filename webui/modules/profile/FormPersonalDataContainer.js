@@ -5,9 +5,8 @@ import Router from 'next/router';
 import withFormErrorHandlers from '../../lib/withFormErrorHandlers';
 import withFormSchema from '../../lib/withFormSchema';
 import withFormModel from '../../lib/withFormModel';
+import { Profile } from '../../lib/common/schema/user';
 import FormPersonalData from './FormPersonalData';
-import PhoneField from '../../lib/FormPhoneInput';
-import DateField from '../../lib/FormDateInput';
 
 export default compose(
   graphql(gql`
@@ -39,58 +38,10 @@ export default compose(
     username: {
       type: String,
       label: 'Zivildienstnummer',
-      optional: true,
-      uniforms: {
-        disabled: true,
-      },
     },
     profile: {
-      type: Object,
+      type: Profile,
       label: false,
-    },
-    'profile.firstName': {
-      type: String,
-      label: 'Vorname',
-    },
-    'profile.lastName': {
-      type: String,
-      label: 'Nachname',
-    },
-    'profile.street': {
-      type: String,
-      label: 'Strasse',
-    },
-    'profile.postalNumber': {
-      type: Number,
-      label: 'PLZ',
-    },
-    'profile.city': {
-      type: String,
-      label: 'Ort',
-    },
-    'profile.birthday': {
-      type: Date,
-      label: 'Geburtsdatum',
-      uniforms: {
-        component: DateField,
-      },
-    },
-    'profile.phoneMobile': {
-      type: String,
-      label: 'Telefonnummer (Mobile)',
-      uniforms: {
-        component: PhoneField,
-        country: 'CH',
-      },
-    },
-    'profile.phoneWork': {
-      type: String,
-      label: 'Telefonnummer (Geschäft)',
-      optional: true,
-      uniforms: {
-        component: PhoneField,
-        country: 'CH',
-      },
     },
   }),
   withFormModel(({ data: { me: { profile, username } = {} } }) => ({

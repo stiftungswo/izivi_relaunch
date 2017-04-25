@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import Schema from './schema';
+import Schema from '../../../common/schema/user';
 
 Meteor.users.attachSchema(Schema);
 
