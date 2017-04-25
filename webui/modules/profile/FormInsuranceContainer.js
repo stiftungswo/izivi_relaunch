@@ -12,7 +12,6 @@ export const INSURANCE = 'INSURANCE';
 const FRAGMENT_INSURANCE = gql`
   fragment insuranceFields on User {
     _id
-    username
     insurance {
       insuranceNumber
     }
@@ -44,12 +43,11 @@ export default compose(
       optional: false,
     },
   }),
-  withFormModel(({ data: { me: { insurance = null, username = '' } = {} } }) => ({
-    insurance,
-    username,
+  withFormModel(({ data: { me } }) => ({
+    insurance: (me && me.insurance) || null,
   })),
   withHandlers({
-    onSubmit: ({ mutate, schema }) => ({ username, ...dirtyInput }) =>
+    onSubmit: ({ mutate, schema }) => ({ ...dirtyInput }) =>
       mutate({ variables: schema.clean(dirtyInput) }),
   }),
   withFormErrorHandlers,

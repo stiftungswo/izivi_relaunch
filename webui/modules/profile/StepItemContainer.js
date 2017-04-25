@@ -11,7 +11,7 @@ export default compose(
        isStepComplete(step: $step)
      }
    }`),
-  withProps(({ data: { me = null, loading = true } }) => ({
+  withProps(({ data: { me, loading } }) => ({
     completed: me && me.isStepComplete,
     loading,
   })),

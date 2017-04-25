@@ -2,6 +2,9 @@ export default {
   email(user) {
     return user.emails[0].address;
   },
+  isEmailVerified(user) {
+    return user.emails[0].verified;
+  },
   name({ username, profile }) {
     const nameParts = [];
     if (profile && profile.firstName) nameParts.push(profile.firstName);

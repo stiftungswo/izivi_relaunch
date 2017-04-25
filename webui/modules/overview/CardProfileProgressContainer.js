@@ -8,12 +8,11 @@ export default compose(
     query getProfileProgress {
       me {
         _id
-        username
         stepsPercentageComplete
       }
     }
   `),
-  mapProps(({ data: { me: { stepsPercentageComplete = 0 } = {} } }) =>
-    ({ stepsPercentageComplete })),
+  mapProps(({ data: { me } }) =>
+    ({ stepsPercentageComplete: (me && me.stepsPercentageComplete) || 0 })),
   pure,
 )(CardProfileProgress);
