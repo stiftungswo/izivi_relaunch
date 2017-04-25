@@ -7,7 +7,7 @@ export default ({ pathname, loggedInUser, logout }) => (
     <Menu.Item>
       <h2>iZivi 2.0</h2>
     </Menu.Item>
-    <Link prefetch href="/">
+    <Link href="/">
       <Menu.Item className={pathname === '/' ? 'active' : ''}>
         <span>Übersicht</span>
       </Menu.Item>

@@ -21,7 +21,7 @@ export default ({ stepsPercentageComplete }) => (
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
-      <Link prefetch href="/profile">
+      <Link href="/profile">
         {stepsPercentageComplete === 1 ? (
           <Button as="a" href="/profile" basic secondary>
             Bearbeiten

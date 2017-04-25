@@ -24,7 +24,7 @@ export default ({ ...rest }) => (
           </Grid.Column>
           <Grid.Column>
             <Segment textAlign="center" basic size="mini">
-              <Link prefetch href="/forgot-password">
+              <Link href="/forgot-password">
                 <Button as="a" href="/forgot-password" basic secondary fluid>
                   Passwort zurücksetzen
                 </Button>
