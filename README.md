@@ -56,8 +56,8 @@ Update to last version
     git submodule update
     php composer.phar self-update
     php composer.phar update -v
-    bin/console assetic:dump
-    bin/console assets:install --symlink
+    app/console assetic:dump
+    app/console assets:install --symlink
 
 If you have any problem remove vendor and install again
 
@@ -65,7 +65,7 @@ If you have any problem remove vendor and install again
 
 Update database
 
-    bin/console doctrine:migrations:migrate
+    app/console doctrine:migrations:migrate
 
 ## Bundles
 
@@ -130,15 +130,15 @@ Run a single test:
 
 Update Database Schema to the latest version:
 
-    php bin/console doctrine:migrations:migrate
+    php app/console doctrine:migrations:migrate
 
 Migrate Database Schema to a specific version:
 
-    php bin/console doctrine:migrations:migrate <version>
+    php app/console doctrine:migrations:migrate <version>
 
 Generate new Empty Migration Class:
 
-    php bin/console doctrine:migrations:generate
+    php app/console doctrine:migrations:generate
 
 ## Fixtures
 
