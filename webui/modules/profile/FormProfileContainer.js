@@ -38,6 +38,7 @@ export default compose(
   graphql(gql`
     mutation updateUserProfile($profile: UpdateUserProfileInput) {
       updateUserProfile(profile: $profile) {
+        name
         isStepComplete(step: PROFILE)
         stepsPercentageComplete
         ...profileFields
