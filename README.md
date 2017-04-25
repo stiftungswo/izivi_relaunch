@@ -6,58 +6,52 @@ A tool to plan zivi employments
 
 The project's purpose is enable planning of zivis, when they start their employment and when they finish.
 
-## Demo
+## Installation / Setup for Development
 
-See the Vagrant VM in env Folder
+Download and install Docker and docker-compose:
 
-## Installation
+    https://www.docker.com
 
-### Windows
-
-Download and install VirtualBox:
-
-	https://www.virtualbox.org/
-	
-Download and install Cygwin:
-
-	https://cygwin.com/
-	In the package selection of the setup, search rsync and add it
-	
-Modify the hosts file:
-
-	In C:\Windows\System32\drivers\etc\hosts add the line
-	192.168.50.51 izivi.test.local
-	
 Download and install a Git client:
 
-	e.g. https://www.sourcetreeapp.com/
-	Check out the current version
-	
-Start the virtual machine via the cygwin terminal:
+    e.g. https://www.sourcetreeapp.com/
+    Check out the current version
 
-	cd /cygdrive/c/Users/YourName/Dime/env
-	vagrant up
+Now fire up MariaDB and Izivi on the docker machine via the docker-compose tool:
 
-### OSX
+    docker-compose up -d --build
 
-Generally the same steps as for Windows:
+Open http://localhost:3000:
 
-  * Install VirtualBox, Vagrant and Dartium
-  * run "vagrant up" in the env/ folder
-  * Open in Dartium: http://izivi.test.local
-  
-Default Vagrant File Sync on OSX is very slow, you may want to use rsync or nfs to speed things up
-	
+    Open http://localhost:3000
+    API: localhost:3001
+
+
+## Using Docker & docker-compose
+
+You can inspect the logs of Izivi and MariaDB by:
+
+    docker-compose logs -f
+
+Enter the izivi docker container as root in interactive mode (bash):
+
+    docker exec -it izivi bash
+
+Enter the izivi-frontend docker container as root in interactive mode (bash):
+
+    docker exec -it izivi bash
+
+For more infos visit docker.com
+
+
 ## Update
 
 Update to last version
 
     git pull
-    git submodule update
-    php composer.phar self-update
-    php composer.phar update -v
-    app/console assetic:dump
-    app/console assets:install --symlink
+    composer self-update
+    composer update -v
+    ./env/install_bundles.sh
 
 If you have any problem remove vendor and install again
 
@@ -65,13 +59,14 @@ If you have any problem remove vendor and install again
 
 Update database
 
-    app/console doctrine:migrations:migrate
+    docker exec -it izivi php app/console doctrine:migrations:migrate
+
 
 ## Bundles
 
 There are Multiple Bundle Seperated by features:
     IZiviPlanningBundle Contains the entities
-    FrontendBundle The Javascript GUI
+
 
 ## Contributing
 
@@ -83,7 +78,10 @@ Please write in English and use the `doc` folders for documentation and proposal
 
 [Symfony2 Coding Standards]: http://symfony.com/doc/master/contributing/code/standards.html
 
+
 ## Development-Branches
+
+The branches API and Frontend are gone. We switch now to feature branches. Every feature branch will be created from master. Here the steps to go.
 
 Create remote feature branch:
 
@@ -116,29 +114,41 @@ and the local branch too:
 
     git branch -d ISSUENO-and-a-short-description
 
+
 ## Run Test
 
 Run tests:
 
-    phpunit -c app/
+    docker exec -it izivi ./env/run_tests.sh
 
 Run a single test:
 
-    phpunit -c app/ --filter {Controller}::{test-method}
+    docker exec -it izivi ./env/run_tests.sh --filter ActivitiesControllerTest::testGetActivitiesAction
+
+
+## Building the Frontend
+
+TODO
+
 
 ## Database Schema Management
 
 Update Database Schema to the latest version:
 
-    php app/console doctrine:migrations:migrate
+    docker exec -it izivi php app/console doctrine:migrations:migrate
 
 Migrate Database Schema to a specific version:
 
-    php app/console doctrine:migrations:migrate <version>
+    docker exec -it izivi php app/console doctrine:migrations:migrate <version>
 
 Generate new Empty Migration Class:
 
-    php app/console doctrine:migrations:generate
+    docker exec -it izivi php app/console doctrine:migrations:generate
+
+After changing the ORM schema, sometimes you need to clear the cache before it works:
+
+    docker exec -it izivi php app/console cache:clear
+
 
 ## Fixtures
 
@@ -146,12 +156,27 @@ The fixtures are an example dataset that can be used while developing. But more 
 
 Load fixtures into the database:
 
-    /vagrant/env/fixtures/load_fixtures.sh
+    docker exec -it izivi ./env/fixtures/load.sh
 
-When the database schema changed, you need to regenerate the fixtures. You can do this with the following command:
+When the database schema changed, you need to regenerate the fixtures. You can do this with the following command (may take a while):
 
-    cd /vagrant/env/fixtures/ && ./regenerate_fixtures.sh
+    docker exec -it izivi ./env/db_generate_new_fixtures.sh
 
-Then export the changes again and check in the new dime.sql into git
+Then export the changes again and check in the new izivi.sql into git
 
-    cd /vagrant/env/fixtures/ && ./export_fixtures.sh 
+    docker exec -it izivi ./env/fixtures/export.sh
+
+
+## Deployment
+
+### Deployment at SWO
+
+Please see Documentation at: DiskStation:/intern/IT/11 Datenbank/Izivi/Dokumentationen/Betriebsdokumentation.docx
+
+# Known Issues
+
+## Using Docker with Docker for Windows/Mac
+
+If you use the new Docker for Windows/Mac Tray thing, you'll have to make sure that this Repository as well as any other mounted volumes in docker-compose.yml are part of the `File Sharing` Tab of the tool. Else sync will not work.
+
+We recommend using at least 2 CPU's and 4 GB of memory for your docker machine to make everything run smooth.

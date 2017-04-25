@@ -1,8 +1,0 @@
-izivi_planning:
-    type: rest
-    resource: "@IZiviPlanningBundle/Resources/config/routing.yml"
-    prefix:   /api
-
-i_zivi_frontend:
-    resource: "@IZiviFrontendBundle/Resources/config/routing.yml"
-    prefix:   /

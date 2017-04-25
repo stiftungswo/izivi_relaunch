@@ -1,0 +1,24 @@
+input ProfilePersonalDataInput {
+  firstName: String!
+  lastName: String!
+  street: String!
+  postalNumber: Int!
+  city: String!
+  birthday: Date!,
+  phoneMobile: String,
+  phoneWork: String,
+}
+
+input ProfileBankInput {
+  internationalAccountNumber: String
+}
+
+input ProfileInsuranceInput {
+  insuranceNumber: String
+}
+
+type Mutation {
+  updateProfilePersonalData(profile: ProfilePersonalDataInput, userId: ID): User
+  updateProfileBank(input: ProfileBankInput, userId: ID): User
+  updateProfileInsurance(input: ProfileInsuranceInput, userId: ID): User
+}

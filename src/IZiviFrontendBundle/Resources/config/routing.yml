@@ -1,3 +1,0 @@
-izivi_frontend:
-    resource: "@IZiviFrontendBundle/Controller"
-    type: annotation

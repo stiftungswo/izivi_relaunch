@@ -1,0 +1,27 @@
+type User {
+  _id: ID!
+  username: String!
+  email: String!
+  name: String!
+
+  profile: UserProfile
+  emails: [UserEmail]
+  isProfileStepComplete(step: String!): Boolean
+  roles: [ID]
+}
+
+type UserProfile {
+  firstName: String!
+  lastName: String!
+  street: String!
+  postalNumber: Int!
+  city: String!
+  birthday: Date!,
+  phoneMobile: String,
+  phoneWork: String,
+}
+
+type UserEmail {
+  address: String!
+  verified: Boolean!
+}

@@ -1,4 +1,0 @@
-services:
-#    i_zivi_frontend.example:
-#        class: IZiviFrontendBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
