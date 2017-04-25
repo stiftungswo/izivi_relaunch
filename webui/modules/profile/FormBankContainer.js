@@ -16,7 +16,6 @@ const FRAGMENT_BANK = gql`
     bank {
       internationalAccountNumber
     }
-    isStepComplete(step: BANK)
   }
 `;
 
@@ -32,6 +31,8 @@ export default compose(
   graphql(gql`
     mutation updateUserBank($bank: UpdateUserBankInput) {
       updateUserBank(bank: $bank) {
+        isStepComplete(step: BANK)
+        stepsPercentageComplete
         ...bankFields
       }
     }

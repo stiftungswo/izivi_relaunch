@@ -15,6 +15,7 @@ type User {
   insurance: UserInsurance
   emails: [UserEmail]
   isStepComplete(step: UserStep!): Boolean
+  stepsPercentageComplete: Float
   roles: [ID]
 }
 

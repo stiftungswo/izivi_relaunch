@@ -21,6 +21,11 @@ export default ({ pathname, loggedInUser, logout }) => (
                 <span>Profil</span>
               </Dropdown.Item>
             </Link>
+            <Link href="/account">
+              <Dropdown.Item className={pathname === '/account' ? 'active' : ''}>
+                <span>Benutzerkonto</span>
+              </Dropdown.Item>
+            </Link>
             <Dropdown.Item onClick={logout}>Abmelden</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

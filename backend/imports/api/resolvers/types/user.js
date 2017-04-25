@@ -18,4 +18,11 @@ export default {
       return isMaybeCompleted;
     }, false);
   },
+  stepsPercentageComplete(user) {
+    const stepsCompleted = user.stepsCompleted || [];
+    // start with 25% (signed up)
+    const numberOfStepsCompleted = stepsCompleted.length + 1;
+    // currently, there are 4 steps
+    return numberOfStepsCompleted / 4;
+  },
 };

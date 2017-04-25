@@ -16,7 +16,6 @@ const FRAGMENT_INSURANCE = gql`
     insurance {
       insuranceNumber
     }
-    isStepComplete(step: INSURANCE)
   }
 `;
 
@@ -32,6 +31,8 @@ export default compose(
   graphql(gql`
     mutation updateUserInsurance($insurance: UpdateUserInsuranceInput) {
       updateUserInsurance(insurance: $insurance) {
+        isStepComplete(step: INSURANCE)
+        stepsPercentageComplete
         ...insuranceFields
       }
     }

@@ -23,7 +23,6 @@ const FRAGMENT_PROFILE = gql`
       phoneMobile
       phoneWork
     }
-    isStepComplete(step: PROFILE)
   }
 `;
 
@@ -39,6 +38,8 @@ export default compose(
   graphql(gql`
     mutation updateUserProfile($profile: UpdateUserProfileInput) {
       updateUserProfile(profile: $profile) {
+        isStepComplete(step: PROFILE)
+        stepsPercentageComplete
         ...profileFields
       }
     }
