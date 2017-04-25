@@ -2,10 +2,10 @@ export default {
   email(user) {
     return user.emails[0].address;
   },
-  name({ username, profile = {} }) {
+  name({ username, profile }) {
     const nameParts = [];
-    if (profile.firstName) nameParts.push(profile.firstName);
-    if (profile.lastName) nameParts.push(profile.lastName);
+    if (profile && profile.firstName) nameParts.push(profile.firstName);
+    if (profile && profile.lastName) nameParts.push(profile.lastName);
     if (nameParts.length === 0) {
       return `ZDP-${username}`;
     }

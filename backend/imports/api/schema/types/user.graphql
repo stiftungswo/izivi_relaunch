@@ -1,16 +1,22 @@
+enum UserProfileStep {
+  PERSONAL_DATA
+  BANK
+  INSURANCE
+}
+
 type User {
   _id: ID!
   username: String!
   email: String!
   name: String!
 
-  profile: UserProfile
+  profile: UserProfilePersonalData
   emails: [UserEmail]
-  isProfileStepComplete(step: String!): Boolean
+  isProfileStepComplete(step: UserProfileStep!): Boolean
   roles: [ID]
 }
 
-type UserProfile {
+type UserProfilePersonalData {
   firstName: String!
   lastName: String!
   street: String!

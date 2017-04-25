@@ -2,7 +2,6 @@ import Users from '../../collections/users';
 
 export default function (root, { profile, userId }, context) {
   const normalizedUserId = userId || context.userId;
-  console.log(profile);
   Users.update(normalizedUserId, {
     $set: {
       profile,
@@ -11,12 +10,12 @@ export default function (root, { profile, userId }, context) {
 
   Users.update({
     _id: normalizedUserId,
-    'profileStepsCompleted.step': { $ne: 'profile' },
+    'profileStepsCompleted.step': { $ne: 'PERSONAL_DATA' },
   }, {
     $addToSet: {
       profileStepsCompleted: {
         timestamp: new Date(),
-        step: 'profile',
+        step: 'PERSONAL_DATA',
       },
     },
   });

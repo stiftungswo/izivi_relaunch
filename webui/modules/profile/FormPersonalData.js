@@ -8,7 +8,7 @@ import DateField from '../../lib/FormDateInput';
 
 const FormPersonalData = formProps => (
   <AutoForm showInlineError {...formProps} >
-    <AutoField name="username" disabled />
+    <AutoField name="username" disabled label="Zivildienstnummer" />
     <AutoField name="profile.firstName" />
     <AutoField name="profile.lastName" />
     <AutoField name="profile.street" />
