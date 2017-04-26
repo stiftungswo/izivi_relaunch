@@ -14,6 +14,7 @@ const FRAGMENT_BANK = gql`
     _id
     bank {
       internationalAccountNumber
+      name
     }
   }
 `;

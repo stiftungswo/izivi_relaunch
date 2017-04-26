@@ -68,12 +68,12 @@ export const Insurance = new SimpleSchema({
   healthInsuranceNumber: {
     type: Number,
     optional: false,
-    label: 'Kennnummer des Trägers / BAG-Nr.',
+    label: 'Kennnummer des Trägers (BAG)',
   },
   socialSecurityNumber: {
     type: String,
     optional: false,
-    label: 'Persönliche Kennnummer / AHV-Nr.',
+    label: 'Persönliche Kennnummer (AHV)',
     regEx: /^756.\d{4}.\d{4}.\d{2}$/,
   },
 });

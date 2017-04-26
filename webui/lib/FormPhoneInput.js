@@ -47,6 +47,16 @@ const Phone = ({
       {(icon || iconLeft) && (
         <i className={`${icon || iconLeft} icon`} {...iconProps} />
       )}
+      <style jsx global>{`
+        .rrui__input
+        {
+          height : calc(0.3rem * 9) !important;
+        }
+        .rrui__select__native
+        {
+          min-height : calc(0.3rem * 9) !important;
+        }
+      `}</style>
     </div>
 
     {!!(error && showInlineError) && (
