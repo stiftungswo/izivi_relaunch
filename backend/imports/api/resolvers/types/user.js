@@ -1,3 +1,5 @@
+import Avatars from '../../collections/avatars';
+
 export default {
   email(user) {
     return user.emails[0].address;
@@ -13,6 +15,9 @@ export default {
       return `ZDP-${username}`;
     }
     return nameParts.join(' ');
+  },
+  avatar(user) {
+    return Avatars.findOne({ _id: user.avatarId });
   },
   isStepComplete(user, { step }) {
     const stepsCompleted = user.stepsCompleted || [];

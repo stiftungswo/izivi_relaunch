@@ -20,9 +20,17 @@ input UpdateUserInsuranceInput {
   socialSecurityNumber: String!
 }
 
+input File {
+  name: String!
+  type: String!
+  size: Int!
+  buffer: Buffer!
+}
+
 type Mutation {
-  updateEmail(email: String!): User
-  updateUserProfile(profile: UpdateUserProfileInput, userId: ID): User
-  updateUserBank(bank: UpdateUserBankInput, userId: ID): User
-  updateUserInsurance(insurance: UpdateUserInsuranceInput, userId: ID): User
+  updateUserAvatar(avatar: File!, userId: ID): User!
+  updateEmail(email: String!, userId: ID): User!
+  updateUserProfile(profile: UpdateUserProfileInput, userId: ID): User!
+  updateUserBank(bank: UpdateUserBankInput, userId: ID): User!
+  updateUserInsurance(insurance: UpdateUserInsuranceInput, userId: ID): User!
 }

@@ -1,6 +1,6 @@
 import { ApolloClient } from 'react-apollo';
-import { createNetworkInterface } from 'apollo-upload-client';
 import { getLoginToken, onTokenChange } from 'meteor-apollo-accounts';
+import createNetworkInterface from './createNetworkInterface';
 
 let apolloClient = null;
 

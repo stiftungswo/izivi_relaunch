@@ -1,3 +1,4 @@
 import User from './user';
+import Avatar from './avatar';
 
-export default { User };
+export default { User, Avatar };

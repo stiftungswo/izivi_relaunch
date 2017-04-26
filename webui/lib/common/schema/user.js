@@ -112,6 +112,10 @@ export default new SimpleSchema({
     type: Insurance,
     optional: true,
   },
+  avatarId: {
+    type: String,
+    optional: true,
+  },
   services: {
     type: Object,
     optional: true,

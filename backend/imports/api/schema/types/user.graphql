@@ -10,7 +10,7 @@ type User {
   email: String!
   isEmailVerified: Boolean!
   name: String!
-
+  avatar: Avatar
   profile: UserProfile
   bank: UserBank
   insurance: UserInsurance
