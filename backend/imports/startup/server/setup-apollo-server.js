@@ -23,6 +23,8 @@ createApolloServer({
   schema,
 }, {
   configServer(graphQLServer) {
-    graphQLServer.use(cors());
+    graphQLServer.use(
+      cors(),
+    );
   },
 });
