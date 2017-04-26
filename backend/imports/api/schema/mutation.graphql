@@ -10,11 +10,14 @@ input UpdateUserProfileInput {
 }
 
 input UpdateUserBankInput {
-  internationalAccountNumber: String
+  internationalAccountNumber: String!
+  name: String!
 }
 
 input UpdateUserInsuranceInput {
-  insuranceNumber: String
+  healthInsuranceName: String!
+  healthInsuranceNumber: Int!
+  socialSecurityNumber: String!
 }
 
 type Mutation {

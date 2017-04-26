@@ -3,10 +3,18 @@ import AutoField from 'uniforms-semantic/AutoField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import AutoForm from 'uniforms-semantic/AutoForm';
+import FormMaskedInput from '../../lib/FormMaskedInput';
 
 const FormBank = formProps => (
   <AutoForm showInlineError {...formProps} >
-    <AutoField name="bank.internationalAccountNumber" />
+    <AutoField name="bank.name" />
+    <AutoField
+      name="bank.internationalAccountNumber"
+      component={FormMaskedInput}
+      mask={'CH99 9999 9999 9999 9999 9'}
+      maskChar={'_'}
+      alwaysShowMask
+    />
     <ErrorsField />
     <SubmitField value="Speichern" className="primary" />
   </AutoForm>

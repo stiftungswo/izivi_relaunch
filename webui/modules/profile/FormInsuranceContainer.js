@@ -13,7 +13,9 @@ const FRAGMENT_INSURANCE = gql`
   fragment insuranceFields on User {
     _id
     insurance {
-      insuranceNumber
+      healthInsuranceName
+      healthInsuranceNumber
+      socialSecurityNumber
     }
   }
 `;

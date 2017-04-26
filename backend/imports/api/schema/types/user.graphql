@@ -33,10 +33,13 @@ type UserProfile {
 
 type UserBank {
   internationalAccountNumber: String!
+  name: String!
 }
 
 type UserInsurance {
-  insuranceNumber: String!
+  healthInsuranceName: String!
+  healthInsuranceNumber: Int!
+  socialSecurityNumber: String!
 }
 
 type UserEmail {

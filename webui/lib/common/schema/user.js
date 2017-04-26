@@ -50,14 +50,31 @@ export const Bank = new SimpleSchema({
     type: String,
     optional: false,
     label: 'IBAN',
+    regEx: /^CH\d{2}[ ]\d{4}[ ]\d{4}[ ]\d{4}[ ]\d{4}[ ]\d{1}|CH\d{19}$/,
+  },
+  name: {
+    type: String,
+    optional: false,
+    label: 'Name des Bankinstituts',
   },
 });
 
 export const Insurance = new SimpleSchema({
-  insuranceNumber: {
+  healthInsuranceName: {
     type: String,
     optional: false,
-    label: 'Versichertennummer',
+    label: 'Name der Krankenkasse',
+  },
+  healthInsuranceNumber: {
+    type: Number,
+    optional: false,
+    label: 'Kennnummer des Trägers / BAG-Nr.',
+  },
+  socialSecurityNumber: {
+    type: String,
+    optional: false,
+    label: 'Persönliche Kennnummer / AHV-Nr.',
+    regEx: /^756.\d{4}.\d{4}.\d{2}$/,
   },
 });
 
