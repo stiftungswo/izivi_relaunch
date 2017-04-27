@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "apollo-client": "^1.0.4",
-    "apollo-upload-client": "^4.0.2",
-    "apollo-upload-network-interface": "^1.0.4",
     "classnames": "^2.2.5",
     "graphql": "^0.9.3",
     "graphql-tag": "^2.0.0",

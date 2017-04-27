@@ -21,23 +21,15 @@ console.log(info); // eslint-disable-line
 const schema = makeExecutableSchema(graphqlConfiguration);
 
 function graphqlServerExpressUpload() {
-  function isUpload(req) {
-    return Boolean(
-      req.method === 'POST' &&
-      req.is('multipart/form-data'),
-    );
-  }
   return function uploadMiddleware(req, res, next) {
-    console.log(req.options);
-    if (!isUpload(req)) {
+    if (!(req.method === 'POST' && req.is('multipart/form-data'))) {
       return next();
     }
     const files = req.files;
     const body = req.body;
-    const operations = JSON.parse(body.operations);
-    const { variables } = operations;
+    const variables = JSON.parse(body.variables);
     files.forEach((file) => {
-      const name = file.fieldname.split('.')[1];
+      const name = file.fieldname;
       const mappedFile = {
         name: file.originalname,
         type: file.mimetype,
@@ -52,10 +44,9 @@ function graphqlServerExpressUpload() {
         variables[name] = [variables[name], mappedFile];
       }
     });
-
     req.body = {
-      operationName: operations.operationName,
-      query: operations.query,
+      operationName: body.operationName,
+      query: body.query,
       variables,
     };
     return next();

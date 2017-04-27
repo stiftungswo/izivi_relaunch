@@ -8,8 +8,6 @@
     "dev": "UI_ENDPOINT=http://localhost:3000 BABEL_DISABLE_CACHE=1 meteor -p 3010"
   },
   "dependencies": {
-    "apollo-client": "^1.0.4",
-    "apollo-upload-network-interface": "^1.0.4",
     "babel-runtime": "6.23.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",

@@ -1,19 +1,24 @@
-import { printAST } from 'apollo-client';
-import { HTTPFetchNetworkInterface, printRequest } from 'apollo-client/transport/networkInterface';
+import { printAST, HTTPFetchNetworkInterface } from 'apollo-client';
+
+export function printRequest(request) {
+  return Object.assign({}, request, {
+    query: printAST(request.query),
+  });
+}
 
 export class UploadNetworkInterface extends HTTPFetchNetworkInterface {
-
   fetchFromRemoteEndpoint(req) {
     const options = this.isUpload(req)
       ? this.getUploadOptions(req)
       : this.getJSONOptions(req);
-    return fetch(this._uri, options);
+    return fetch(this._uri, options); // eslint-disable-line
   }
 
-  isUpload({ request }) {
+  isUpload({ request }) { // eslint-disable-line
     if (request.variables) {
-      for (const key in request.variables) {
-        if (request.variables[key] instanceof FileList) {
+      for (const key in request.variables) { // eslint-disable-line
+        if (request.variables[key] instanceof FileList ||
+            request.variables[key] instanceof File) {
           return true;
         }
       }
@@ -22,7 +27,7 @@ export class UploadNetworkInterface extends HTTPFetchNetworkInterface {
   }
 
   getJSONOptions({ request, options }) {
-    return Object.assign({}, this._opts, {
+    return Object.assign({}, this._opts, { // eslint-disable-line
       body: JSON.stringify(printRequest(request)),
       method: 'POST',
     }, options, {
@@ -36,21 +41,20 @@ export class UploadNetworkInterface extends HTTPFetchNetworkInterface {
   getUploadOptions({ request, options }) {
     const body = new FormData();
     const variables = {};
-
-    for (const key in request.variables) {
+    Object.keys(request.variables).forEach((key) => {
       const v = request.variables[key];
       if (v instanceof FileList) {
         Array.from(v).forEach(f => body.append(key, f));
+      } else if (v instanceof File) {
+        body.append(key, v);
       } else {
         variables[key] = v;
       }
-    }
-
+    });
     body.append('operationName', request.operationName);
     body.append('query', printAST(request.query));
     body.append('variables', JSON.stringify(variables));
-
-    return Object.assign({}, this._opts, {
+    return Object.assign({}, this._opts, { // eslint-disable-line
       body,
       method: 'POST',
     }, options, {
