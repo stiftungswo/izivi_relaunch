@@ -1,10 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import { Card, Progress, Button } from 'semantic-ui-react';
+import { Card, Image, Progress, Button } from 'semantic-ui-react';
 
-export default ({ stepsPercentageComplete }) => (
+export default ({ stepsPercentageComplete, avatarUrl }) => (
   <Card>
     <Card.Content>
+      <Image floated="right" size="mini" src={avatarUrl} />
       <Card.Header>
         Steckbrief
       </Card.Header>

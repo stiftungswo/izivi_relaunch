@@ -3,13 +3,13 @@ import React from 'react';
 import { Card, Progress, Button } from 'semantic-ui-react';
 
 export default () => (
-  <Card>
+  <Card fluid>
     <Card.Content>
       <Card.Header>
         Zivildiensteinsätze
       </Card.Header>
       <Card.Meta>
-        Kontakt- und Bankangaben
+        Übersicht über meine Einsätze
       </Card.Meta>
       <Card.Description>
         <Progress autoSuccess value={5} total={20} />

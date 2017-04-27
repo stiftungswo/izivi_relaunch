@@ -9,10 +9,15 @@ export default compose(
       me {
         _id
         stepsPercentageComplete
+        avatar {
+          url
+        }
       }
     }
   `),
   mapProps(({ data: { me } }) =>
-    ({ stepsPercentageComplete: (me && me.stepsPercentageComplete) || 0 })),
+    ({
+      avatarUrl: (me && me.avatar && me.avatar.url) || '/static/square-image.png',
+      stepsPercentageComplete: (me && me.stepsPercentageComplete) || 0 })),
   pure,
 )(CardProfileProgress);

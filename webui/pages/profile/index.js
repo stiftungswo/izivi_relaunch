@@ -1,12 +1,11 @@
 import React from 'react';
-import Head from 'next/head';
 import Router from 'next/router';
 import { Step, Segment, Container } from 'semantic-ui-react';
-import App from '../lib/AppContainer';
-import ProfileStepItem from '../modules/profile/StepItemContainer';
-import FormProfile, { PROFILE } from '../modules/profile/FormProfileContainer';
-import FormBank, { BANK } from '../modules/profile/FormBankContainer';
-import FormInsurance, { INSURANCE } from '../modules/profile/FormInsuranceContainer';
+import App from '../../components/AppContainer';
+import ProfileStepItem from '../../components/profile/StepItemContainer';
+import FormProfile, { PROFILE } from '../../components/profile/FormProfileContainer';
+import FormBank, { BANK } from '../../components/profile/FormBankContainer';
+import FormInsurance, { INSURANCE } from '../../components/profile/FormInsuranceContainer';
 
 const redirect = step => () => {
   if (step) {
@@ -20,11 +19,6 @@ const redirect = step => () => {
 
 export default ({ url, ...rest }) => (
   <App url={url} {...rest}>
-    <Head>
-      <link rel="stylesheet" href="/static/react-phone-number-input/rrui.css" />
-      <link rel="stylesheet" href="/static/react-phone-number-input/style.css" />
-      <link rel="stylesheet" href="/static/react-datepicker/react-datepicker.css" />
-    </Head>
     <Container>
       <Step.Group size="mini" className="three top attached">
         <ProfileStepItem

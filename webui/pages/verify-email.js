@@ -4,7 +4,7 @@ import { withApollo } from 'react-apollo';
 import { verifyEmail } from 'meteor-apollo-accounts';
 import Router from 'next/router';
 import { Message, Container } from 'semantic-ui-react';
-import App from '../lib/AppContainer';
+import App from '../components/AppContainer';
 
 const Verifier = compose(
   withApollo,

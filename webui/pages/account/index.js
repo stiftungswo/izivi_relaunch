@@ -1,8 +1,8 @@
 import React from 'react';
 import { Segment, Container } from 'semantic-ui-react';
-import App from '../lib/AppContainer';
-import FormChangePassword from '../modules/account/FormChangePasswordContainer';
-import FormChangeEmail from '../modules/account/FormChangeEmailContainer';
+import App from '../../components/AppContainer';
+import FormChangePassword from '../../components/account/FormChangePasswordContainer';
+import FormChangeEmail from '../../components/account/FormChangeEmailContainer';
 
 export default ({ ...rest }) => (
   <App {...rest}>

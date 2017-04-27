@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { Grid, Segment, Divider, Label } from 'semantic-ui-react';
 import AutoField from 'uniforms-semantic/AutoField';
 import SubmitField from 'uniforms-semantic/SubmitField';
@@ -10,6 +11,11 @@ import UploadAvatar from './UploadAvatarContainer';
 
 const FormProfile = ({ username, ...formProps }) => (
   <AutoForm showInlineError {...formProps} >
+    <Head>
+      <link rel="stylesheet" href="/static/react-phone-number-input/rrui.css" />
+      <link rel="stylesheet" href="/static/react-phone-number-input/style.css" />
+      <link rel="stylesheet" href="/static/react-datepicker/react-datepicker.css" />
+    </Head>
     <Grid stackable columns={3}>
       <Grid.Row columns={1}>
         <Grid.Column textAlign="center">

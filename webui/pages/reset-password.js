@@ -1,7 +1,7 @@
 import React from 'react';
 import { Segment, Container } from 'semantic-ui-react';
-import App from '../lib/AppContainer';
-import FormResetPassword from '../modules/account/FormResetPasswordContainer';
+import App from '../components/AppContainer';
+import FormResetPassword from '../components/account/FormResetPasswordContainer';
 
 export default ({ url, ...rest }) => (
   <App url={url} {...rest} allowAnonymousAccess>

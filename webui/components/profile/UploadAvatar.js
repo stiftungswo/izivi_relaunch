@@ -2,7 +2,7 @@ import React from 'react';
 import { Image } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
 
-export default ({ avatarUrl = '/static/square-image.png', handleChange }) => (
+export default ({ avatarUrl, handleChange }) => (
   <Dropzone
     style={{
       border: 0,

@@ -2,7 +2,7 @@ import { compose, pure, lifecycle, withProps } from 'recompose';
 import { graphql } from 'react-apollo';
 import Router from 'next/router';
 import gql from 'graphql-tag';
-import connectApollo from './connectApollo';
+import connectApollo from '../lib/connectApollo';
 import App from './App';
 
 export default compose(

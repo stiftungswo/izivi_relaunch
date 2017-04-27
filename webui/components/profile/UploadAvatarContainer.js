@@ -13,8 +13,8 @@ const FRAGMENT_AVATAR_FIELDS = gql`
   }
 `;
 
-
 export default compose(
+  withState('imageUrl', 'updateImageUrl', null),
   graphql(gql`
     query getProfile {
       me {
@@ -31,7 +31,6 @@ export default compose(
     }
     ${FRAGMENT_AVATAR_FIELDS}
   `),
-  withState('imageUrl', 'updateImageUrl', ({ avatarUrl }) => avatarUrl || '/static/square-image.png'),
   withHandlers({
     handleChange: ({ mutate, updateImageUrl }) => async (files) => {
       const avatar = files[0];
@@ -43,8 +42,8 @@ export default compose(
       });
     },
   }),
-  mapProps(({ mutate, data: { me }, ...rest }) => ({
-    avatarUrl: me && me.avatar && me.avatar.url,
+  mapProps(({ mutate, imageUrl, data: { me }, ...rest }) => ({
+    avatarUrl: (imageUrl || (me && me.avatar && me.avatar.url)) || '/static/square-image.png',
     ...rest,
   })),
   pure,

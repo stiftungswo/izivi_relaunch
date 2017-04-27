@@ -12,9 +12,6 @@ export default compose(
       }
     }
   `),
-  mapProps(({ data: { me } }) => {
-    console.log(me);
-    return {};
-  }),
+  mapProps(({ data: { me } }) => ({ me })),
   pure,
 )(CardProjectProgress);

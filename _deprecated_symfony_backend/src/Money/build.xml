@@ -39,7 +39,7 @@
   <exec executable="pdepend">
    <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml
               --jdepend-chart=${basedir}/build/pdepend/dependencies.svg
-              --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg
+              --overview-pyramid=${basedir}/build/pdepend/-pyramid.svg
               ${source}" />
   </exec>
  </target>
