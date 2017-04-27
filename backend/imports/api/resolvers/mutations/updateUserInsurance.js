@@ -8,17 +8,6 @@ export default function (root, { insurance, userId }, context) {
     },
   });
 
-  Users.update({
-    _id: normalizedUserId,
-    'stepsCompleted.step': { $ne: 'INSURANCE' },
-  }, {
-    $addToSet: {
-      stepsCompleted: {
-        timestamp: new Date(),
-        step: 'INSURANCE',
-      },
-    },
-  });
-
+  Users.setStepCompleted({ userId: normalizedUserId, step: 'INSURANCE' });
   return Users.findOne(normalizedUserId);
 }

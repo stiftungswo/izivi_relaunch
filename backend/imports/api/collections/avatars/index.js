@@ -13,7 +13,7 @@ const Avatars = new FilesCollection({
   },
 });
 
-export const addAvatar = ({ avatar: { name: fileName, type, size, buffer }, userId }) => {
+Avatars.insertWithRemoteBuffer = ({ avatar: { name: fileName, type, size, buffer }, userId }) => {
   const syncWriteAvatars = Meteor.wrapAsync(Avatars.write, Avatars);
   return syncWriteAvatars(buffer, {
     fileName,

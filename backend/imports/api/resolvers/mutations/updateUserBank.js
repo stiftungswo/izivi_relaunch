@@ -8,17 +8,6 @@ export default function (root, { bank, userId }, context) {
     },
   });
 
-  Users.update({
-    _id: normalizedUserId,
-    'stepsCompleted.step': { $ne: 'BANK' },
-  }, {
-    $addToSet: {
-      stepsCompleted: {
-        timestamp: new Date(),
-        step: 'BANK',
-      },
-    },
-  });
-
+  Users.setStepCompleted({ userId: normalizedUserId, step: 'BANK' });
   return Users.findOne(normalizedUserId);
 }

@@ -8,17 +8,6 @@ export default function (root, { profile, userId }, context) {
     },
   });
 
-  Users.update({
-    _id: normalizedUserId,
-    'stepsCompleted.step': { $ne: 'PROFILE' },
-  }, {
-    $addToSet: {
-      stepsCompleted: {
-        timestamp: new Date(),
-        step: 'PROFILE',
-      },
-    },
-  });
-
+  Users.setStepCompleted({ userId: normalizedUserId, step: 'PROFILE' });
   return Users.findOne(normalizedUserId);
 }

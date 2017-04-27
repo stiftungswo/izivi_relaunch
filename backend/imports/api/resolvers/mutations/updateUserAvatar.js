@@ -1,8 +1,8 @@
 import Users from '../../collections/users';
-import { addAvatar } from '../../collections/avatars';
+import Avatars from '../../collections/avatars';
 
 export default function updateUserAvatar(root, { avatar }, context) {
-  const avatarRef = addAvatar({
+  const avatarRef = Avatars.insertWithRemoteBuffer({
     avatar,
     userId: context.userId,
   });
