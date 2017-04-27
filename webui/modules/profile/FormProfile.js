@@ -1,18 +1,26 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Segment, Divider, Label } from 'semantic-ui-react';
 import AutoField from 'uniforms-semantic/AutoField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import PhoneField from '../../lib/FormPhoneInput';
 import DateField from '../../lib/FormDateInput';
+import UploadAvatar from './UploadAvatarContainer';
 
-const FormProfile = formProps => (
+const FormProfile = ({ username, ...formProps }) => (
   <AutoForm showInlineError {...formProps} >
     <Grid stackable columns={3}>
       <Grid.Row columns={1}>
-        <Grid.Column width={4}>
-          <AutoField name="username" disabled label="Zivildienstnummer" size="tiny" />
+        <Grid.Column textAlign="center">
+          <Segment basic>
+            <UploadAvatar />
+            <Label style={{ marginTop: '5px' }}>
+              Zivi Nummer:
+              <Label.Detail>{username}</Label.Detail>
+            </Label>
+          </Segment>
+          <Divider />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={2}>

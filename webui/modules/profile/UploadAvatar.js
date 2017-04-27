@@ -1,27 +1,24 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { Image } from 'semantic-ui-react';
+import Dropzone from 'react-dropzone';
 
-export default graphql(gql`
-  mutation updateUserAvatar ($avatar: File!) {
-    updateUserAvatar (avatar: $avatar) {
-      _id
-      avatar {
-        _id
-        url
-      }
-    }
-  }
-`)(({ mutate }) => {
-  const handleChange = ({ target }) => {
-    if (target.validity.valid) {
-      mutate({
-        variables: {
-          avatar: target.files[0],
-        },
-      }).then(({ data }) => console.log('Mutation response:', data));
-    }
-  };
-
-  return <input type="file" accept={'image/jpeg,image/png'} required onChange={handleChange} />;
-});
+export default ({ avatarUrl = '/static/square-image.png', handleChange }) => (
+  <Dropzone
+    style={{
+      border: 0,
+    }}
+    className="ui container"
+    onDrop={handleChange}
+    multiple={false}
+    accept="image/*"
+  >
+    <Image
+      label={{ color: 'blue', corner: 'right', icon: 'edit' }}
+      src={avatarUrl}
+      width={150}
+      height={150}
+      bordered
+      shape="rounded"
+    />
+  </Dropzone>
+);

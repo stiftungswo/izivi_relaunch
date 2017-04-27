@@ -23,6 +23,7 @@
     "react-apollo": "^1.1.1",
     "react-datepicker": "^0.46.0",
     "react-dom": "^15.5.4",
+    "react-dropzone": "^3.13.1",
     "react-input-mask": "^0.8.0",
     "react-phone-number-input": "^0.10.2",
     "recompose": "^0.23.1",

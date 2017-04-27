@@ -64,6 +64,9 @@ export default compose(
       mutate({ variables: schema.clean(dirtyInput) }),
   }),
   withFormErrorHandlers,
-  mapProps(({ mutate, ...rest }) => ({ ...rest })),
+  mapProps(({ mutate, data: { me }, ...rest }) => ({
+    username: me && me.username,
+    ...rest,
+  })),
   pure,
 )(FormProfile);
