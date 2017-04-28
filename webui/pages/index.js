@@ -7,7 +7,7 @@ import CardProjectProgress from '../components//CardProjectProgressContainer';
 export default ({ ...rest }) => (
   <App {...rest}>
     <Container>
-      <Card.Group>
+      <Card.Group itemsPerRow={2} stackable>
         <CardProfileProgress />
         <CardProjectProgress />
       </Card.Group>

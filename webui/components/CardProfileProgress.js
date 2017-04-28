@@ -22,13 +22,13 @@ export default ({ stepsPercentageComplete, avatarUrl }) => (
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
-      <Link href="/profile">
+      <Link href="/users/profile">
         {stepsPercentageComplete === 1 ? (
-          <Button as="a" href="/profile" basic secondary>
+          <Button as="a" href="/users/profile" basic secondary>
             Bearbeiten
           </Button>
         ) : (
-          <Button as="a" href="/profile" basic primary>
+          <Button as="a" href="/users/profile" basic primary>
             Angaben komplettieren
           </Button>
         )}

@@ -1,67 +1,61 @@
 import React from 'react';
 import Link from 'next/link';
-import { Menu, Dropdown, Label } from 'semantic-ui-react';
+import { Menu, Dropdown, Label, Header } from 'semantic-ui-react';
 
-export default ({ pathname, loggedInUser, logout }) => (loggedInUser ? (
-  <Menu color="blue" attached="top" size="tiny">
+const MenuLayout = ({ pathname, children, loading, ...rest }) => (
+  <Menu color="blue" attached="top" size="tiny" {...rest}>
     <Link href="/">
       <Menu.Item active={(pathname === '/')}>
-        <Label left basic size="big" circular color="blue" horizontal>iZ</Label>
+        <Label basic size="big" circular color="blue" horizontal>iZ</Label>
       </Menu.Item>
     </Link>
+    {!loading && (
+      children
+    )}
+  </Menu>
+);
+
+export default ({ pathname, loggedInUser, logout, ...rest }) => (loggedInUser ? (
+  <MenuLayout pathname={pathname} {...rest}>
     <Link href="/missions">
-      <Menu.Item active={(pathname === '/missions')}>
+      <Menu.Item active={(pathname.substr(0, 9) === '/missions')}>
         <span>Einsätze</span>
       </Menu.Item>
     </Link>
     <Link href="/expenses">
-      <Menu.Item active={(pathname === '/expenses')}>
+      <Menu.Item active={(pathname.substr(0, 9) === '/expenses')}>
         <span>Spesen</span>
       </Menu.Item>
     </Link>
     <Link href="/users">
-      <Menu.Item active={(pathname === '/users')}>
+      <Menu.Item active={(pathname.substr(0, 6) === '/users')}>
         <span>Benutzer</span>
       </Menu.Item>
     </Link>
-    <Dropdown
-      item icon="settings"
-      active={
-          pathname === '/admin/holidays' ||
-          pathname === '/admin/specifications' ||
-          pathname === '/admin/export'
-      }
-    >
-      <Dropdown.Menu>
-        <Link href="/admin/holidays">
-          <Dropdown.Item active={(pathname === '/admin/holidays')}>
-            <span>Feiertage & Betriebsferien</span>
-          </Dropdown.Item>
-        </Link>
-        <Link href="/admin/specifications">
-          <Dropdown.Item active={(pathname === '/admin/specifications')}>
-            <span>Pflichtenhefte</span>
-          </Dropdown.Item>
-        </Link>
-        <Link href="/export">
-          <Dropdown.Item active={(pathname === '/export')}>
-            <span>Datenbankexport</span>
-          </Dropdown.Item>
-        </Link>
-      </Dropdown.Menu>
-    </Dropdown>
     <Menu.Menu position="right">
-      <Dropdown
-        item icon="user"
-        active={
-          pathname === '/profile' ||
-          pathname === '/account' ||
-          pathname === '/help'
-        }
-      >
+      <Dropdown item icon="settings">
         <Dropdown.Menu>
-          <Link href="/profile">
-            <Dropdown.Item active={(pathname === '/profile')}>
+          <Link href="/admin/holidays">
+            <Dropdown.Item active={(pathname === '/admin/holidays')}>
+              <span>Feiertage & Betriebsferien</span>
+            </Dropdown.Item>
+          </Link>
+          <Link href="/admin/specifications">
+            <Dropdown.Item active={(pathname === '/admin/specifications')}>
+              <span>Pflichtenhefte</span>
+            </Dropdown.Item>
+          </Link>
+          <Link href="/admin/export">
+            <Dropdown.Item active={(pathname === '/admin/export')}>
+              <span>Datenbankexport</span>
+            </Dropdown.Item>
+          </Link>
+        </Dropdown.Menu>
+      </Dropdown>
+      <Dropdown item icon="user">
+        <Dropdown.Menu>
+          <Link href="/users/profile">
+            <Dropdown.Item active={(pathname === '/users/profile')}>
               <span>Profil</span>
             </Dropdown.Item>
           </Link>
@@ -79,11 +73,11 @@ export default ({ pathname, loggedInUser, logout }) => (loggedInUser ? (
         </Dropdown.Menu>
       </Dropdown>
     </Menu.Menu>
-  </Menu>
+  </MenuLayout>
 ) : (
-  <Menu color="blue" inverted attached>
+  <MenuLayout pathname={pathname} {...rest}>
     <Menu.Item>
-      <h2>iZivi 2.0</h2>
+      <Header size="medium" color="blue">iZivi 2.0</Header>
     </Menu.Item>
-  </Menu>
+  </MenuLayout>
 ));

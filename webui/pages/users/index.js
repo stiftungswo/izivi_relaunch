@@ -5,7 +5,7 @@ import App from '../../components/AppContainer';
 export default ({ ...rest }) => (
   <App {...rest}>
     <Container>
-      <p>DB Export</p>
+      <p>Users</p>
     </Container>
   </App>
 );

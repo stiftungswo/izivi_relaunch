@@ -1,4 +1,4 @@
-import { compose, pure, withHandlers } from 'recompose';
+import { compose, pure, withHandlers, mapProps } from 'recompose';
 import { logout } from 'meteor-apollo-accounts';
 import { withApollo } from 'react-apollo';
 import Header from './Header';
@@ -10,5 +10,6 @@ export default compose(
       await logout(client);
     },
   }),
+  mapProps(({ client, ...rest }) => ({ ...rest })),
   pure,
 )(Header);

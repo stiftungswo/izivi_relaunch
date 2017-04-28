@@ -4,6 +4,6 @@ import user from './user';
 
 export default {
   me,
-  @Roles.action('viewUser')
+  // @Roles.action('viewUser')
   user,
 };

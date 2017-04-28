@@ -2,15 +2,15 @@ import React from 'react';
 import Router from 'next/router';
 import { Step, Segment, Container } from 'semantic-ui-react';
 import App from '../../components/AppContainer';
-import ProfileStepItem from '../../components/profile/StepItemContainer';
-import FormProfile, { PROFILE } from '../../components/profile/FormProfileContainer';
-import FormBank, { BANK } from '../../components/profile/FormBankContainer';
-import FormInsurance, { INSURANCE } from '../../components/profile/FormInsuranceContainer';
+import ProfileStepItem from '../../components/users/StepItemContainer';
+import FormProfile, { PROFILE } from '../../components/users/FormProfileContainer';
+import FormBank, { BANK } from '../../components/users/FormBankContainer';
+import FormInsurance, { INSURANCE } from '../../components/users/FormInsuranceContainer';
 
 const redirect = step => () => {
   if (step) {
     return Router.push({
-      pathname: '/profile',
+      pathname: '/users/profile',
       query: { step },
     });
   }
@@ -45,13 +45,13 @@ export default ({ url, ...rest }) => (
       </Step.Group>
       <Segment attached>
         {(url.query.step === PROFILE || !url.query.step) && (
-          <FormProfile onSubmitSuccess={redirect(BANK)} />
+          <FormProfile onSubmitSuccess={redirect(BANK, url.query.userId)} />
         )}
         {(url.query.step === BANK) && (
-          <FormBank onSubmitSuccess={redirect(INSURANCE)} />
+          <FormBank onSubmitSuccess={redirect(INSURANCE, url.query.userId)} />
         )}
         {(url.query.step === INSURANCE) && (
-          <FormInsurance onSubmitSuccess={redirect()} />
+          <FormInsurance onSubmitSuccess={redirect(null, url.query.userId)} />
         )}
       </Segment>
     </Container>

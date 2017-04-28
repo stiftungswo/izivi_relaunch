@@ -8,8 +8,12 @@ export default ({ url, loggedInUser, loading, children }) => (
     <Head>
       <link rel="stylesheet" href="/static/semantic-ui-css/semantic.min.css" />
     </Head>
-    <Header pathname={url.pathname} loggedInUser={loggedInUser} />
-    <Segment vertical>
+    <Header
+      loading={loading}
+      pathname={url.pathname}
+      loggedInUser={loggedInUser}
+    />
+    <Segment vertical padded>
       {loading && (
         <Dimmer active inverted>
           <Loader size="large" inverted>Laden</Loader>

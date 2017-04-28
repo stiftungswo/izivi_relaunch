@@ -6,7 +6,7 @@ export default () => (
   <Card fluid>
     <Card.Content>
       <Card.Header>
-        Zivildiensteinsätze
+        Aktueller Einsatz
       </Card.Header>
       <Card.Meta>
         Übersicht über meine Einsätze
