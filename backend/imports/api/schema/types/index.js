@@ -4,7 +4,7 @@ import User from './user.graphql';
 import ExpenseRates from './expense-rates';
 import Specification from './specification.graphql';
 import Mission from './mission.graphql';
-// ....................
+// .....................
 export default [
   Money,
   Avatar,

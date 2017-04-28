@@ -1,6 +1,6 @@
 import { compose, pure, mapProps, withHandlers } from 'recompose';
-// import gql from 'graphql-tag';
-// import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 import withFormErrorHandlers from '../../lib/withFormErrorHandlers';
 import withFormSchema from '../../lib/withFormSchema';
 // import withFormModel from '../../lib/withFormModel';
@@ -8,13 +8,20 @@ import FormSpecificationSchema from '../../lib/common/schema/specification';
 import FormSpecification from './FormSpecification';
 
 export default compose(
-  // graphql(gql`
-  //   query getSpecifications {
-  //     me {
-  //       ...specificationFields
-  //     }
-  //   }
-  // `),
+  graphql(gql`
+    query getSpecifications {
+      allSpecifications {
+        _id
+        name
+        isActive
+        governmentId
+        configuredExpenseRates {
+          key
+          name
+        }
+      }
+    }
+  `),
   // graphql(gql`
   //   mutation updateUserSpecifications($specification: UpdateUserSpecificationsInput) {
   //     updateUserSpecifications(specification: $specification) {
