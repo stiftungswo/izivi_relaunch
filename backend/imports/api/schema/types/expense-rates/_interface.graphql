@@ -1,0 +1,4 @@
+interface ExpenseRate {
+  key: ID!
+  name: String!
+}

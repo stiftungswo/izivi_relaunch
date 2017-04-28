@@ -1,0 +1,4 @@
+type Catering implements ExpenseRate {
+  key: ID!
+  name: String!
+}

@@ -1,4 +1,6 @@
 type Query {
   me: User
-  user (_id: ID): User
+  user(_id: ID!): User
+  allUsers: [User]!
+  allSpecifications: [Specification]!
 }

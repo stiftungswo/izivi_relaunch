@@ -1,0 +1,8 @@
+type Specification {
+  _id: ID!
+  name: String!
+  isActive: Boolean
+  governmentId: Int
+  configuredExpenseRates: [ExpenseRate]
+  missions: [Mission]
+}
