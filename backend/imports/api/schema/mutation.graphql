@@ -27,10 +27,18 @@ input File {
   buffer: Buffer!
 }
 
+input CreateSpecificationInput {
+  name: String!
+  governmentId: String
+  isActive: Boolean
+  configuredExpenseRates: JSON
+}
+
 type Mutation {
   updateUserAvatar(avatar: File!, userId: ID): User!
   updateEmail(email: String!, userId: ID): User!
   updateUserProfile(profile: UpdateUserProfileInput, userId: ID): User!
   updateUserBank(bank: UpdateUserBankInput, userId: ID): User!
   updateUserInsurance(insurance: UpdateUserInsuranceInput, userId: ID): User!
+  createSpecification(specification: CreateSpecificationInput) : Specification!
 }

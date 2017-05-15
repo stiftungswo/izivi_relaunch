@@ -5,16 +5,15 @@
 # but you can also edit it by hand.
 
 meteor-base@1.0.4             # Packages every Meteor app needs to have
-mongo@1.1.16                  # The database Meteor supports right now
+mongo@1.1.17                  # The database Meteor supports right now
 standard-minifier-css@1.3.4   # CSS minifier run for production mode
 standard-minifier-js@2.0.0    # JS minifier run for production mode
-ecmascript@0.7.2              # Enable ECMAScript2015+ syntax in app code
+ecmascript@0.7.3              # Enable ECMAScript2015+ syntax in app code
 shell-server@0.2.3            # Server-side component of the `meteor shell` command
-accounts-password
+accounts-password@1.3.6
 
 # Collection / Schema
 aldeed:collection2-core@2.0.0
-aldeed:schema-index
 
 # Orionsoft / Nicolas Packages
 orionsoft:apollo
@@ -22,5 +21,5 @@ nicolaslopezj:roles
 nicolaslopezj:apollo-accounts
 percolate:synced-cron
 sungwoncho:mailman
-email
+email@1.2.1
 ostrio:files

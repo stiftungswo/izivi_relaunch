@@ -9,28 +9,12 @@ import FormSpecification from './FormSpecification';
 
 export default compose(
   graphql(gql`
-    query getSpecifications {
-      allSpecifications {
+    mutation createSpecification($specification: CreateSpecificationInput) {
+      createSpecification(specification: $specification) {
         _id
-        name
-        isActive
-        governmentId
-        configuredExpenseRates {
-          key
-          name
-        }
       }
     }
   `),
-  // graphql(gql`
-  //   mutation updateUserSpecifications($specification: UpdateUserSpecificationsInput) {
-  //     updateUserSpecifications(specification: $specification) {
-  //       isStepComplete(step: INSURANCE)
-  //       stepsPercentageComplete
-  //       ...specificationFields
-  //     }
-  //   }
-  // `),
   withFormSchema({
     specification: {
       type: FormSpecificationSchema,
