@@ -12,8 +12,8 @@ export default ({ specifications }) => (
       </Table.Row>
     </Table.Header>
     <Table.Body>
-      {specifications.map(specification => (
-        <Table.Row>
+      {specifications && specifications.map(specification => (
+        <Table.Row key={specification._id}>
           <Table.Cell>{specification.name}</Table.Cell>
           <Table.Cell>{specification.governmentId}</Table.Cell>
           <Table.Cell>

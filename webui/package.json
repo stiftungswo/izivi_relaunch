@@ -74,6 +74,19 @@
       "react/jsx-wrap-multilines": [
         0
       ],
+      "no-underscore-dangle": [
+        "error",
+        {
+          "allow": [
+            "__",
+            "_id",
+            "_ensureIndex",
+            "_verifyEmailToken",
+            "_resetPasswordToken",
+            "_name"
+          ]
+        }
+      ],
       "react/jsx-filename-extension": [
         1,
         {
