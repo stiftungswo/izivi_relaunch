@@ -34,42 +34,5 @@
     "eslint-plugin-graphql": "^0.8.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-meteor": "^4.0.1"
-  },
-  "babel": {
-    "presets": [
-      "env",
-      "stage-2"
-    ],
-    "plugins": [
-      "transform-decorators-legacy",
-      "babel-plugin-inline-import"
-    ]
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "plugins": [
-      "meteor",
-      "import",
-      "graphql"
-    ],
-    "extends": [
-      "airbnb-base",
-      "plugin:meteor/recommended"
-    ],
-    "settings": {
-      "import/resolver": {
-        "meteor": {
-          "extensions": [
-            ".jsx",
-            ".js"
-          ]
-        }
-      }
-    },
-    "rules": {
-      "import/no-extraneous-dependencies": 0,
-      "import/extensions": [ "off", "never" ],
-      "no-underscore-dangle": [ "error", { "allow": [ "_id" ] } ]
-    }
   }
 }
