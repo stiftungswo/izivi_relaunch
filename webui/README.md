@@ -4,7 +4,7 @@
 
 - Next.js: https://zeit.co/blog/next (Webpack, Babel, React, Styles-Jsx)
 - ESlint: Configured AirBnB Best practice code style
-- Apollo: GraphQL Client that connects to the GraphQL Server
+- Apollo: GraphQL Client that connects to the GraphQL Backend (see ../backend)
 
 
 ## Getting up and running
@@ -16,3 +16,7 @@
 4. Start Dev Webserver:
     npm start dev
 5. Code hard
+
+## Deployment
+
+Next.js allows for static exports using "next export". The generated html/js/css bundle can then be installed on any hosting provider.

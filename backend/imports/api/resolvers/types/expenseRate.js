@@ -1,6 +1,5 @@
 export default {
-  __resolveType(obj, context, info) {
-    console.log(info);
+  __resolveType(obj /* context, info */) {
     switch (obj.name) {
       case 'catering':
         return 'Catering';

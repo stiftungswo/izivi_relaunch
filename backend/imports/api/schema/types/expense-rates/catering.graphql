@@ -1,4 +1,12 @@
+type CateringTimeOfDay {
+  costsPerWorkDayCHF: Int!
+  costsPerFreeDayCHF: Int!
+}
+
 type Catering implements ExpenseRate {
   key: ID!
   name: String!
+  breakfast: CateringTimeOfDay!
+  lunch: CateringTimeOfDay!
+  dinner: CateringTimeOfDay!
 }

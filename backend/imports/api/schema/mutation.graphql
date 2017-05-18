@@ -1,4 +1,4 @@
-input UpdateUserProfileInput {
+input UserProfileInput {
   firstName: String!
   lastName: String!
   street: String!
@@ -9,12 +9,12 @@ input UpdateUserProfileInput {
   phoneWork: String,
 }
 
-input UpdateUserBankInput {
+input UserBankInput {
   internationalAccountNumber: String!
   name: String!
 }
 
-input UpdateUserInsuranceInput {
+input UserInsuranceInput {
   healthInsuranceName: String!
   healthInsuranceNumber: Int!
   socialSecurityNumber: String!
@@ -27,9 +27,9 @@ input File {
   buffer: Buffer!
 }
 
-input CreateSpecificationInput {
+input SpecificationInput {
   name: String!
-  governmentId: String
+  governmentId: Int
   isActive: Boolean
   configuredExpenseRates: JSON
 }
@@ -37,8 +37,9 @@ input CreateSpecificationInput {
 type Mutation {
   updateUserAvatar(avatar: File!, userId: ID): User!
   updateEmail(email: String!, userId: ID): User!
-  updateUserProfile(profile: UpdateUserProfileInput, userId: ID): User!
-  updateUserBank(bank: UpdateUserBankInput, userId: ID): User!
-  updateUserInsurance(insurance: UpdateUserInsuranceInput, userId: ID): User!
-  createSpecification(specification: CreateSpecificationInput) : Specification!
+  updateUserProfile(profile: UserProfileInput, userId: ID): User!
+  updateUserBank(bank: UserBankInput, userId: ID): User!
+  updateUserInsurance(insurance: UserInsuranceInput, userId: ID): User!
+  createSpecification(specification: SpecificationInput) : Specification!
+  updateSpecification(specification: SpecificationInput, _id: ID!) : Specification!
 }

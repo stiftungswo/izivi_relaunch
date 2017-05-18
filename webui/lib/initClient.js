@@ -25,7 +25,7 @@ function doInitClient(headers, initialState) {
     ssrMode: !process.browser,
     dataIdFromObject(result) {
       if (result._id && result.__typename) { // eslint-disable-line
-        const dataId = result.__typename + result._id; // eslint-disable-line
+        const dataId = `${result.__typename}:${result._id}`; // eslint-disable-line
         return dataId;
       }
       return null;

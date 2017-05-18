@@ -36,7 +36,7 @@ export default compose(
     ${FRAGMENT_PROFILE}
   `),
   graphql(gql`
-    mutation updateUserProfile($profile: UpdateUserProfileInput) {
+    mutation updateUserProfile($profile: UserProfileInput) {
       updateUserProfile(profile: $profile) {
         name
         isStepComplete(step: PROFILE)

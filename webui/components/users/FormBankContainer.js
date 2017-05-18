@@ -29,7 +29,7 @@ export default compose(
     ${FRAGMENT_BANK}
   `),
   graphql(gql`
-    mutation updateUserBank($bank: UpdateUserBankInput) {
+    mutation updateUserBank($bank: UserBankInput) {
       updateUserBank(bank: $bank) {
         isStepComplete(step: BANK)
         stepsPercentageComplete

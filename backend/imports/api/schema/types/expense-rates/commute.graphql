@@ -1,4 +1,6 @@
 type Commute implements ExpenseRate {
   key: ID!
   name: String!
+  maxPublicTransportationCommuteMinutes: Int!
+  carCostsPerKilometerCHF: Int!
 }

@@ -5,16 +5,12 @@ import SpecificationList from './SpecificationList';
 
 export default compose(
   graphql(gql`
-    query getSpecifications {
+    query getAllSpecifications {
       allSpecifications {
         _id
         name
         isActive
         governmentId
-        configuredExpenseRates {
-          key
-          name
-        }
       }
     }
   `),

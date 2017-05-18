@@ -4,6 +4,7 @@ import updateEmail from './updateEmail';
 import updateUserAvatar from './updateUserAvatar';
 import updateUserInsurance from './updateUserInsurance';
 import createSpecification from './createSpecification';
+import updateSpecification from './updateSpecification';
 
 export default {
   updateEmail,
@@ -12,4 +13,5 @@ export default {
   updateUserBank,
   updateUserInsurance,
   createSpecification,
+  updateSpecification,
 };
