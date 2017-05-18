@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Icon, Label, Button } from 'semantic-ui-react';
+import { Table, Icon, Button } from 'semantic-ui-react';
 import Link from 'next/link';
 
 export default ({ specifications }) => (
@@ -15,11 +15,8 @@ export default ({ specifications }) => (
       {specifications && specifications.map(specification => (
         <Table.Row key={specification._id}>
           <Table.Cell>
-            {specification.name}&nbsp;
             <Link href={{ pathname: '/admin/specifications/edit', query: { _id: specification._id } }}>
-              <Label as="a" horizontal basic color="blue">
-                <Icon name="edit" />Bearbeiten
-              </Label>
+              {specification.name}
             </Link>
           </Table.Cell>
           <Table.Cell>{specification.governmentId}</Table.Cell>

@@ -1,5 +1,3 @@
-// import { Kind } from 'graphql/language';
-
 export default {
   __parseValue(value) {
     return value;

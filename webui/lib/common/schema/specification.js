@@ -66,6 +66,7 @@ export const ExpenseRateWorkingClothes = new SimpleSchema({
 });
 
 export default new SimpleSchema({
+  deleted: Date,
   name: {
     type: String,
     optional: false,

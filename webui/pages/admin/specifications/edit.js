@@ -1,17 +1,26 @@
 import React from 'react';
-import { Container, Header } from 'semantic-ui-react';
+import { Container, Header, Divider } from 'semantic-ui-react';
+import Router from 'next/router';
 import App from '../../../components/AppContainer';
 import FormSpecification from '../../../components/admin/FormSpecificationContainer';
+import ButtonDeleteSpecification from '../../../components/admin/ButtonDeleteSpecificationContainer';
 
-const redirect = () => {
+const updatedSuccessfully = () => {
   alert('Pflichtenheft aktualisiert');
+};
+
+const deletedSuccessfully = () => {
+  alert('Pflichtenheft gelöscht');
+  return Router.push({ pathname: '/admin/specifications' });
 };
 
 export default ({ url, ...rest }) => (
   <App url={url} {...rest}>
     <Container>
       <Header>Pflichtenheft editieren</Header>
-      <FormSpecification _id={url.query._id} onSubmitSuccess={redirect} />
+      <ButtonDeleteSpecification _id={url.query._id} onSuccess={deletedSuccessfully} />
+      <Divider />
+      <FormSpecification _id={url.query._id} onSubmitSuccess={updatedSuccessfully} />
     </Container>
   </App>
 );

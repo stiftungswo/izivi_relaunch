@@ -1,6 +1,6 @@
 import React from 'react';
 import Router from 'next/router';
-import { Container, Header } from 'semantic-ui-react';
+import { Container, Header, Divider } from 'semantic-ui-react';
 import App from '../../../components/AppContainer';
 import FormSpecification from '../../../components/admin/FormSpecificationContainer';
 
@@ -19,6 +19,7 @@ export default ({ ...rest }) => (
   <App {...rest}>
     <Container>
       <Header>Neues Pflichtenheft erstellen</Header>
+      <Divider />
       <FormSpecification onSubmitSuccess={redirect} />
     </Container>
   </App>
