@@ -36,7 +36,7 @@ const DatePickerField = ({
   value,
   component,
   ...props
-}) =>
+}) => (
   <div className={classnames(className, { disabled, error, required }, 'field')} {...filterDOMProps(props)}>
     {label && (
       <label htmlFor={id}>
@@ -69,7 +69,7 @@ const DatePickerField = ({
       </div>
     )}
   </div>
-;
+);
 
 DatePickerField.displayName = 'DatePickerField';
 

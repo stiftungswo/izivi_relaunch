@@ -32,7 +32,7 @@ const MaskedText = ({
   value,
   component,
   ...props
-}) =>
+}) => (
   <div className={classnames(className, { disabled, error, required }, 'field')} {...filterDOMProps(props)}>
     {label && (
       <label htmlFor={id}>
@@ -63,7 +63,7 @@ const MaskedText = ({
       </div>
     )}
   </div>
-;
+);
 
 MaskedText.displayName = 'MaskedText';
 

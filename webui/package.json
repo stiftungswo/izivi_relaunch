@@ -42,13 +42,7 @@
     "eslint-plugin-react": "^7.0.1"
   },
   "eslintConfig": {
-    "parserOptions": {
-      "sourceType": "module",
-      "allowImportExportEverywhere": true,
-      "ecmaFeatures": {
-        "experimentalObjectRestSpread": true
-      }
-    },
+    "parser": "babel-eslint",
     "plugins": [
       "import",
       "jsx-a11y",
@@ -57,36 +51,13 @@
     "extends": [
       "airbnb"
     ],
-    "globals": {
-      "server": false,
-      "browser": false,
-      "expect": false
-    },
     "env": {
       "node": true,
       "browser": true,
       "es6": true
     },
     "rules": {
-      "react/prop-types": [
-        0
-      ],
-      "react/jsx-wrap-multilines": [
-        0
-      ],
-      "no-underscore-dangle": [
-        "error",
-        {
-          "allow": [
-            "__",
-            "_id",
-            "_ensureIndex",
-            "_verifyEmailToken",
-            "_resetPasswordToken",
-            "_name"
-          ]
-        }
-      ],
+      "react/prop-types": [ 0 ],
       "react/jsx-filename-extension": [
         1,
         {
