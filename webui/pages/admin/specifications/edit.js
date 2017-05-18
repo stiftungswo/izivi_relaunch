@@ -11,7 +11,7 @@ const updatedSuccessfully = () => {
 
 const deletedSuccessfully = () => {
   alert('Pflichtenheft gelöscht');
-  return Router.push({ pathname: '/admin/specifications' });
+  return Router.replace({ pathname: '/admin/specifications' });
 };
 
 export default ({ url, ...rest }) => (

@@ -7,12 +7,12 @@ import FormSpecification from '../../../components/admin/FormSpecificationContai
 const redirect = ({ _id }) => {
   if (_id) {
     alert('Pflichtenheft erstellt');
-    return Router.push({
+    return Router.replace({
       pathname: '/admin/specifications/edit',
       query: { _id },
     });
   }
-  return Router.push({ pathname: '/admin/specifications' });
+  return Router.replace({ pathname: '/admin/specifications' });
 };
 
 export default ({ ...rest }) => (
