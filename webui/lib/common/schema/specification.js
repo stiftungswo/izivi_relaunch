@@ -66,7 +66,11 @@ export const ExpenseRateWorkingClothes = new SimpleSchema({
 });
 
 export default new SimpleSchema({
-  deleted: Date,
+  deleted: {
+    type: Date,
+    optional: true,
+    label: 'Löschvormerkung',
+  },
   name: {
     type: String,
     optional: false,

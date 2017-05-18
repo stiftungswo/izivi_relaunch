@@ -109,10 +109,8 @@ const create = compose(
             }
           `;
           const data = store.readQuery({ query });
-          if (data) {
-            data.allSpecifications.push(createSpecification);
-            store.writeQuery({ query, data });
-          }
+          data.allSpecifications.push(createSpecification);
+          store.writeQuery({ query, data });
         },
       }),
     onSubmitSuccess: ({ onSubmitSuccess }) => ({ data }) =>

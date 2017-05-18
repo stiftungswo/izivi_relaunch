@@ -16,7 +16,7 @@ export default ({ specifications }) => (
         <Table.Row key={specification._id}>
           <Table.Cell>
             <Link href={{ pathname: '/admin/specifications/edit', query: { _id: specification._id } }}>
-              {specification.name}
+              <a>{specification.name}</a>
             </Link>
           </Table.Cell>
           <Table.Cell>{specification.governmentId}</Table.Cell>
