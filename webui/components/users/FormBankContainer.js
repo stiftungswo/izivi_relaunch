@@ -4,7 +4,6 @@ import { graphql } from 'react-apollo';
 import withFormErrorHandlers from '../../lib/withFormErrorHandlers';
 import withFormSchema from '../../lib/withFormSchema';
 import withFormModel from '../../lib/withFormModel';
-import { Bank } from '../../lib/common/schema/user';
 import FormBank from './FormBank';
 
 export const BANK = 'BANK';
@@ -39,17 +38,26 @@ export default compose(
     ${FRAGMENT_BANK}
   `),
   withFormSchema({
-    bank: {
-      type: Bank,
+    internationalAccountNumber: {
+      type: String,
       optional: false,
+      label: 'IBAN',
+      regEx: /^CH\d{2}[ ]\d{4}[ ]\d{4}[ ]\d{4}[ ]\d{4}[ ]\d{1}|CH\d{19}$/,
+    },
+    name: {
+      type: String,
+      optional: false,
+      label: 'Name des Bankinstituts',
     },
   }),
-  withFormModel(({ data: { me } }) => ({
-    bank: (me && me.bank) || null,
-  })),
+  withFormModel(({ data: { me } }) => (me && me.bank) || {}),
   withHandlers({
     onSubmit: ({ mutate, schema }) => ({ ...dirtyInput }) =>
-      mutate({ variables: schema.clean(dirtyInput) }),
+      mutate({
+        variables: {
+          bank: schema.clean(dirtyInput),
+        },
+      }),
   }),
   withFormErrorHandlers,
   mapProps(({ mutate, ...rest }) => ({ ...rest })),

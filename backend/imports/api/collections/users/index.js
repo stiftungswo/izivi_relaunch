@@ -1,7 +1,43 @@
 import { Meteor } from 'meteor/meteor';
-import Schema from '../../../common/schema/user';
+import SimpleSchema from 'simpl-schema';
 
-Meteor.users.attachSchema(Schema);
+Meteor.users.attachSchema(new SimpleSchema({
+  username: String,
+  emails: Array,
+  'emails.$': Object,
+  'emails.$.address': String,
+  'emails.$.verified': Boolean,
+  createdAt: Date,
+  profile: new SimpleSchema({
+    firstName: String,
+    lastName: String,
+    street: String,
+    city: String,
+    postalNumber: Number,
+    birthday: Date,
+    phoneMobile: String,
+    phoneWork: String,
+  }, { requiredByDefault: false }),
+  bank: new SimpleSchema({
+    name: String,
+    internationalAccountNumber: String,
+  }, { requiredByDefault: false }),
+  insurance: new SimpleSchema({
+    healthInsuranceName: String,
+    healthInsuranceNumber: Number,
+    socialSecurityNumber: String,
+  }, { requiredByDefault: false }),
+  avatarId: String,
+  services: Object,
+  blackbox: true,
+  stepsCompleted: Array,
+  'stepsCompleted.$': Object,
+  'stepsCompleted.$.timestamp': Date,
+  'stepsCompleted.$.step': String,
+  roles: Array,
+  'roles.$': String,
+  heartbeat: Date,
+}, { requiredByDefault: false }));
 
 Meteor.users.setStepCompleted = ({ userId, step }) => Meteor.users.update({
   _id: userId,

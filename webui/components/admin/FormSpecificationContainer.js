@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo';
 import withFormErrorHandlers from '../../lib/withFormErrorHandlers';
 import withFormSchema from '../../lib/withFormSchema';
 import withFormModel from '../../lib/withFormModel';
-import FormSpecificationSchema from '../../lib/common/schema/specification';
+import FormSpecificationSchema from './FormSpecificationSchema';
 import FormSpecification from './FormSpecification';
 
 const update = compose(

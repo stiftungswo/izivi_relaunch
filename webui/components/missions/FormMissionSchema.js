@@ -28,7 +28,7 @@ export default new SimpleSchema({
   },
   userId: {
     type: String,
-    optional: false,
+    optional: true,
     label: 'Zivildienstleistender',
   },
   isFirstMission: {

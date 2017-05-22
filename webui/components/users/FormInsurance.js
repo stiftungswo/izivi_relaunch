@@ -12,18 +12,18 @@ const FormInsurance = formProps => (
       <Grid.Row>
         <Grid.Column computer={4} tablet={5}>
           <AutoField
-            name="insurance.healthInsuranceNumber"
+            name="healthInsuranceNumber"
             placeholder="00000"
           />
         </Grid.Column>
         <Grid.Column computer={8} tablet={11}>
-          <AutoField name="insurance.healthInsuranceName" />
+          <AutoField name="healthInsuranceName" />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
         <Grid.Column computer={4} tablet={5}>
           <AutoField
-            name="insurance.socialSecurityNumber"
+            name="socialSecurityNumber"
             component={FormMaskedInput}
             mask="756.9999.9999.99"
             maskChar="_"

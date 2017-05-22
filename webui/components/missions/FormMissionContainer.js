@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo';
 import withFormErrorHandlers from '../../lib/withFormErrorHandlers';
 import withFormSchema from '../../lib/withFormSchema';
 import withFormModel from '../../lib/withFormModel';
-import FormMissionSchema from '../../lib/common/schema/mission';
+import FormMissionSchema from './FormMissionSchema';
 import FormMission from './FormMission';
 
 const update = compose(
@@ -100,7 +100,7 @@ const create = compose(
 export default compose(
   withFormSchema({
     mission: {
-      type: FormMissionSchema.omit('userId'),
+      type: FormMissionSchema,
       optional: false,
     },
   }),

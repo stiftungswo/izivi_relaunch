@@ -31,34 +31,34 @@ const FormProfile = ({ username, ...formProps }) => (
       </Grid.Row>
       <Grid.Row columns={2}>
         <Grid.Column width={6}>
-          <AutoField name="profile.firstName" />
+          <AutoField name="firstName" />
         </Grid.Column>
         <Grid.Column width={10}>
-          <AutoField name="profile.lastName" />
+          <AutoField name="lastName" />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={1}>
         <Grid.Column>
-          <AutoField name="profile.street" />
+          <AutoField name="street" />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={2}>
         <Grid.Column width={3}>
-          <AutoField name="profile.postalNumber" />
+          <AutoField name="postalNumber" />
         </Grid.Column>
         <Grid.Column width={13}>
-          <AutoField name="profile.city" />
+          <AutoField name="city" />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={3}>
         <Grid.Column>
-          <AutoField name="profile.phoneMobile" component={PhoneField} country="CH" />
+          <AutoField name="phoneMobile" component={PhoneField} country="CH" />
         </Grid.Column>
         <Grid.Column>
-          <AutoField name="profile.phoneWork" component={PhoneField} country="CH" />
+          <AutoField name="phoneWork" component={PhoneField} country="CH" />
         </Grid.Column>
         <Grid.Column>
-          <AutoField name="profile.birthday" component={DateField} />
+          <AutoField name="birthday" component={DateField} />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={1}>

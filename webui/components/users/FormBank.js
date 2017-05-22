@@ -7,9 +7,9 @@ import FormMaskedInput from '../../lib/FormMaskedInput';
 
 const FormBank = formProps => (
   <AutoForm showInlineError {...formProps} >
-    <AutoField name="bank.name" />
+    <AutoField name="name" />
     <AutoField
-      name="bank.internationalAccountNumber"
+      name="internationalAccountNumber"
       component={FormMaskedInput}
       mask={'CH99 9999 9999 9999 9999 9'}
       maskChar={'_'}

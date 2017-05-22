@@ -4,7 +4,6 @@ import { graphql } from 'react-apollo';
 import withFormErrorHandlers from '../../lib/withFormErrorHandlers';
 import withFormSchema from '../../lib/withFormSchema';
 import withFormModel from '../../lib/withFormModel';
-import { Profile } from '../../lib/common/schema/user';
 import FormProfile from './FormProfile';
 
 export const PROFILE = 'PROFILE';
@@ -50,18 +49,59 @@ export default compose(
     username: {
       type: String,
     },
-    profile: {
-      type: Profile,
+    firstName: {
+      type: String,
       optional: false,
+      label: 'Vorname',
+    },
+    lastName: {
+      type: String,
+      optional: false,
+      label: 'Nachname',
+    },
+    street: {
+      type: String,
+      optional: false,
+      label: 'Strasse',
+    },
+    city: {
+      type: String,
+      optional: false,
+      label: 'Ort',
+    },
+    postalNumber: {
+      type: Number,
+      min: 1000,
+      max: 99999,
+      optional: false,
+      label: 'PLZ',
+    },
+    birthday: {
+      type: Date,
+      optional: false,
+      label: 'Geburtsdatum',
+    },
+    phoneMobile: {
+      type: String,
+      optional: true,
+      label: 'Telefonnummer (Mobile)',
+    },
+    phoneWork: {
+      type: String,
+      optional: true,
+      label: 'Telefonnummer (Arbeit)',
     },
   }),
-  withFormModel(({ data: { me } }) => ({
-    profile: (me && me.profile) || null,
-    username: (me && me.username) || '',
-  })),
+  withFormModel(({ data: { me } }) => (me && {
+    username: me.username, ...me.profile,
+  }) || {}),
   withHandlers({
     onSubmit: ({ mutate, schema }) => ({ username, ...dirtyInput }) =>
-      mutate({ variables: schema.clean(dirtyInput) }),
+      mutate({
+        variables: {
+          profile: schema.clean(dirtyInput),
+        },
+      }),
   }),
   withFormErrorHandlers,
   mapProps(({ mutate, data: { me }, ...rest }) => ({

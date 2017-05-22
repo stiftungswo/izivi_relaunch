@@ -4,7 +4,6 @@ import { graphql } from 'react-apollo';
 import withFormErrorHandlers from '../../lib/withFormErrorHandlers';
 import withFormSchema from '../../lib/withFormSchema';
 import withFormModel from '../../lib/withFormModel';
-import { Insurance } from '../../lib/common/schema/user';
 import FormInsurance from './FormInsurance';
 
 export const INSURANCE = 'INSURANCE';
@@ -40,17 +39,31 @@ export default compose(
     ${FRAGMENT_INSURANCE}
   `),
   withFormSchema({
-    insurance: {
-      type: Insurance,
+    healthInsuranceName: {
+      type: String,
       optional: false,
+      label: 'Name der Krankenkasse',
+    },
+    healthInsuranceNumber: {
+      type: Number,
+      optional: false,
+      label: 'Kennnummer des Trägers (BAG)',
+    },
+    socialSecurityNumber: {
+      type: String,
+      optional: false,
+      label: 'Persönliche Kennnummer (AHV)',
+      regEx: /^756.\d{4}.\d{4}.\d{2}$/,
     },
   }),
-  withFormModel(({ data: { me } }) => ({
-    insurance: (me && me.insurance) || null,
-  })),
+  withFormModel(({ data: { me } }) => (me && me.insurance) || {}),
   withHandlers({
     onSubmit: ({ mutate, schema }) => ({ ...dirtyInput }) =>
-      mutate({ variables: schema.clean(dirtyInput) }),
+      mutate({
+        variables: {
+          insurance: schema.clean(dirtyInput),
+        },
+      }),
   }),
   withFormErrorHandlers,
   mapProps(({ mutate, ...rest }) => ({ ...rest })),
