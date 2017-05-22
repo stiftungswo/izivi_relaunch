@@ -34,6 +34,17 @@ input SpecificationInput {
   configuredExpenseRates: JSON
 }
 
+input MissionInput {
+  specificationId: ID!
+  userId: ID
+  trialDay: Boolean
+  isFirstMission: Boolean
+  isLastMission: Boolean
+  isLongMission: Boolean
+  start: Date!
+  end: Date!
+}
+
 type Mutation {
   updateUserAvatar(avatar: File!, userId: ID): User
   updateEmail(email: String!, userId: ID): User
@@ -43,4 +54,8 @@ type Mutation {
   createSpecification(specification: SpecificationInput) : Specification
   updateSpecification(specification: SpecificationInput, _id: ID!) : Specification
   deleteSpecification(_id: ID!) : Specification
+
+  createMission(mission: MissionInput) : Mission
+  updateMission(mission: MissionInput, _id: ID!) : Mission
+  deleteMission(_id: ID!) : Mission
 }

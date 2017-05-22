@@ -1,11 +1,11 @@
 import { compose, pure, mapProps } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import CardProjectProgress from './CardProjectProgress';
+import CardMissionProgress from './CardMissionProgress';
 
 export default compose(
   graphql(gql`
-    query getProjectProgress {
+    query getMissionProgress {
       me {
         _id
         username
@@ -14,4 +14,4 @@ export default compose(
   `),
   mapProps(({ data: { me } }) => ({ me })),
   pure,
-)(CardProjectProgress);
+)(CardMissionProgress);

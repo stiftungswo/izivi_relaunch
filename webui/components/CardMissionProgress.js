@@ -1,5 +1,4 @@
 import React from 'react';
-// import Link from 'next/link';
 import { Card, Progress, Button } from 'semantic-ui-react';
 
 export default () => (

@@ -47,7 +47,6 @@ type Mission {
   isFirstMission: Boolean,
   isLastMission: Boolean,
   isLongMission: Boolean,
-  isFirstTimer: Boolean,
   trialDay: Date,
   start: Date,
   end: Date,
