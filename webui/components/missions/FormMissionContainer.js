@@ -2,9 +2,8 @@ import { compose, branch, pure, mapProps, withHandlers } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import withFormErrorHandlers from '../../lib/withFormErrorHandlers';
-import withFormSchema from '../../lib/withFormSchema';
+import withFormSchema from '../../lib/withFormSchemaGraphQL';
 import withFormModel from '../../lib/withFormModel';
-import FormMissionSchema from '../../lib/common/schema/mission';
 import FormMission from './FormMission';
 
 const update = compose(
@@ -98,9 +97,13 @@ const create = compose(
 );
 
 export default compose(
-  withFormSchema({
-    mission: {
-      type: FormMissionSchema.omit('userId'),
+  withFormSchema('MissionInput', ((model) => {}), {
+    isFirstMission: {
+      label: 'Erste Mission?',
+      optional: false,
+    },
+    trialDay: {
+      label: 'Schnuppertag',
       optional: false,
     },
   }),

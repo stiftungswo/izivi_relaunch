@@ -1,0 +1,9 @@
+type Query {
+  me: User
+  user(_id: ID!): User
+  specification(_id: ID!): Specification
+  mission(_id: ID!): Mission
+  allUsers: [User]!
+  allSpecifications: [Specification]!
+  allMissions: [Mission]!
+}

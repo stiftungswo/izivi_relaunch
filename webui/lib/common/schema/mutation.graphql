@@ -1,0 +1,61 @@
+input UserProfileInput {
+  firstName: String!
+  lastName: String!
+  street: String!
+  postalNumber: Int!
+  city: String!
+  birthday: Date!,
+  phoneMobile: String,
+  phoneWork: String,
+}
+
+input UserBankInput {
+  internationalAccountNumber: String!
+  name: String!
+}
+
+input UserInsuranceInput {
+  healthInsuranceName: String!
+  healthInsuranceNumber: Int!
+  socialSecurityNumber: String!
+}
+
+input File {
+  name: String!
+  type: String!
+  size: Int!
+  buffer: Buffer!
+}
+
+input SpecificationInput {
+  name: String!
+  governmentId: Int
+  isActive: Boolean
+  configuredExpenseRates: JSON
+}
+
+input MissionInput {
+  specificationId: ID!
+  userId: ID
+  trialDay: Boolean
+  isFirstMission: Boolean
+  isLastMission: Boolean
+  isLongMission: Boolean
+  start: Date!
+  end: Date!
+}
+
+type Mutation {
+  updateUserAvatar(avatar: File!, userId: ID): User
+  updateEmail(email: String!, userId: ID): User
+  updateUserProfile(profile: UserProfileInput, userId: ID): User
+  updateUserBank(bank: UserBankInput, userId: ID): User
+  updateUserInsurance(insurance: UserInsuranceInput, userId: ID): User
+  createSpecification(specification: SpecificationInput) : Specification
+  updateSpecification(specification: SpecificationInput, _id: ID!) : Specification
+  deleteSpecification(_id: ID!) : Specification
+
+  createMission(mission: MissionInput) : Mission
+  updateMission(mission: MissionInput, _id: ID!) : Mission
+  deleteMission(_id: ID!) : Mission
+}

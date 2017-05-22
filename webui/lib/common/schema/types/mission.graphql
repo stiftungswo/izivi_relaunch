@@ -1,0 +1,57 @@
+enum MissionStatus {
+  DRAFT
+  APPROVED
+  FINISHED
+}
+
+enum MissionExpensesDayType {
+  WORK # Arbeitstag (Diensttag)
+  HOLIDAY_NATIONAL # Gesetzlicher Feiertag (Diensttag, arbeitsfrei)
+  HOLIDAY_ORGANISATIONAL # Betriebsferien (Diensttag, arbeitsfrei)
+  HOLIDAY_PERSONAL # Ferien (Diensttag, arbeitsfrei)
+  ILLNESS # Krankheit (Diensttag, arbeitsfrei)
+  ABSENCE_UNEXCUSED # No-Show (Kein Diensttag)
+  ABSENCE_PLANNED # Persönlicher Urlaub (Kein Diensttag)
+}
+
+type MissionExpensesRateCalculation {
+  expenseRate: ExpenseRate
+  price: Money
+}
+
+type MissionExpensesDayTypeCalculation {
+  type: MissionExpensesDayType
+  amountOfDays: Int
+}
+
+type MissionExpensesDayCalculation {
+  day: Date,
+  type: MissionExpensesDayType
+  expenseRates: [MissionExpensesRateCalculation]
+  totalDayPrice: Money
+}
+
+type MissionExpenses {
+  totalAmountOfDays: Int!
+  totalPrice: Money!
+  dayTypes: [MissionExpensesDayTypeCalculation]
+  rates: [MissionExpensesRateCalculation]
+  days: [MissionExpensesDayCalculation]
+}
+
+type Mission {
+  _id: ID!
+  specification: Specification!
+  user: User!
+  status: MissionStatus!,
+  isFirstMission: Boolean,
+  isLastMission: Boolean,
+  isLongMission: Boolean,
+  trialDay: Date,
+  start: Date,
+  end: Date,
+  holidayBalance: Int
+  illnessDayBalance: Int
+  workingClothCostBalance: Money
+  expenses(from: Date!, to: Date!) : MissionExpenses,
+}

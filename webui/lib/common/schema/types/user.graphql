@@ -1,0 +1,49 @@
+enum UserStep {
+  PROFILE
+  BANK
+  INSURANCE
+}
+
+type UserProfile {
+  firstName: String!
+  lastName: String!
+  street: String!
+  postalNumber: Int!
+  city: String!
+  birthday: Date!,
+  phoneMobile: String,
+  phoneWork: String,
+}
+
+type UserBank {
+  internationalAccountNumber: String!
+  name: String!
+}
+
+type UserInsurance {
+  healthInsuranceName: String!
+  healthInsuranceNumber: Int!
+  socialSecurityNumber: String!
+}
+
+type UserEmail {
+  address: String!
+  verified: Boolean!
+}
+
+type User {
+  _id: ID!
+  username: String!
+  email: String!
+  isEmailVerified: Boolean!
+  name: String!
+  avatar: Avatar
+  profile: UserProfile
+  bank: UserBank
+  insurance: UserInsurance
+  emails: [UserEmail]
+  isStepComplete(step: UserStep!): Boolean
+  stepsPercentageComplete: Float
+  roles: [ID]
+  missions: [Mission]
+}

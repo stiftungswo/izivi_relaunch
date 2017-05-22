@@ -2,5 +2,8 @@
   "presets": [
     "next/babel"
   ],
-  "plugins": ["transform-inline-environment-variables"]
+  "plugins": [
+    "transform-inline-environment-variables",
+    "babel-plugin-inline-import"
+  ]
 }

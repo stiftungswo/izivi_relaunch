@@ -1,0 +1,8 @@
+enum MoneyCurrency {
+  CHF
+}
+
+type Money {
+  amount: Int
+  currency: MoneyCurrency
+}

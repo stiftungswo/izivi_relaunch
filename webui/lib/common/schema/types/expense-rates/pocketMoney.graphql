@@ -1,0 +1,5 @@
+type PocketMoney implements ExpenseRate {
+  key: ID!
+  name: String!
+  costsPerDayCHF: Int!
+}

@@ -1,0 +1,6 @@
+type WorkingClothes implements ExpenseRate {
+  key: ID!
+  name: String!
+  costsPerDayCHF: Int!
+  maxCostsTotalCHF: Int!
+}
