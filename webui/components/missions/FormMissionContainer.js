@@ -14,10 +14,9 @@ const update = compose(
         _id
         start
         end
-        isFirstMission
+        isTrial
         isLastMission
         isLongMission
-        trialDay
         user {
           _id
         }

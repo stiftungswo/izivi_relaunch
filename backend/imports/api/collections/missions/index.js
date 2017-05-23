@@ -10,10 +10,9 @@ Missions.attachSchema(new SimpleSchema({
   finished: Date,
   specificationId: String,
   userId: String,
-  isFirstMission: Boolean,
+  isTrial: Boolean,
   isLastMission: Boolean,
   isLongMission: Boolean,
-  trialDay: Date,
   start: Date,
   end: Date,
 }, { requiredByDefault: false }));

@@ -44,10 +44,9 @@ type Mission {
   specification: Specification!
   user: User!
   status: MissionStatus!,
-  isFirstMission: Boolean,
+  isTrial: Boolean,
   isLastMission: Boolean,
   isLongMission: Boolean,
-  trialDay: Date,
   start: Date,
   end: Date,
   holidayBalance: Int

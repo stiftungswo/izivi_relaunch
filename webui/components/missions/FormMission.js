@@ -13,7 +13,7 @@ const FormMission = ({ specificationOptions, userId, ...formProps }) => (
     <Head>
       <link rel="stylesheet" href="/static/react-datepicker/react-datepicker.css" />
     </Head>
-    <Grid stackable columns={2}>
+    <Grid stackable columns={1}>
       <Grid.Row>
         <Grid.Column>
           <Segment>
@@ -32,12 +32,6 @@ const FormMission = ({ specificationOptions, userId, ...formProps }) => (
             )}
           </Segment>
         </Grid.Column>
-        <Grid.Column>
-          <Segment>
-            <Header as="h4" content="Schnuppertag" subheader="Hast du bei der SWO bereits einen Schnuppertag absolviert? Wenn ja, wann?" />
-            <AutoField name="mission.trialDay" label={null} component={DateField} />
-          </Segment>
-        </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={1}>
         <Grid.Column>
@@ -49,7 +43,7 @@ const FormMission = ({ specificationOptions, userId, ...formProps }) => (
                   <AutoField name="mission.end" component={DateField} />
                 </Grid.Column>
                 <Grid.Column>
-                  <AutoField name="mission.isFirstMission" />
+                  <AutoField name="mission.isTrial" />
                   <AutoField name="mission.isLastMission" />
                   <AutoField name="mission.isLongMission" />
                 </Grid.Column>

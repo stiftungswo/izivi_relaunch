@@ -43,8 +43,7 @@ input SpecificationInput {
 input MissionInput {
   specificationId: ID!
   userId: ID
-  trialDay: Boolean
-  isFirstMission: Boolean
+  isTrial: Boolean
   isLastMission: Boolean
   isLongMission: Boolean
   start: Date!

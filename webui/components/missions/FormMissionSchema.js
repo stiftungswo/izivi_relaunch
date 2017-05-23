@@ -31,10 +31,10 @@ export default new SimpleSchema({
     optional: true,
     label: 'Zivildienstleistender',
   },
-  isFirstMission: {
+  isTrial: {
     type: Boolean,
     optional: true,
-    label: 'Erster Zivildiensteinsatz?',
+    label: 'Probeeinsatz?',
   },
   isLastMission: {
     type: Boolean,
@@ -45,11 +45,6 @@ export default new SimpleSchema({
     type: Boolean,
     optional: true,
     label: 'Langer Einsatz?',
-  },
-  trialDay: {
-    type: Date,
-    optional: true,
-    label: 'Schnuppertag',
   },
   start: {
     type: Date,
