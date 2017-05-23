@@ -1,5 +1,6 @@
 {
   "presets": [
+    "meteor",
     "env",
     "stage-2"
   ],

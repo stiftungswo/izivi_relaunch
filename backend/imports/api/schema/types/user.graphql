@@ -4,6 +4,21 @@ enum UserStep {
   INSURANCE
 }
 
+enum UserProfileRegionalOffice {
+  # Regionalzentrum Thun
+  THUN
+  # Regionalzentrum Rüti/ZH
+  RUETI
+  # Regionalzentrum Luzern
+  LUZERN
+  # Centre regional Lausanne
+  LAUSANNE
+  # Regionalzentrum Rivera
+  RIVERA
+  # Regionalzentrum Aarau
+  AARAU
+}
+
 type UserProfile {
   firstName: String!
   lastName: String!
@@ -12,7 +27,8 @@ type UserProfile {
   city: String!
   birthday: Date!,
   phoneMobile: String,
-  phoneWork: String,
+  hometown: String,
+  regionalOffice: UserProfileRegionalOffice,
 }
 
 type UserBank {
@@ -45,5 +61,6 @@ type User {
   isStepComplete(step: UserStep!): Boolean
   stepsPercentageComplete: Float
   roles: [ID]
+  internalComment: String
   missions: [Mission]
 }

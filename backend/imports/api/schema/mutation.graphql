@@ -6,7 +6,8 @@ input UserProfileInput {
   city: String!
   birthday: Date!,
   phoneMobile: String,
-  phoneWork: String,
+  hometown: String,
+  regionalOffice: String,
 }
 
 input UserBankInput {

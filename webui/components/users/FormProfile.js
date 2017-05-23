@@ -55,7 +55,10 @@ const FormProfile = ({ username, ...formProps }) => (
           <AutoField name="phoneMobile" component={PhoneField} country="CH" />
         </Grid.Column>
         <Grid.Column>
-          <AutoField name="phoneWork" component={PhoneField} country="CH" />
+          <AutoField name="hometown" />
+        </Grid.Column>
+        <Grid.Column>
+          <AutoField name="regionalOffice" />
         </Grid.Column>
         <Grid.Column>
           <AutoField name="birthday" component={DateField} />

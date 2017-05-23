@@ -20,7 +20,8 @@ const FRAGMENT_PROFILE = gql`
       city
       birthday
       phoneMobile
-      phoneWork
+      hometown
+      regionalOffice
     }
   }
 `;
@@ -86,10 +87,15 @@ export default compose(
       optional: true,
       label: 'Telefonnummer (Mobile)',
     },
-    phoneWork: {
+    hometown: {
       type: String,
-      optional: true,
-      label: 'Telefonnummer (Arbeit)',
+      optional: false,
+      label: 'Heimatort',
+    },
+    regionalOffice: {
+      type: Number,
+      optional: false,
+      label: 'Regionalzentrum',
     },
   }),
   withFormModel(({ data: { me } }) => (me && {
