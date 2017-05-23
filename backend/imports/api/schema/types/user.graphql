@@ -2,6 +2,7 @@ enum UserStep {
   PROFILE
   BANK
   INSURANCE
+  SKILLS
 }
 
 enum UserProfileRegionalOffice {
@@ -25,11 +26,10 @@ type UserProfile {
   street: String!
   postalNumber: Int!
   city: String!
-  birthday: Date!,
-  phoneMobile: String,
-  hometown: String,
-  regionalOffice: UserProfileRegionalOffice,
-  drivingLicence: String,
+  birthday: Date!
+  phoneMobile: String
+  hometown: String
+  regionalOffice: UserProfileRegionalOffice
 }
 
 type UserBank {
@@ -41,6 +41,11 @@ type UserInsurance {
   healthInsuranceName: String!
   healthInsuranceNumber: Int!
   socialSecurityNumber: String!
+}
+
+type UserSkills {
+  drivingLicence: String!
+  workExperience: String!
 }
 
 type UserEmail {
@@ -58,6 +63,7 @@ type User {
   profile: UserProfile
   bank: UserBank
   insurance: UserInsurance
+  skills: UserSkills
   emails: [UserEmail]
   isStepComplete(step: UserStep!): Boolean
   stepsPercentageComplete: Float

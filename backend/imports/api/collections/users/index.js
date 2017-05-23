@@ -18,13 +18,21 @@ Meteor.users.attachSchema(new SimpleSchema({
     phoneMobile: String,
     hometown: String,
     regionalOffice: String,
-    drivingLicence: String,
   }, { requiredByDefault: false }),
   bank: new SimpleSchema({
     name: String,
     internationalAccountNumber: String,
   }, { requiredByDefault: false }),
   insurance: new SimpleSchema({
+    healthInsuranceName: String,
+    healthInsuranceNumber: Number,
+    socialSecurityNumber: String,
+  }, { requiredByDefault: false }),
+  skills: new SimpleSchema({
+    drivingLicence: String,
+    workExperience: String,
+  }, { requiredByDefault: false }),
+  other: new SimpleSchema({
     healthInsuranceName: String,
     healthInsuranceNumber: Number,
     socialSecurityNumber: String,

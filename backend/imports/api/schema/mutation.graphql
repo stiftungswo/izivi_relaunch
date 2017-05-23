@@ -4,16 +4,20 @@ input UserProfileInput {
   street: String!
   postalNumber: Int!
   city: String!
-  birthday: Date!,
-  phoneMobile: String,
-  hometown: String,
-  regionalOffice: String,
-  drivingLicence: String,
+  birthday: Date!
+  phoneMobile: String
+  hometown: String
+  regionalOffice: String
 }
 
 input UserBankInput {
   internationalAccountNumber: String!
   name: String!
+}
+
+input UserSkillsInput {
+  drivingLicence: String!
+  workExperience: String!
 }
 
 input UserInsuranceInput {
@@ -52,6 +56,7 @@ type Mutation {
   updateEmail(email: String!, userId: ID): User
   updateUserProfile(profile: UserProfileInput, userId: ID): User
   updateUserBank(bank: UserBankInput, userId: ID): User
+  updateUserSkills(skills: UserSkillsInput, userId: ID): User
   updateUserInsurance(insurance: UserInsuranceInput, userId: ID): User
   createSpecification(specification: SpecificationInput) : Specification
   updateSpecification(specification: SpecificationInput, _id: ID!) : Specification
