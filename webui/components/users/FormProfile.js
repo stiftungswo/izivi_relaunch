@@ -9,7 +9,7 @@ import PhoneField from '../../lib/FormPhoneInput';
 import DateField from '../../lib/FormDateInput';
 import UploadAvatar from './UploadAvatarContainer';
 
-const FormProfile = ({ username, ...formProps }) => (
+const FormProfile = ({ username, regionalOfficeOptions, drivingLicenceOptions, ...formProps }) => (
   <AutoForm showInlineError {...formProps} >
     <Head>
       <link rel="stylesheet" href="/static/react-phone-number-input/rrui.css" />
@@ -51,17 +51,22 @@ const FormProfile = ({ username, ...formProps }) => (
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={3}>
-        <Grid.Column>
+        <Grid.Column width={4}>
           <AutoField name="phoneMobile" component={PhoneField} country="CH" />
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column width={4}>
+          <AutoField name="birthday" component={DateField} />
+        </Grid.Column>
+        <Grid.Column width={8}>
           <AutoField name="hometown" />
         </Grid.Column>
+      </Grid.Row>
+      <Grid.Row columns={2}>
         <Grid.Column>
-          <AutoField name="regionalOffice" />
+          <AutoField name="regionalOffice" options={regionalOfficeOptions} />
         </Grid.Column>
         <Grid.Column>
-          <AutoField name="birthday" component={DateField} />
+          <AutoField name="drivingLicence" options={drivingLicenceOptions} />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={1}>

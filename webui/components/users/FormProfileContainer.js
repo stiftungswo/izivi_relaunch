@@ -22,6 +22,7 @@ const FRAGMENT_PROFILE = gql`
       phoneMobile
       hometown
       regionalOffice
+      drivingLicence
     }
   }
 `;
@@ -47,9 +48,6 @@ export default compose(
     ${FRAGMENT_PROFILE}
   `),
   withFormSchema({
-    username: {
-      type: String,
-    },
     firstName: {
       type: String,
       optional: false,
@@ -84,8 +82,8 @@ export default compose(
     },
     phoneMobile: {
       type: String,
-      optional: true,
-      label: 'Telefonnummer (Mobile)',
+      optional: false,
+      label: 'Mobiltelefonnummer',
     },
     hometown: {
       type: String,
@@ -93,9 +91,16 @@ export default compose(
       label: 'Heimatort',
     },
     regionalOffice: {
-      type: Number,
+      type: String,
       optional: false,
       label: 'Regionalzentrum',
+      defaultValue: 'RUETI',
+    },
+    drivingLicence: {
+      type: String,
+      optional: false,
+      label: 'Führerausweiskategorie',
+      defaultValue: '',
     },
   }),
   withFormModel(({ data: { me } }) => (me && {
@@ -112,6 +117,19 @@ export default compose(
   withFormErrorHandlers,
   mapProps(({ mutate, data: { me }, ...rest }) => ({
     username: me && me.username,
+    regionalOfficeOptions: [
+      { label: 'Rüti/ZH', value: 'RUETI' },
+      { label: 'Thun', value: 'THUN' },
+      { label: 'Luzern', value: 'LUZERN' },
+      { label: 'Lausanne', value: 'LAUSANNE' },
+      { label: 'Rivera', value: 'RIVERA' },
+      { label: 'Aarau', value: 'AARAU' },
+    ],
+    drivingLicenceOptions: [
+      { label: 'Motorwagen (PW, Lastwagen, ...) ohne Anhänger', value: 'B' },
+      { label: 'Motorwagen (PW, Lastwagen, ...) mit Anhänger', value: 'BE' },
+      { label: 'Andere: Motorräder, Traktor, usw.', value: 'A' },
+      { label: 'Keinen Führerausweis', value: '' }],
     ...rest,
   })),
   pure,

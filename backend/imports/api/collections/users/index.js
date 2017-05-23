@@ -18,6 +18,7 @@ Meteor.users.attachSchema(new SimpleSchema({
     phoneMobile: String,
     hometown: String,
     regionalOffice: String,
+    drivingLicence: String,
   }, { requiredByDefault: false }),
   bank: new SimpleSchema({
     name: String,

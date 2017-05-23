@@ -8,6 +8,7 @@ input UserProfileInput {
   phoneMobile: String,
   hometown: String,
   regionalOffice: String,
+  drivingLicence: String,
 }
 
 input UserBankInput {

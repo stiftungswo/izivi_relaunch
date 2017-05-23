@@ -29,6 +29,7 @@ type UserProfile {
   phoneMobile: String,
   hometown: String,
   regionalOffice: UserProfileRegionalOffice,
+  drivingLicence: String,
 }
 
 type UserBank {
