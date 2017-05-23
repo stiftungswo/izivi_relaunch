@@ -1,11 +1,11 @@
 import React from 'react';
 import { Card, Progress, Button } from 'semantic-ui-react';
 
-export default () => (
+export default ({ mission }) => (
   <Card fluid>
     <Card.Content>
       <Card.Header>
-        Aktueller Einsatz
+        {mission._id}
       </Card.Header>
       <Card.Meta>
         Übersicht über meine Einsätze

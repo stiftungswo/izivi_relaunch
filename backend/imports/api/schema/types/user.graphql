@@ -69,5 +69,5 @@ type User {
   stepsPercentageComplete: Float
   roles: [ID]
   internalComment: String
-  missions: [Mission]
+  missions: [Mission]!
 }

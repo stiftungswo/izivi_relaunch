@@ -1,4 +1,5 @@
 import Avatars from '../../collections/avatars';
+import Missions from '../../collections/missions';
 
 export default {
   email(user) {
@@ -32,5 +33,8 @@ export default {
     const numberOfStepsCompleted = stepsCompleted.length + 1;
     // currently, there are 4 steps
     return numberOfStepsCompleted / 4;
+  },
+  missions(user) {
+    return Missions.find({ userId: user._id }).fetch();
   },
 };
