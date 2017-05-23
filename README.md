@@ -1,182 +1,118 @@
 # iZivi
 
-A tool to plan zivi employments
+An E-Recruitement tool to plan swiss civil service missions
 
 ## General Purpose
 
 The project's purpose is enable planning of zivis, when they start their employment and when they finish.
 
-## Installation / Setup for Development
-
-Download and install Docker and docker-compose:
-
-    https://www.docker.com
+## Install required tools and checkout the project
 
 Download and install a Git client:
 
     e.g. https://www.sourcetreeapp.com/
     Check out the current version
 
-Now fire up MariaDB and Izivi on the docker machine via the docker-compose tool:
+Download and install Meteor (https://install.meteor.com).
 
-    docker-compose up -d --build
+    curl https://install.meteor.com/ | sh
 
-Open http://localhost:3000:
+Checkout this Repository's branch **develop** with Git:
 
-    Open http://localhost:3000
-    API: localhost:3001
+    git clone https://github.com/stiftungswo/izivi_relaunch.git
+    git checkout develop
 
+You should now see the following folder structure inside the locally checked out repository:
 
-## Using Docker & docker-compose
+- **_deprecated_symfony_backend**
+  - WIP backend for a new izivi based on symfony, deprecated in favor of nodejs/graphql
+- **backend**
+  - Platform: Meteor (NodeJs) based backend
+  - GraphQL API
+  - MongoDB
+- **webui**
+  - Platform: Nextjs based progressive spa
+  - React as frontend framework
+  - Statically exportable
 
-You can inspect the logs of Izivi and MariaDB by:
+## Install packages and start developing
 
-    docker-compose logs -f
+Install dependencies and start backend:
 
-Enter the izivi docker container as root in interactive mode (bash):
+    cd backend
+    meteor npm run install
+    meteor npm run dev
 
-    docker exec -it izivi bash
+Install dependencies and start frontend:
 
-Enter the izivi-frontend docker container as root in interactive mode (bash):
+    cd webui
+    meteor npm run install
+    meteor npm run dev
 
-    docker exec -it izivi bash
+*You don't have to prefix the npm commands with meteor if you have a proper version of NodeJS already installed on your system but you need to install meteor for the backend anyway that's why we prefix it always in this guide. The command meteor node/npm always use the prepacked nodejs of meteor*
 
-For more infos visit docker.com
+When both apps are running you can access the app with your browser.
 
+Web App:
 
-## Update
+    open http://localhost:3000
 
-Update to last version
+GraphQL API Sandbox / Documentation explorer:
 
-    git pull
-    composer self-update
-    composer update -v
-    ./env/install_bundles.sh
-
-If you have any problem remove vendor and install again
-
-    rm -fR vendor
-
-Update database
-
-    docker exec -it izivi php app/console doctrine:migrations:migrate
-
-
-## Bundles
-
-There are Multiple Bundle Seperated by features:
-    IZiviPlanningBundle Contains the entities
-
+    open http://localhost:3010/graphiql
 
 ## Contributing
 
-Please feel free to contribute issues, improvements and feedback.
+### Style & Linting
 
-For code contributions, [Symfony2 Coding Standards] are the way we want to go.
+This codebase adheres to the [Airbnb Styleguide](https://github.com/airbnb/javascript) and is
+enforced using [ESLint](http://eslint.org/).
 
-Please write in English and use the `doc` folders for documentation and proposals rather than Github wiki.
+It is recommended that you install an eslint plugin for your editor of choice when working on this
+codebase, however you can always check to see if the source code is compliant by running:
 
-[Symfony2 Coding Standards]: http://symfony.com/doc/master/contributing/code/standards.html
-
-
-## Development-Branches
-
-The branches API and Frontend are gone. We switch now to feature branches. Every feature branch will be created from master. Here the steps to go.
-
-Create remote feature branch:
-
-    git pull origin master
-    git push origin ISSUENO-and-a-short-description
-    git checkout -t ISSUENO-and-a-short-description
-
-or for short bugfixing create only a local branch:
-
-    git pull origin master
-    git checkout -b ISSUENO-and-a-short-description
-
-keep up to date with the master (not sure with this - have to test it):
-
-    git fetch origin master
-    git rebase orgin/master
-
-if your work is done, merge back to master:
-
-    git checkout master
-    git fetch
-    git rebase
-    git merge ISSUENO-and-a-short-description
-
-Finally remove remote feature branch:
-
-    git push origin :ISSUENO-and-a-short-description
-
-and the local branch too:
-
-    git branch -d ISSUENO-and-a-short-description
+```bash
+npm run lint
+```
 
 
-## Run Test
+### Development-Branches
 
-Run tests:
-
-    docker exec -it izivi ./env/run_tests.sh
-
-Run a single test:
-
-    docker exec -it izivi ./env/run_tests.sh --filter ActivitiesControllerTest::testGetActivitiesAction
+Develop on branch develop and merge to master if you're finished.
+More than 2 people concurrently working at the product? please use feature branches!
+https://confluence.atlassian.com/bitbucket/workflow-for-git-feature-branching-814201830.html
 
 
-## Building the Frontend
+## Build and deploy
 
-TODO
+### Building and deploying the backend for production
 
+https://guide.meteor.com/deployment.html#custom-deployment
 
-## Database Schema Management
+    cd backend
+    npm run build -- /path/to/build
 
-Update Database Schema to the latest version:
+copy /path/to/build to server with nodejs installed:
 
-    docker exec -it izivi php app/console doctrine:migrations:migrate
+    cd /path/to/build
+    cd programs/server && npm install
+    MONGO_URL=mongodb://mongodb_host:port/izivi ROOT_URL=http://graphql-host/ node main.js
 
-Migrate Database Schema to a specific version:
+You can also use now.sh to test it: https://medium.com/@purplecones/deploying-a-meteor-app-for-free-using-zeit-now-c183329057c9
+To deploy this in SWO production, look at the internal documentation **IT -> Software -> iZivi** rather than following this guide.
 
-    docker exec -it izivi php app/console doctrine:migrations:migrate <version>
+### Building and deploying the frontend for production
 
-Generate new Empty Migration Class:
+https://github.com/zeit/next.js#static-html-export
 
-    docker exec -it izivi php app/console doctrine:migrations:generate
+    cd webui
+    GRAPHQL_ENDPOINT=http://graphql_host/graphql npm run build
 
-After changing the ORM schema, sometimes you need to clear the cache before it works:
+export:
 
-    docker exec -it izivi php app/console cache:clear
+    next export
 
+now copy the contents of the out directory to any folder accessible from the internet.
 
-## Fixtures
-
-The fixtures are an example dataset that can be used while developing. But more important: the tests run against this database.
-
-Load fixtures into the database:
-
-    docker exec -it izivi ./env/fixtures/load.sh
-
-When the database schema changed, you need to regenerate the fixtures. You can do this with the following command (may take a while):
-
-    docker exec -it izivi ./env/db_generate_new_fixtures.sh
-
-Then export the changes again and check in the new izivi.sql into git
-
-    docker exec -it izivi ./env/fixtures/export.sh
-
-
-## Deployment
-
-### Deployment at SWO
-
-Please see Documentation at: DiskStation:/intern/IT/11 Datenbank/Izivi/Dokumentationen/Betriebsdokumentation.docx
-
-# Known Issues
-
-## Using Docker with Docker for Windows/Mac
-
-If you use the new Docker for Windows/Mac Tray thing, you'll have to make sure that this Repository as well as any other mounted volumes in docker-compose.yml are part of the `File Sharing` Tab of the tool. Else sync will not work.
-
-We recommend using at least 2 CPU's and 4 GB of memory for your docker machine to make everything run smooth.
+You can also use now.sh to test it: https://github.com/zeit/next.js#production-deployment
+To deploy this in SWO production, look at the internal documentation **IT -> Software -> iZivi** rather than following this guide.
