@@ -22,7 +22,6 @@ const FRAGMENT_PROFILE = gql`
       phoneMobile
       hometown
       regionalOffice
-      drivingLicence
     }
   }
 `;
@@ -96,12 +95,6 @@ export default compose(
       label: 'Regionalzentrum',
       defaultValue: 'RUETI',
     },
-    drivingLicence: {
-      type: String,
-      optional: false,
-      label: 'Führerausweiskategorie',
-      defaultValue: '',
-    },
   }),
   withFormModel(({ data: { me } }) => (me && {
     username: me.username, ...me.profile,
@@ -125,11 +118,6 @@ export default compose(
       { label: 'Rivera', value: 'RIVERA' },
       { label: 'Aarau', value: 'AARAU' },
     ],
-    drivingLicenceOptions: [
-      { label: 'Motorwagen (PW, Lastwagen, ...) ohne Anhänger', value: 'B' },
-      { label: 'Motorwagen (PW, Lastwagen, ...) mit Anhänger', value: 'BE' },
-      { label: 'Andere: Motorräder, Traktor, usw.', value: 'A' },
-      { label: 'Keinen Führerausweis', value: '' }],
     ...rest,
   })),
   pure,

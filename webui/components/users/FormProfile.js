@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { Grid, Segment, Divider, Label } from 'semantic-ui-react';
+import { Grid, Segment, Divider, Header, Label } from 'semantic-ui-react';
 import AutoField from 'uniforms-semantic/AutoField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
@@ -37,19 +37,6 @@ const FormProfile = ({ username, regionalOfficeOptions, drivingLicenceOptions, .
           <AutoField name="lastName" />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row columns={1}>
-        <Grid.Column>
-          <AutoField name="street" />
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row columns={2}>
-        <Grid.Column width={3}>
-          <AutoField name="postalNumber" />
-        </Grid.Column>
-        <Grid.Column width={13}>
-          <AutoField name="city" />
-        </Grid.Column>
-      </Grid.Row>
       <Grid.Row columns={3}>
         <Grid.Column width={4}>
           <AutoField name="phoneMobile" component={PhoneField} country="CH" />
@@ -61,12 +48,31 @@ const FormProfile = ({ username, regionalOfficeOptions, drivingLicenceOptions, .
           <AutoField name="hometown" />
         </Grid.Column>
       </Grid.Row>
+      <Grid.Row columns={1}>
+        <Grid.Column>
+          <Segment secondary>
+            <Header>Adresse</Header>
+            <Grid stackable columns={3}>
+              <Grid.Row columns={1}>
+                <Grid.Column>
+                  <AutoField name="street" />
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row columns={2}>
+                <Grid.Column width={3}>
+                  <AutoField name="postalNumber" />
+                </Grid.Column>
+                <Grid.Column width={13}>
+                  <AutoField name="city" />
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+        </Grid.Column>
+      </Grid.Row>
       <Grid.Row columns={2}>
         <Grid.Column>
           <AutoField name="regionalOffice" options={regionalOfficeOptions} />
-        </Grid.Column>
-        <Grid.Column>
-          <AutoField name="drivingLicence" options={drivingLicenceOptions} />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={1}>

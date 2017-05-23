@@ -5,7 +5,8 @@ import App from '../../components/AppContainer';
 import ProfileStepItem from '../../components/users/StepItemContainer';
 import FormProfile, { PROFILE } from '../../components/users/FormProfileContainer';
 import FormBank, { BANK } from '../../components/users/FormBankContainer';
-import FormInsurance, { INSURANCE } from '../../components/users/FormInsuranceContainer';
+// import FormInsurance, { INSURANCE } from '../../components/users/FormInsuranceContainer';
+import FormSkills, { SKILLS } from '../../components/users/FormSkillsContainer';
 
 const redirect = step => () => {
   if (step) {
@@ -35,12 +36,19 @@ export default ({ url, ...rest }) => (
           title="Bank"
           subtitle="Auszahlung der Spesen"
         />
-        <ProfileStepItem
+        {/* <ProfileStepItem
           step={INSURANCE}
           active={(url.query.step === INSURANCE)}
           iconName="heart"
           title="Versicherung"
           subtitle="Krankenkasse"
+        /> */}
+        <ProfileStepItem
+          step={SKILLS}
+          active={(url.query.step === SKILLS)}
+          iconName="rocket"
+          title="Skills"
+          subtitle="Arbeitserfahrung"
         />
       </Step.Group>
       <Segment attached>
@@ -48,10 +56,13 @@ export default ({ url, ...rest }) => (
           <FormProfile onSubmitSuccess={redirect(BANK, url.query.userId)} />
         )}
         {(url.query.step === BANK) && (
-          <FormBank onSubmitSuccess={redirect(INSURANCE, url.query.userId)} />
+          <FormBank onSubmitSuccess={redirect(SKILLS, url.query.userId)} />
         )}
-        {(url.query.step === INSURANCE) && (
+        {/* {(url.query.step === INSURANCE) && (
           <FormInsurance onSubmitSuccess={redirect(null, url.query.userId)} />
+        )} */}
+        {(url.query.step === SKILLS) && (
+          <FormSkills onSubmitSuccess={redirect(null, url.query.userId)} />
         )}
       </Segment>
     </Container>
