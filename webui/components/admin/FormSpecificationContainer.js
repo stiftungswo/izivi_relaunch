@@ -6,46 +6,49 @@ import withFormSchema from '../../lib/withFormSchema';
 import withFormModel from '../../lib/withFormModel';
 import FormSpecificationSchema from './FormSpecificationSchema';
 import FormSpecification from './FormSpecification';
+import { SPECIFICATION_LIST_QUERY } from './SpecificationListContainer';
 
-const update = compose(
-  graphql(gql`
-    query getSpecification($_id: ID!) {
-      specification(_id: $_id) {
-        _id
-        name
-        isActive
-        governmentId
-        configuredExpenseRates {
-          name,
-         ... on Commute {
-           maxPublicTransportationCommuteMinutes
-           carCostsPerKilometerCHF
+export const SPECIFICATION_FORM_QUERY = gql`
+  query getSpecification($_id: ID!) {
+    specification(_id: $_id) {
+      _id
+      name
+      isActive
+      governmentId
+      configuredExpenseRates {
+        name,
+       ... on Commute {
+         maxPublicTransportationCommuteMinutes
+         carCostsPerKilometerCHF
+       }
+       ... on PocketMoney {
+         costsPerDayCHF
+       }
+       ... on WorkingClothes {
+         maxCostsTotalCHF
+         costsPerDayCHF
+       }
+       ... on Catering {
+         breakfast {
+           costsPerWorkDayCHF
+           costsPerFreeDayCHF
          }
-         ... on PocketMoney {
-           costsPerDayCHF
+         lunch {
+           costsPerWorkDayCHF
+           costsPerFreeDayCHF
          }
-         ... on WorkingClothes {
-           maxCostsTotalCHF
-           costsPerDayCHF
-         }
-         ... on Catering {
-           breakfast {
-             costsPerWorkDayCHF
-             costsPerFreeDayCHF
-           }
-           lunch {
-             costsPerWorkDayCHF
-             costsPerFreeDayCHF
-           }
-           dinner {
-             costsPerWorkDayCHF
-             costsPerFreeDayCHF
-           }
+         dinner {
+           costsPerWorkDayCHF
+           costsPerFreeDayCHF
          }
        }
-      }
+     }
     }
-  `),
+  }
+`;
+
+const update = compose(
+  graphql(SPECIFICATION_FORM_QUERY),
   withFormModel(({ data: { specification } }) => {
     if (specification) {
       const { configuredExpenseRates, ...rest } = specification;
@@ -89,30 +92,10 @@ const create = compose(
         _id
       }
     }
-  `),
+  `, { options: { refetchQueries: [{ query: SPECIFICATION_LIST_QUERY }] } }),
   withHandlers({
     onSubmit: ({ mutate, schema }) => ({ ...dirtyInput }) =>
-      mutate({
-        variables: schema.clean(dirtyInput),
-        update: (store, { data: { createSpecification } }) => {
-          // this is updating the specification list query result manually if already executed
-          // lists don't update automatically at the moment
-          // we have to do this until apollo comes up with proper cache invalidation
-          const query = gql`
-            query updateListCacheIfAvailable {
-              allSpecifications {
-                _id
-                name
-                isActive
-                governmentId
-              }
-            }
-          `;
-          const data = store.readQuery({ query });
-          data.allSpecifications.push(createSpecification);
-          store.writeQuery({ query, data });
-        },
-      }),
+      mutate({ variables: schema.clean(dirtyInput) }),
     onSubmitSuccess: ({ onSubmitSuccess }) => ({ data }) =>
       onSubmitSuccess(data.createSpecification),
   }),

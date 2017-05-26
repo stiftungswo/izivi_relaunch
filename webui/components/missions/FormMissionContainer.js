@@ -7,26 +7,38 @@ import withFormModel from '../../lib/withFormModel';
 import FormMissionSchema from './FormMissionSchema';
 import FormMission from './FormMission';
 
-const update = compose(
-  graphql(gql`
-    query getMission($_id: ID!) {
-      mission(_id: $_id) {
+const MISSION_FORM_QUERY = gql`
+  query getMission($_id: ID!) {
+    mission(_id: $_id) {
+      _id
+      start
+      end
+      isTrial
+      isLastMission
+      isLongMission
+      user {
         _id
-        start
-        end
-        isTrial
-        isLastMission
-        isLongMission
-        user {
-          _id
-        }
-        specification {
-          _id
-          name
-        }
+      }
+      specification {
+        _id
+        name
       }
     }
-  `),
+  }
+`;
+
+const MISSION_FORM_SPECIFICATION_LIST_QUERY = gql`
+  query allSpecifications {
+    allSpecifications {
+      _id
+      name
+    }
+  }
+`;
+
+
+const update = compose(
+  graphql(MISSION_FORM_QUERY),
   withFormModel(({ data: { mission } }) => {
     if (mission) {
       const { user, specification, ...rest } = mission;
@@ -63,33 +75,17 @@ const create = compose(
         _id
       }
     }
-  `),
+  `, {
+    options: {
+      refetchQueries: [
+        'getMissions',
+      ],
+    },
+  }),
   withHandlers({
     onSubmit: ({ mutate, schema }) => ({ ...dirtyInput }) =>
       mutate({
         variables: schema.clean(dirtyInput),
-        update: (store, { data: { createMission } }) => {
-          // this is updating the mission list query result manually if already executed
-          // lists don't update automatically at the moment
-          // we have to do this until apollo comes up with proper cache invalidation
-          const query = gql`
-            query updateListCacheIfAvailable {
-              allMissions {
-                _id
-                user {
-                  _id
-                }
-                specification {
-                  _id
-                  name
-                }
-              }
-            }
-          `;
-          const data = store.readQuery({ query });
-          data.allMissions.push(createMission);
-          store.writeQuery({ query, data });
-        },
       }),
     onSubmitSuccess: ({ onSubmitSuccess }) => ({ data }) =>
       onSubmitSuccess(data.createMission),
@@ -104,14 +100,7 @@ export default compose(
     },
   }),
   branch(({ _id }) => !!_id, update, create),
-  graphql(gql`
-    query allSpecifications {
-      allSpecifications {
-        _id
-        name
-      }
-    }
-  `),
+  graphql(MISSION_FORM_SPECIFICATION_LIST_QUERY),
   withFormErrorHandlers,
   mapProps(({ _id, mutate, userId, data: { allSpecifications, loading }, ...rest }) => ({
     specificationOptions: !loading && allSpecifications && allSpecifications

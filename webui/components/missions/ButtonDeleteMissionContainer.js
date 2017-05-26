@@ -10,36 +10,17 @@ export default compose(
         _id
       }
     }
-  `),
+  `, {
+    options: {
+      refetchQueries: [
+        'getMissions',
+      ],
+    },
+  }),
   withHandlers({
     onClick: ({ onSuccess, mutate, _id }) => async () => {
       await mutate({
         variables: { _id },
-        update: (store, { data: { deleteMission } }) => {
-          // this is updating the mission list query result manually if already executed
-          // lists don't update automatically at the moment
-          // we have to do this until apollo comes up with proper cache invalidation
-          const query = gql`
-            query updateListCacheIfAvailable {
-              allMissions {
-                _id
-                specification {
-                  _id
-                  name
-                }
-                user {
-                  _id
-                }
-              }
-            }
-          `;
-          const data = store.readQuery({ query });
-          const index = data.allMissions.map(
-            ({ _id: id }) => id).indexOf(deleteMission._id,
-          );
-          data.allMissions.splice(index, 1);
-          store.writeQuery({ query, data });
-        },
       });
       onSuccess();
     },
