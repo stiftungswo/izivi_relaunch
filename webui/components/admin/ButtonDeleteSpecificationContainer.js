@@ -10,10 +10,7 @@ export default compose(
       deleteSpecification(_id: $_id) {
         _id
       }
-    }
-  `, {
-    options: { refetchQueries: [{ query: SPECIFICATION_LIST_QUERY }] },
-  }),
+    }`, { options: { refetchQueries: [{ query: SPECIFICATION_LIST_QUERY }] } }),
   withHandlers({
     onClick: ({ onSuccess, mutate, _id }) => async () => {
       await mutate({ variables: { _id } });

@@ -2,6 +2,7 @@ import { createApolloServer } from 'meteor/orionsoft:apollo';
 import { initAccounts } from 'meteor/nicolaslopezj:apollo-accounts';
 import { loadSchema, getSchema } from 'graphql-loader';
 import { makeExecutableSchema } from 'graphql-tools';
+import OpticsAgent from 'optics-agent';
 import 'paginated-graphql';
 import cors from 'cors';
 import multer from 'multer';
@@ -16,12 +17,16 @@ const graphqlConfiguration = getSchema();
 
 // print the whole schema (merged) when server is started
 console.log(graphqlConfiguration.typeDefs); // eslint-disable-line
-
 const schema = makeExecutableSchema(graphqlConfiguration);
+OpticsAgent.configureAgent();
+OpticsAgent.instrumentSchema(schema);
 
-createApolloServer({
+createApolloServer(req => ({
   schema,
-}, {
+  context: {
+    opticsContext: OpticsAgent.context(req),
+  },
+}), {
   configServer(graphQLServer) {
     // add some more express middlewares before graphQL picks up the request
     // especially multer and graphqlServerExpressUpload allow for multipart formdata along the query
@@ -30,6 +35,7 @@ createApolloServer({
       cors(),
       multer({ inMemory: true }).any(),
       graphqlServerExpressUpload(),
+      OpticsAgent.middleware(),
     );
   },
 });

@@ -52,5 +52,6 @@ type Mission {
   holidayBalance: Int
   illnessDayBalance: Int
   workingClothCostBalance: Money
+  serviceDays(from: Date, to: Date): Int
   expenses(from: Date!, to: Date!) : MissionExpenses,
 }
