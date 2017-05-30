@@ -1,5 +1,9 @@
-import { createApolloServer } from 'meteor/orionsoft:apollo';
+// import { createApolloServer } from 'meteor/orionsoft:apollo';
 import { initAccounts } from 'meteor/nicolaslopezj:apollo-accounts';
+import { createApolloServer } from 'meteor/apollo';
+import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 import { loadSchema, getSchema } from 'graphql-loader';
 import { makeExecutableSchema } from 'graphql-tools';
 import OpticsAgent from 'optics-agent';
@@ -21,10 +25,27 @@ const schema = makeExecutableSchema(graphqlConfiguration);
 OpticsAgent.configureAgent();
 OpticsAgent.instrumentSchema(schema);
 
+const getUserId = (req) => {
+  if (!req.headers.authorization) return {};
+  const token = req.headers.authorization;
+  check(token, String);
+  const hashedToken = Accounts._hashLoginToken(token); // eslint-disable-line
+  const user = Meteor.users.findOne({ 'services.resume.loginTokens.hashedToken': hashedToken }, { fields: { _id: 1, 'services.resume.loginTokens.$': 1 } });
+  if (!user) return {};
+  const expiresAt = Accounts._tokenExpiration(user.services.resume.loginTokens[0].when);  // eslint-disable-line
+  const isExpired = expiresAt < new Date();
+  if (isExpired) return {};
+  return {
+    userId: user._id,
+    loginToken: token,
+  };
+};
+
 createApolloServer(req => ({
   schema,
   context: {
     opticsContext: OpticsAgent.context(req),
+    userId: getUserId,
   },
 }), {
   configServer(graphQLServer) {
@@ -32,10 +53,10 @@ createApolloServer(req => ({
     // especially multer and graphqlServerExpressUpload allow for multipart formdata along the query
     // and therefore can take arbitrary binaries (uploading files through graphql)
     graphQLServer.use(
-      cors(),
+      OpticsAgent.middleware(),
+      cors({ credentials: true }),
       multer({ inMemory: true }).any(),
       graphqlServerExpressUpload(),
-      OpticsAgent.middleware(),
     );
   },
 });

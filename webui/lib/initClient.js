@@ -17,6 +17,7 @@ function doInitClient(headers, initialState) {
         req.options.headers = {};
       }
       req.options.headers.authorization = await getLoginToken() || null;
+      console.log(req.options.headers);
       next();
     },
   }]);
