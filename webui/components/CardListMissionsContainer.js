@@ -12,6 +12,7 @@ export const CARD_LIST_OF_MISSIONS_QUERY = gql`
         start
         end
         holidayBalance
+        status
         total: serviceDays
         progress: serviceDays(to: $to)
         specification {

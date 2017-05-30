@@ -1,6 +1,7 @@
 enum MissionStatus {
   DRAFT
-  APPROVED
+  WAITING_AUTHORITY
+  READY
   FINISHED
 }
 

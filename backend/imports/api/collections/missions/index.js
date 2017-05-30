@@ -7,6 +7,7 @@ Missions.attachSchema(new SimpleSchema({
   deleted: Date,
   created: Date,
   approved: Date,
+  sent: Date,
   finished: Date,
   specificationId: String,
   userId: String,

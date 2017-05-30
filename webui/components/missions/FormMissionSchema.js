@@ -16,6 +16,11 @@ export default new SimpleSchema({
     optional: true,
     label: 'Datum: Definitiv',
   },
+  sent: {
+    type: Date,
+    optional: true,
+    label: 'Datum: An Behörde versandt',
+  },
   finished: {
     type: Date,
     optional: true,

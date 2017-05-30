@@ -38,6 +38,16 @@ export default {
   specification(mission) {
     return Specifications.findOne({ _id: mission.specificationId });
   },
+  status({ sent, finished, approved }) {
+    if (finished) {
+      return 'FINISHED';
+    } else if (approved) {
+      return 'READY';
+    } else if (sent) {
+      return 'WAITING_AUTHORITY';
+    }
+    return 'DRAFT';
+  },
   user(mission) {
     return Users.findOne({ _id: mission.userId });
   },

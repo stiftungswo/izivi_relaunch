@@ -23,7 +23,7 @@ export default ({ stepsPercentageComplete, avatarUrl }) => (
     </Card.Content>
     <Card.Content extra>
       {stepsPercentageComplete === 1 ? (
-        <div>
+        <Button.Group>
           <Link href="/users/profile">
             <Button as="a" href="/users/profile" basic secondary>
               Mein Profil bearbeiten
@@ -32,7 +32,7 @@ export default ({ stepsPercentageComplete, avatarUrl }) => (
           <Link href="/missions/new">
             <Button as="a" href="/missions/new" basic primary>Neuer Einsatz</Button>
           </Link>
-        </div>
+        </Button.Group>
       ) : (
         <Link href="/users/profile">
           <Button as="a" href="/users/profile" basic primary>
