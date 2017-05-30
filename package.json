@@ -10,8 +10,5 @@
     "prestart-webui": "cd webui && meteor npm install",
     "start-webui": "cd webui && meteor npm run dev",
     "start": "meteor npm run start-webui & meteor npm run start-backend"
-  },
-  "devDependencies": {
-    "npm-run-all": "^4.0.2"
   }
 }
