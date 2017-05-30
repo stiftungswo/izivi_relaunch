@@ -25,17 +25,17 @@ export default ({ stepsPercentageComplete, avatarUrl }) => (
       {stepsPercentageComplete === 1 ? (
         <Button.Group>
           <Link href="/users/profile">
-            <Button as="a" href="/users/profile" basic secondary>
+            <Button as="a" basic secondary>
               Mein Profil bearbeiten
             </Button>
           </Link>
           <Link href="/missions/new">
-            <Button as="a" href="/missions/new" basic primary>Neuer Einsatz</Button>
+            <Button as="a" basic primary>Neuer Einsatz</Button>
           </Link>
         </Button.Group>
       ) : (
         <Link href="/users/profile">
-          <Button as="a" href="/users/profile" basic primary>
+          <Button as="a" basic primary>
             Angaben komplettieren
           </Button>
         </Link>

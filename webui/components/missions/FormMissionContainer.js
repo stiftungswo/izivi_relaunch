@@ -6,25 +6,33 @@ import withFormSchema from '../../lib/withFormSchema';
 import withFormModel from '../../lib/withFormModel';
 import FormMissionSchema from './FormMissionSchema';
 import FormMission from './FormMission';
+import { CARD_LIST_OF_MISSIONS_QUERY } from '../CardListContainer';
+
+const FRAGMENT_MISSION_FORM_FIELDS = gql`
+  fragment missionFields on Mission {
+    _id
+    start
+    end
+    isTrial
+    isLastMission
+    isLongMission
+    user {
+      _id
+    }
+    specification {
+      _id
+      name
+    }
+  }
+`;
 
 const MISSION_FORM_QUERY = gql`
   query getMission($_id: ID!) {
     mission(_id: $_id) {
-      _id
-      start
-      end
-      isTrial
-      isLastMission
-      isLongMission
-      user {
-        _id
-      }
-      specification {
-        _id
-        name
-      }
+      ...missionFields
     }
   }
+  ${FRAGMENT_MISSION_FORM_FIELDS}
 `;
 
 const MISSION_FORM_SPECIFICATION_LIST_QUERY = gql`
@@ -56,9 +64,10 @@ const update = compose(
   graphql(gql`
     mutation updateMission($mission: MissionInput, $_id: ID!) {
       updateMission(mission: $mission, _id: $_id) {
-        _id
+        ...missionFields
       }
     }
+    ${FRAGMENT_MISSION_FORM_FIELDS}
   `),
   withHandlers({
     onSubmit: ({ mutate, schema, _id }) => ({ ...dirtyInput }) =>
@@ -72,14 +81,13 @@ const create = compose(
   graphql(gql`
     mutation createMission($mission: MissionInput) {
       createMission(mission: $mission) {
-        _id
+        ...missionFields
       }
     }
+    ${FRAGMENT_MISSION_FORM_FIELDS}
   `, {
     options: {
-      refetchQueries: [
-        'getMissions',
-      ],
+      refetchQueries: [{ query: CARD_LIST_OF_MISSIONS_QUERY }],
     },
   }),
   withHandlers({

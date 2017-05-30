@@ -2,6 +2,7 @@ import { compose, pure, mapProps, withHandlers } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import ButtonLabelIcon from '../ButtonLabelIcon';
+import { CARD_LIST_OF_MISSIONS_QUERY } from '../CardListContainer';
 
 export default compose(
   graphql(gql`
@@ -12,9 +13,7 @@ export default compose(
     }
   `, {
     options: {
-      refetchQueries: [
-        'getMissions',
-      ],
+      refetchQueries: [{ query: CARD_LIST_OF_MISSIONS_QUERY }],
     },
   }),
   withHandlers({

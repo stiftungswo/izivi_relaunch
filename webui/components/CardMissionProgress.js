@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Progress, Button } from 'semantic-ui-react';
+import Link from 'next/link';
 import Moment from 'react-moment';
 import StatusLabel, { WAITING_AUTHORITY, DRAFT, READY, FINISHED } from './StatusLabelContainer';
 
@@ -41,51 +42,53 @@ const MissionDescriptionFinished = ({ end }) => (
   </Card.Description>
 );
 
-export default ({ mission }) => (
+export default ({ _id, status, start, end, specification, progress, total, holidayBalance }) => (
   <Card color="teal" fluid>
     <Card.Content>
       <Card.Header>
-        {mission.specification.name}&nbsp;
-        <StatusLabel status={mission.status} />
+        {specification.name}&nbsp;
+        <StatusLabel status={status} />
       </Card.Header>
       <Card.Meta>
-        <Moment format="L" date={mission.start} /> - <Moment format="L" date={mission.end} />
+        <Moment format="L" date={start} /> - <Moment format="L" date={end} />
       </Card.Meta>
-      {mission.status === DRAFT &&
+      {status === DRAFT &&
         <MissionDescriptionDraft />
       }
-      {mission.status === WAITING_AUTHORITY &&
+      {status === WAITING_AUTHORITY &&
         <MissionDescriptionWaitingAuthority />
       }
-      {mission.status === READY &&
+      {status === READY &&
         <MissionDescriptionReady
-          start={mission.start}
-          progress={mission.progress}
-          total={mission.total}
-          holidays={mission.holidayBalance}
+          start={start}
+          progress={progress}
+          total={total}
+          holidays={holidayBalance}
         />
       }
-      {mission.status === FINISHED &&
-        <MissionDescriptionFinished end={mission.end} />
+      {status === FINISHED &&
+        <MissionDescriptionFinished end={end} />
       }
     </Card.Content>
     <Card.Content extra>
-      {mission.status === DRAFT && (
+      {status === DRAFT && (
         <Button.Group>
           <Button basic secondary>Ausdrucken</Button>
-          <Button basic primary>Bearbeiten</Button>
+          <Link href={{ pathname: '/missions/edit', query: { _id } }}>
+            <Button as="a" basic primary>Bearbeiten</Button>
+          </Link>
         </Button.Group>
       )}
-      {mission.status === WAITING_AUTHORITY && (
+      {status === WAITING_AUTHORITY && (
         <Button basic secondary>Infos</Button>
       )}
-      {mission.status === READY && (
+      {status === READY && (
         <Button.Group>
           <Button basic secondary>Infos</Button>
           <Button basic primary>Spesen erfassen</Button>
         </Button.Group>
       )}
-      {mission.status === FINISHED && (
+      {status === FINISHED && (
         <Button basic secondary>Zum Feedbackformular</Button>
       )}
     </Card.Content>

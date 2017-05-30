@@ -8,43 +8,50 @@ import FormSpecificationSchema from './FormSpecificationSchema';
 import FormSpecification from './FormSpecification';
 import { SPECIFICATION_LIST_QUERY } from './SpecificationListContainer';
 
+const FRAGMENT_SPECIFICATION_FORM_FIELDS = gql`
+  fragment specificationFields on Specification {
+    _id
+    name
+    isActive
+    governmentId
+    configuredExpenseRates {
+      name,
+     ... on Commute {
+       maxPublicTransportationCommuteMinutes
+       carCostsPerKilometerCHF
+     }
+     ... on PocketMoney {
+       costsPerDayCHF
+     }
+     ... on WorkingClothes {
+       maxCostsTotalCHF
+       costsPerDayCHF
+     }
+     ... on Catering {
+       breakfast {
+         costsPerWorkDayCHF
+         costsPerFreeDayCHF
+       }
+       lunch {
+         costsPerWorkDayCHF
+         costsPerFreeDayCHF
+       }
+       dinner {
+         costsPerWorkDayCHF
+         costsPerFreeDayCHF
+       }
+     }
+   }
+  }
+`;
+
 export const SPECIFICATION_FORM_QUERY = gql`
   query getSpecification($_id: ID!) {
     specification(_id: $_id) {
-      _id
-      name
-      isActive
-      governmentId
-      configuredExpenseRates {
-        name,
-       ... on Commute {
-         maxPublicTransportationCommuteMinutes
-         carCostsPerKilometerCHF
-       }
-       ... on PocketMoney {
-         costsPerDayCHF
-       }
-       ... on WorkingClothes {
-         maxCostsTotalCHF
-         costsPerDayCHF
-       }
-       ... on Catering {
-         breakfast {
-           costsPerWorkDayCHF
-           costsPerFreeDayCHF
-         }
-         lunch {
-           costsPerWorkDayCHF
-           costsPerFreeDayCHF
-         }
-         dinner {
-           costsPerWorkDayCHF
-           costsPerFreeDayCHF
-         }
-       }
-     }
+      ...specificationFields
     }
   }
+  ${FRAGMENT_SPECIFICATION_FORM_FIELDS}
 `;
 
 const update = compose(
@@ -73,9 +80,10 @@ const update = compose(
   graphql(gql`
     mutation updateSpecification($specification: SpecificationInput, $_id: ID!) {
       updateSpecification(specification: $specification, _id: $_id) {
-        _id
+        ...specificationFields
       }
     }
+    ${FRAGMENT_SPECIFICATION_FORM_FIELDS}
   `),
   withHandlers({
     onSubmit: ({ mutate, schema, _id }) => ({ ...dirtyInput }) =>
