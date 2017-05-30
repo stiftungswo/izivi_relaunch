@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "dev": "GRAPHQL_ENDPOINT=http://localhost:3010/graphql next",
     "build": "GRAPHQL_ENDPOINT=http://localhost:3010/graphql next build",

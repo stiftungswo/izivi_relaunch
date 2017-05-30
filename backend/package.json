@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "dev": "UI_ENDPOINT=http://localhost:3000 BABEL_DISABLE_CACHE=1 meteor -p 3010",
     "build": "meteor build --architecture os.linux.x86_64"

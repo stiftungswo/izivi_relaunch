@@ -49,6 +49,8 @@ Install dependencies and start frontend:
     meteor npm run install
     meteor npm run dev
 
+If you want it more simple like *wtf, just start the things* then run ``meteor npm start`` in the git repository root.
+
 *You don't have to prefix the npm commands with meteor if you have a proper version of NodeJS already installed on your system but you need to install meteor for the backend anyway that's why we prefix it always in this guide. The command meteor node/npm always use the prepacked nodejs of meteor*
 
 When both apps are running you can access the app with your browser.

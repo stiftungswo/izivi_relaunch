@@ -1,0 +1,17 @@
+{
+  "name": "izivi",
+  "version": "0.0.1",
+  "private": true,
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "prestart-backend": "cd backend && meteor npm install",
+    "start-backend": "cd backend && meteor npm run dev",
+    "prestart-webui": "cd webui && meteor npm install",
+    "start-webui": "cd webui && meteor npm run dev",
+    "start": "meteor npm run start-webui & meteor npm run start-backend"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.0.2"
+  }
+}
