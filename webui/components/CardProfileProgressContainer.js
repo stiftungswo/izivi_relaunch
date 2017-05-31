@@ -15,9 +15,9 @@ export default compose(
       }
     }
   `),
-  mapProps(({ data: { me } }) =>
-    ({
-      avatarUrl: (me && me.avatar && me.avatar.url) || '/static/square-image.png',
-      stepsPercentageComplete: (me && me.stepsPercentageComplete) || 0 })),
+  mapProps(({ data: { me } }) => ({
+    avatarUrl: (me && me.avatar && me.avatar.url) || '/static/square-image.png',
+    stepsPercentageComplete: (me && me.stepsPercentageComplete) || 0 }),
+  ),
   pure,
 )(CardProfileProgress);
