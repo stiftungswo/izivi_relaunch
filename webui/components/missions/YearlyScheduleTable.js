@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Grid } from 'semantic-ui-react';
 
-export default () => (
+export default ({ bodyRows, weeksInYear, localizedMonths }) => (
   <Grid>
     <style>{`
       table.schedule {
@@ -34,30 +34,11 @@ export default () => (
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            <Table.Row>
-              <Table.Cell>Pascal</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>John</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Pascal</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>John</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Pascal</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>John</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Pascal</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>John</Table.Cell>
-            </Table.Row>
+            {bodyRows.map(row => (
+              <Table.Row>
+                <Table.Cell>{row.mission._id}</Table.Cell>
+              </Table.Row>
+            ))}
           </Table.Body>
         </Table>
       </Grid.Column>
@@ -65,166 +46,29 @@ export default () => (
         <Table singleLine unstackable celled striped className="schedule">
           <Table.Header>
             <Table.Row>
-              {[...Array(12)].map((value, key) => (
-                    <Table.HeaderCell style={{width:'120px'}} colSpan='4' key={key}>Monat {key + 1}</Table.HeaderCell> // eslint-disable-line
-                  ))}
-              <Table.HeaderCell style={{ width: '120px' }} colSpan="4">Rest</Table.HeaderCell>
-            </Table.Row>
-            <Table.Row>
-              {[...Array(52)].map((value, key) => (
-                    <Table.HeaderCell style={{backgroundColor: '#F0F0F0'}} key={key}>{key + 1}</Table.HeaderCell> // eslint-disable-line
+              {localizedMonths.map(({ name, colSpan }) => (
+                    <Table.HeaderCell style={{width:'120px'}} colSpan={colSpan} key={name}>{name}</Table.HeaderCell> // eslint-disable-line
                   ))}
             </Table.Row>
             <Table.Row>
-              {[...Array(52)].map((value, key) => (
-                    <Table.HeaderCell key={key}>32</Table.HeaderCell> // eslint-disable-line
-                  ))}
+              {[...Array(weeksInYear)].map((value, key) => (
+                <Table.HeaderCell style={{backgroundColor: '#F0F0F0'}} key={key}>{key + 1}</Table.HeaderCell> // eslint-disable-line
+              ))}
+            </Table.Row>
+            <Table.Row>
+              {[...Array(weeksInYear)].map((value, key) => (
+                <Table.HeaderCell key={key}>32</Table.HeaderCell> // eslint-disable-line
+              ))}
             </Table.Row>
           </Table.Header>
-
           <Table.Body>
-            <Table.Row>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell negative>16</Table.Cell>
-              <Table.Cell negative>&nbsp;</Table.Cell>
-              <Table.Cell negative>&nbsp;</Table.Cell>
-              <Table.Cell negative>&nbsp;</Table.Cell>
-              <Table.Cell negative>&nbsp;</Table.Cell>
-              <Table.Cell negative>&nbsp;</Table.Cell>
-              <Table.Cell negative>3</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell positive>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-              <Table.Cell>&nbsp;</Table.Cell>
-            </Table.Row>
+            {bodyRows.map(row => (
+              <Table.Row>
+                {row.columns.map(({ ...column }) => (
+                  <Table.Cell {...column} />
+                ))}
+              </Table.Row>
+            ))}
           </Table.Body>
         </Table>
       </Grid.Column>

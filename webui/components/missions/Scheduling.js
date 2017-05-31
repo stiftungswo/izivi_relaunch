@@ -1,6 +1,6 @@
 import React from 'react';
 import { Divider, Dropdown, Header } from 'semantic-ui-react';
-import YearlyScheduleTable from '../../components/missions/YearlyScheduleTable';
+import YearlyScheduleTable from '../../components/missions/YearlyScheduleTableContainer';
 
 export default ({ split, changeSplit, splitOptions, yearOptions, changeYear, year }) => (
   <main>
@@ -14,9 +14,9 @@ export default ({ split, changeSplit, splitOptions, yearOptions, changeYear, yea
       {' '}
     </span>
     <Header>Bürozivis</Header>
-    <YearlyScheduleTable />
+    <YearlyScheduleTable year={year} />
     <Divider />
     <Header>Feldzivis</Header>
-    <YearlyScheduleTable />
+    <YearlyScheduleTable year={year} />
   </main>
 );

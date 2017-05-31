@@ -16,7 +16,7 @@ function doInitClient(headers, initialState) {
       if (!req.options.headers) {
         req.options.headers = {};
       }
-      req.options.headers.authorization = await getLoginToken() || null;
+      req.options.headers['meteor-login-token'] = await getLoginToken() || null;
       next();
     },
   }]);
