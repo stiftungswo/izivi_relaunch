@@ -8,6 +8,7 @@ class Scheduler {
   constructor(year) {
     moment.locale('de');
     this.year = year;
+    this.rows = [];
     this.startOfYearMoment = moment().year(this.year).startOf('year');
     this.weeksInYear = this.startOfYearMoment.isoWeeksInYear();
     this.numberOfMonths = 12;
@@ -34,10 +35,34 @@ class Scheduler {
     return months;
   }
 
+  averageDayUsage() {
+    const weeks = this.localizedWeeks();
+    const total = weeks.reduce((accumulator, { sum }) => accumulator + sum, 0);
+    return Number(total / weeks.length).toFixed(1);
+  }
+
+  localizedWeeks() {
+    const sumOfActiveMissions = [...Array(this.weeksInYear)].fill(0);
+    if (this.rows) {
+      this.rows.forEach((row) => {
+        row.columns.forEach((column, index) => {
+          if (column.missionId) {
+            sumOfActiveMissions[index] += 1;
+          }
+        });
+      });
+    }
+    return sumOfActiveMissions.map((sum, index) => ({
+      name: index + 1,
+      sum,
+    }));
+  }
+
   normalizeMissions(missions) {
+    this.missions = missions || [];
     const emptyColumn = { children: '', positive: false, negative: false, missionId: null };
     const columnsTemplate = [...Array(this.weeksInYear)].fill(emptyColumn);
-    const fixedRows = missions.map((mission) => {
+    this.rows = this.missions.map((mission) => {
       const startMoment = moment(new Date(mission.start));
       const endMoment = moment(mission.end);
       const start = Scheduler.convertMomentToDateObject(startMoment);
@@ -62,7 +87,7 @@ class Scheduler {
       columns[endColumnIndex] = lastDay;
       return { columns, mission };
     });
-    return fixedRows;
+    return this.fixedRows;
   }
 }
 
@@ -74,9 +99,10 @@ export default compose(
         status
         start
         end
-        # user {
-        #   _id
-        # }
+        user {
+          _id
+          name
+        }
         specification {
           _id
         }
@@ -85,10 +111,13 @@ export default compose(
   `),
   withProps(({ data, year }) => {
     const scheduler = new Scheduler(year);
+    scheduler.normalizeMissions(data && data.allMissions);
     return {
-      bodyRows: (data && data.allMissions && scheduler.normalizeMissions(data.allMissions)) || [],
+      bodyRows: scheduler.rows,
       weeksInYear: scheduler.weeksInYear,
       localizedMonths: scheduler.localizedMonths(),
+      localizedWeeks: scheduler.localizedWeeks(),
+      averageDayUsage: scheduler.averageDayUsage(),
     };
   }),
   pure,

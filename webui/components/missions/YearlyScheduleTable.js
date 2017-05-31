@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Grid } from 'semantic-ui-react';
 
-export default ({ bodyRows, weeksInYear, localizedMonths }) => (
+export default ({ bodyRows, localizedWeeks, localizedMonths, averageDayUsage }) => (
   <Grid>
     <style>{`
       table.schedule {
@@ -30,13 +30,13 @@ export default ({ bodyRows, weeksInYear, localizedMonths }) => (
               <Table.HeaderCell style={{ backgroundColor: '#F0F0F0' }} />
             </Table.Row>
             <Table.Row>
-              <Table.HeaderCell>Ø 12.0</Table.HeaderCell>
+              <Table.HeaderCell>Ø {averageDayUsage}</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             {bodyRows.map(row => (
               <Table.Row>
-                <Table.Cell>{row.mission._id}</Table.Cell>
+                <Table.Cell>{row.mission.user.name}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
@@ -51,21 +51,23 @@ export default ({ bodyRows, weeksInYear, localizedMonths }) => (
                   ))}
             </Table.Row>
             <Table.Row>
-              {[...Array(weeksInYear)].map((value, key) => (
-                <Table.HeaderCell style={{backgroundColor: '#F0F0F0'}} key={key}>{key + 1}</Table.HeaderCell> // eslint-disable-line
+              {localizedWeeks.map(({ name }) => (
+                <Table.HeaderCell style={{ backgroundColor: '#F0F0F0' }} key={name}>{name}</Table.HeaderCell>
               ))}
             </Table.Row>
             <Table.Row>
-              {[...Array(weeksInYear)].map((value, key) => (
-                <Table.HeaderCell key={key}>32</Table.HeaderCell> // eslint-disable-line
+              {localizedWeeks.map(({ name, sum }) => (
+                <Table.HeaderCell key={name}>{sum}</Table.HeaderCell> // eslint-disable-line
               ))}
             </Table.Row>
           </Table.Header>
           <Table.Body>
             {bodyRows.map(row => (
               <Table.Row>
-                {row.columns.map(({ ...column }) => (
-                  <Table.Cell {...column} />
+                {row.columns.map(({ missionId, children, ...column }) => (
+                  <Table.Cell {...column} selectable={!!missionId}>
+                    {children}
+                  </Table.Cell>
                 ))}
               </Table.Row>
             ))}
