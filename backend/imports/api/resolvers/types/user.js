@@ -35,6 +35,6 @@ export default {
     return numberOfStepsCompleted / 4;
   },
   missions(user) {
-    return Missions.find({ userId: user._id }).fetch();
+    return Missions.find({ userId: user._id, deleted: null }).fetch();
   },
 };

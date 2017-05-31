@@ -1,8 +1,11 @@
 import React from 'react';
 import { Card, Progress, Button } from 'semantic-ui-react';
 import Link from 'next/link';
+import moment from 'moment';
 import Moment from 'react-moment';
 import StatusLabel, { WAITING_AUTHORITY, DRAFT, READY, FINISHED } from './StatusLabelContainer';
+
+moment.locale('de');
 
 const MissionDescriptionDraft = () => (
   <Card.Description>
