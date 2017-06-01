@@ -11,7 +11,7 @@ import DateField from '../../lib/FormDateInput';
 const FormMission = ({ specificationOptions, userId, ...formProps }) => (
   <AutoForm showInlineError {...formProps} >
     <Head>
-      <link rel="stylesheet" href="/static/react-datepicker/react-datepicker.css" />
+      <link rel="stylesheet" href="https://unpkg.com/react-datepicker@0.46.0/dist/react-datepicker.css" />
     </Head>
     <Grid stackable columns={1}>
       <Grid.Row>

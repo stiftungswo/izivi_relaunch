@@ -12,9 +12,9 @@ import UploadAvatar from './UploadAvatarContainer';
 const FormProfile = ({ username, regionalOfficeOptions, drivingLicenceOptions, ...formProps }) => (
   <AutoForm showInlineError {...formProps} >
     <Head>
-      <link rel="stylesheet" href="/static/react-phone-number-input/rrui.css" />
-      <link rel="stylesheet" href="/static/react-phone-number-input/style.css" />
-      <link rel="stylesheet" href="/static/react-datepicker/react-datepicker.css" />
+      <link rel="stylesheet" href="//unpkg.com/react-phone-number-input@0.11.5/rrui.css" />
+      <link rel="stylesheet" href="//unpkg.com/react-phone-number-input@0.11.5/style.css" />
+      <link rel="stylesheet" href="//unpkg.com/react-datepicker@0.46.0/dist/react-datepicker.css" />
     </Head>
     <Grid stackable columns={3}>
       <Grid.Row columns={1}>

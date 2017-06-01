@@ -6,7 +6,7 @@ import Header from './HeaderContainer';
 export default ({ url, loggedInUser, loading, children }) => (
   <main>
     <Head>
-      <link rel="stylesheet" href="/static/semantic-ui-css/semantic.min.css" />
+      <link rel="stylesheet" href="//unpkg.com/semantic-ui-css@2.2.10/semantic.min.css" />
     </Head>
     <Header
       loading={loading}
