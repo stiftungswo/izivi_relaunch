@@ -5,8 +5,9 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "dev": "UI_ENDPOINT=http://localhost:3000 BABEL_DISABLE_CACHE=1 meteor -p 3010",
-    "build": "meteor build --architecture os.linux.x86_64"
+    "dev": "UI_ENDPOINT=http://localhost:3000 meteor -p 3010",
+    "build": "meteor build --architecture os.linux.x86_64 --directory .build",
+    "dockerize": "docker build . -t izivi-backend:latest"
   },
   "dependencies": {
     "apollo-client": "^1.3.0",

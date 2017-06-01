@@ -5,10 +5,21 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "prestart-backend": "cd backend && meteor npm install",
+    "install-backend": "cd backend && meteor npm install",
+    "install-webui": "cd webui && meteor npm install",
+
+    "prestart": "meteor npm run install-webui & meteor npm run install-backend",
+    "start": "meteor npm run start-webui & meteor npm run start-backend",
     "start-backend": "cd backend && meteor npm run dev",
-    "prestart-webui": "cd webui && meteor npm install",
     "start-webui": "cd webui && meteor npm run dev",
-    "start": "meteor npm run start-webui & meteor npm run start-backend"
+
+    "prebuild": "meteor npm run install-webui & meteor npm run install-backend",
+    "build": "meteor npm run build-webui & meteor npm run build-backend",
+    "build-backend": "cd backend && meteor npm run build",
+    "build-webui": "cd webui && meteor npm run build",
+
+    "dockerize": "meteor npm run dockerize-webui & meteor npm run dockerize-backend",
+    "dockerize-backend": "cd backend && meteor npm run dockerize",
+    "dockerize-webui": "cd webui && meteor npm run dockerize",
   }
 }

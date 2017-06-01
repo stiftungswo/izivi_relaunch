@@ -1,0 +1,54 @@
+version: "3"
+
+services:
+  mongodb:
+    image: mongo:3.4
+    hostname: mongodb
+    volumes:
+      - db-data:/data/db
+    networks:
+      - dbnet
+    command: --noprealloc --smallfiles
+    expose:
+      - 27017
+    restart: always
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+  izivi-backend:
+    image: izivi-backend:latest
+    networks:
+      - dbnet
+      - webnet
+    links:
+      - mongodb:db
+    environment:
+      - MONGO_URL=mongodb://db/izivi
+      - UI_ENDPOINT=http://localhost
+      # - MAIL...
+    restart: always
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+  izivi-frontend:
+    image: izivi-webui:latest
+    ports:
+      - "80:3000" # This is the frontend port
+    networks:
+      - webnet
+    restart: always
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+volumes:
+  db-data:
+
+networks:
+  dbnet:
+  webnet:

@@ -6,8 +6,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "GRAPHQL_ENDPOINT=http://localhost:3010/graphql next",
-    "build": "GRAPHQL_ENDPOINT=http://localhost:3010/graphql next build",
-    "start": "next start"
+    "build": "GRAPHQL_ENDPOINT http://izivi-backend/graphql next build",
+    "start": "next start",
+    "dockerize": "docker build . -t izivi-webui:latest"
   },
   "dependencies": {
     "apollo-client": "^1.3.0",
