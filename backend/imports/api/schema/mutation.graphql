@@ -50,6 +50,12 @@ input MissionInput {
   end: Date!
 }
 
+input HolidayInput {
+  date: Date!
+  name: String!
+  type: String!
+}
+
 type Mutation {
   updateUserAvatar(avatar: File!, userId: ID): User
   updateEmail(email: String!, userId: ID): User
@@ -61,7 +67,13 @@ type Mutation {
   updateSpecification(specification: SpecificationInput, _id: ID!) : Specification
   deleteSpecification(_id: ID!) : Specification
 
+  # Mission
   createMission(mission: MissionInput) : Mission
   updateMission(mission: MissionInput, _id: ID!) : Mission
   deleteMission(_id: ID!) : Mission
+
+  # Holiday
+  createHoliday(holiday: HolidayInput) : Holiday
+  updateHoliday(mission: HolidayInput, _id: ID!) : Holiday
+  deleteHoliday(_id: ID!) : Holiday
 }
