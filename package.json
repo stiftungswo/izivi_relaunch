@@ -20,6 +20,6 @@
 
     "dockerize": "meteor npm run dockerize-webui & meteor npm run dockerize-backend",
     "dockerize-backend": "cd backend && meteor npm run dockerize",
-    "dockerize-webui": "cd webui && meteor npm run dockerize",
+    "dockerize-webui": "cd webui && meteor npm run dockerize"
   }
 }

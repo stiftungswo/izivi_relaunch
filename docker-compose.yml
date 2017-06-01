@@ -22,11 +22,14 @@ services:
     networks:
       - dbnet
       - webnet
+    ports:
+      - "8080:80"
     links:
       - mongodb:db
     environment:
       - MONGO_URL=mongodb://db/izivi
       - UI_ENDPOINT=http://localhost
+      - ROOT_URL=http://localhost:8080
       # - MAIL...
     restart: always
     deploy:

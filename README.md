@@ -114,7 +114,14 @@ query {
 
 ## Build and deploy
 
-### Building and deploying the backend for production
+### Building and deploying the backend for production (docker way)
+
+    npm run build
+    npm run dockerize
+    docker-compose up -d
+
+
+### Building and deploying the backend for production (manually)
 
 https://guide.meteor.com/deployment.html#custom-deployment
 
