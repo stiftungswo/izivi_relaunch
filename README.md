@@ -95,7 +95,7 @@ Fire this and write down the token:
       }
     }
 
-Use https://github.com/skevy/graphiql-app, point it to http://localhost:3000/graphql and add a header:
+Use https://github.com/skevy/graphiql-app, point it to http://localhost:3010/graphql and add a header:
 
 key: meteor-login-token
 value: YOUR_TOKEN
