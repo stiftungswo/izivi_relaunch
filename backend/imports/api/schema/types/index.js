@@ -4,6 +4,7 @@ import User from './user.graphql';
 import ExpenseRates from './expense-rates';
 import Specification from './specification.graphql';
 import Mission from './mission.graphql';
+import Holiday from './holiday.graphql';
 
 export default [
   Money,
@@ -12,4 +13,5 @@ export default [
   ExpenseRates,
   Specification,
   Mission,
+  Holiday
 ];

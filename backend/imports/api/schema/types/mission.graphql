@@ -7,12 +7,10 @@ enum MissionStatus {
 
 enum MissionExpensesDayType {
   WORK # Arbeitstag (Diensttag)
-  HOLIDAY_NATIONAL # Gesetzlicher Feiertag (Diensttag, arbeitsfrei)
-  HOLIDAY_ORGANISATIONAL # Betriebsferien (Diensttag, arbeitsfrei)
+  HOLIDAY # Gesetzlicher Feiertag / Betriebsferien (Diensttag, arbeitsfrei)
   HOLIDAY_PERSONAL # Ferien (Diensttag, arbeitsfrei)
   ILLNESS # Krankheit (Diensttag, arbeitsfrei)
-  ABSENCE_UNEXCUSED # No-Show (Kein Diensttag)
-  ABSENCE_PLANNED # Persönlicher Urlaub (Kein Diensttag)
+  ABSENCE # Kein Diensttag
 }
 
 type MissionExpensesRateCalculation {
