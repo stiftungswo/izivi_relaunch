@@ -23,6 +23,8 @@
     "graphql-server-express": "^0.8.0",
     "graphql-tools": "^1.0.0",
     "lodash": "^4.17.4",
+    "meteor-deque": "^2.1.0",
+    "meteor-node-stubs": "^0.2.8",
     "moment": "^2.18.1",
     "multer": "^1.3.0",
     "optics-agent": "^1.1.3",

@@ -5,4 +5,6 @@ ENV NODE_ENV production
 COPY .build/bundle /bundle
 WORKDIR /bundle/programs/server
 RUN npm install
+RUN npm install file-type fs-extra
+RUN npm run install
 CMD node /bundle/main.js
