@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Table, Grid } from 'semantic-ui-react';
 
 export default ({ bodyRows, localizedWeeks, localizedMonths, averageDayUsage }) => (
@@ -36,7 +37,11 @@ export default ({ bodyRows, localizedWeeks, localizedMonths, averageDayUsage }) 
           <Table.Body>
             {bodyRows.map(row => (
               <Table.Row>
-                <Table.Cell>{row.mission.user.name}</Table.Cell>
+                <Table.Cell>
+                  <Link href={{ pathname: '/users/edit', query: { _id: row.mission.user._id } }}>
+                    {row.mission.user.name}
+                  </Link>
+                </Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
@@ -65,9 +70,11 @@ export default ({ bodyRows, localizedWeeks, localizedMonths, averageDayUsage }) 
             {bodyRows.map(row => (
               <Table.Row>
                 {row.columns.map(({ missionId, children, ...column }) => (
-                  <Table.Cell {...column} selectable={!!missionId}>
-                    {children}
-                  </Table.Cell>
+                  <Link href={{ pathname: '/missions/edit', query: { _id: row.mission._id } }}>
+                    <Table.Cell {...column} selectable={!!missionId}>
+                      {children}
+                    </Table.Cell>
+                  </Link>
                 ))}
               </Table.Row>
             ))}

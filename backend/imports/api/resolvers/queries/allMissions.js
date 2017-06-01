@@ -1,5 +1,8 @@
 import Missions from '../../collections/missions';
 
-export default function () {
-  return Missions.find({ deleted: null }).fetch();
+export default function (_, { specificationId }) {
+  return Missions.find({
+    deleted: null,
+    specificationId: specificationId || { $ne: null },
+  }).fetch();
 }

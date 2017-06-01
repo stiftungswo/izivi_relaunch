@@ -1,21 +1,25 @@
-import { compose, withProps, withState, withHandlers } from 'recompose';
+import { compose, withProps, withState, withHandlers, mapProps, pure } from 'recompose';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 import moment from 'moment';
-// import gql from 'graphql-tag';
-// import { graphql } from 'react-apollo';
 import Scheduling from './Scheduling';
 
+const yearToday = moment().year() - 15 - -5;
+const yearOptions = [...(Array(15))].map((_, index) => ({
+  text: yearToday + index,
+  value: yearToday + index,
+}));
+
+const SCHEDULING_SPECIFICATION_LIST_QUERY = gql`
+  query allSpecifications {
+    allSpecifications {
+      _id
+      name
+    }
+  }
+`;
+
 export default compose(
-  // graphql(gql`
-  //   query getProfileProgress {
-  //     me {
-  //       _id
-  //       stepsPercentageComplete
-  //       avatar {
-  //         url
-  //       }
-  //     }
-  //   }
-  // `),
   withState('year', 'updateYear', moment().year()),
   withState('split', 'updateSplit', 'specification'),
   withHandlers({
@@ -26,13 +30,8 @@ export default compose(
       updateSplit(newSplit.value);
     },
   }),
-  withProps({
-    yearOptions: [
-      {
-        text: '2017',
-        value: 2017,
-      },
-    ],
+  withProps(({ split }) => ({
+    yearOptions,
     splitOptions: [
       {
         text: 'aufgeteilt nach Pflichtenheft',
@@ -43,10 +42,12 @@ export default compose(
         value: 'mingled',
       },
     ],
-  }),
-  // mapProps(({ data: { me } }) => ({
-  //   avatarUrl: (me && me.avatar && me.avatar.url) || '/static/square-image.png',
-  //   stepsPercentageComplete: (me && me.stepsPercentageComplete) || 0 }),
-  // ),
-  // pure,
+    isSplitMode: split === 'specification',
+  })),
+  graphql(SCHEDULING_SPECIFICATION_LIST_QUERY),
+  mapProps(({ data: { allSpecifications, loading }, ...rest }) => ({
+    specifications: !loading && allSpecifications && allSpecifications,
+    ...rest,
+  })),
+  pure,
 )(Scheduling);

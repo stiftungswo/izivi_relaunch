@@ -5,5 +5,5 @@ type Query {
   mission(_id: ID!): Mission
   allUsers: [User]!
   allSpecifications: [Specification]!
-  allMissions: [Mission]!
+  allMissions(specificationId: ID): [Mission]!
 }

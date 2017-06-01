@@ -58,6 +58,13 @@ class Scheduler {
     }));
   }
 
+  static convertMissionToColumn(mission) {
+    const missionId = mission._id;
+    const negative = !!(mission.status === 'DRAFT' || mission.status === 'WAITING_AUTHORITY');
+    const positive = !!(mission.status === 'READY' || mission.status === 'FINISHED');
+    return { positive, negative, missionId };
+  }
+
   normalizeMissions(missions) {
     this.missions = missions || [];
     const emptyColumn = { children: '', positive: false, negative: false, missionId: null };
@@ -67,16 +74,17 @@ class Scheduler {
       const endMoment = moment(mission.end);
       const start = Scheduler.convertMomentToDateObject(startMoment);
       const end = Scheduler.convertMomentToDateObject(endMoment);
-      const missionId = mission._id;
-      const negative = !!(mission.status === 'DRAFT' || mission.status === 'WAITING_AUTHORITY');
-      const positive = !!(mission.status === 'READY' || mission.status === 'FINISHED');
-      const missionColumn = { positive, negative, missionId };
+      if (start.year > this.year || end.year < this.year) {
+        return null;
+      }
+
+      const missionColumn = Scheduler.convertMissionToColumn(mission);
       const firstDay = {
         children: (start.year === this.year) ? start.date : '<',
         ...missionColumn,
       };
       const lastDay = {
-        children: (end.year === this.year) ? end.date : '>',
+        children: (end.year === this.year) ? `${end.date}` : '>',
         ...missionColumn,
       };
       const startColumnIndex = (start.year === this.year) ? (start.week - 1) : 0;
@@ -84,17 +92,27 @@ class Scheduler {
       const columns = [...columnsTemplate];
       columns.fill(missionColumn, startColumnIndex, endColumnIndex);
       columns[startColumnIndex] = firstDay;
-      columns[endColumnIndex] = lastDay;
+      if (endColumnIndex !== startColumnIndex) {
+        columns[endColumnIndex] = lastDay;
+      }
+
+      // columns
+      const colSpan = endColumnIndex - startColumnIndex;
+      if (colSpan > 0) {
+        columns[startColumnIndex + 1] = { colSpan, ...missionColumn };
+        columns.splice(startColumnIndex + 2, colSpan - 2);
+      }
+
       return { columns, mission };
-    });
+    }).filter(row => !!row);
     return this.fixedRows;
   }
 }
 
 export default compose(
   graphql(gql`
-    query allMissions {
-      allMissions {
+    query allMissions($specificationId: ID) {
+      allMissions(specificationId: $specificationId) {
         _id
         status
         start
