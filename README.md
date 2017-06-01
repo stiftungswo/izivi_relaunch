@@ -85,6 +85,33 @@ More than 2 people concurrently working at the product? please use feature branc
 https://confluence.atlassian.com/bitbucket/workflow-for-git-feature-branching-814201830.html
 
 
+### Testing Roles and API
+
+Fire this and write down the token:
+    mutation {
+      loginWithPassword(username: "YOUR_USER", plainPassword: "YOUR_PASSWORD") {
+        id
+        token
+      }
+    }
+
+Use https://github.com/skevy/graphiql-app, point it to http://localhost:3000/graphql and add a header:
+
+key: meteor-login-token
+value: YOUR_TOKEN
+
+Test if login worked:
+
+```
+query {
+  me {
+    _id
+    name
+  }
+}
+```
+
+
 ## Build and deploy
 
 ### Building and deploying the backend for production
