@@ -19,7 +19,7 @@
     "meteor-apollo-accounts": "^2.0.1",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
-    "next": "^2.4.1",
+    "next": "^3.0.0-beta8",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-apollo": "^1.2.0",
