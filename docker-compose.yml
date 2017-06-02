@@ -19,6 +19,8 @@ services:
 
   izivi-backend:
     image: izivi-backend:latest
+    volumes:
+      - uploaded-files:/bundle/programs/server/assets/a pp/uploads
     networks:
       - dbnet
       - webnet
@@ -27,10 +29,13 @@ services:
     links:
       - mongodb:db
     environment:
+      - NODE_ENV=production
+      - PORT=80
       - MONGO_URL=mongodb://db/izivi
       - UI_ENDPOINT=http://localhost
       - ROOT_URL=http://localhost:8080
-      # - MAIL...
+      # - OPTICS_API_KEY=xxxxx https://www.npmjs.com/package/optics-agent
+      # - MAIL_URL=xxx https://docs.meteor.com/api/email.html
     restart: always
     deploy:
       replicas: 1
@@ -43,9 +48,11 @@ services:
       - "80:3000" # This is the webui port
     networks:
       - webnet
+    links:
+      - izivi-backend:backend
     restart: always
     environment:
-      - GRAPHQL_ENDPOINT=http://izivi-backend:8080/graphql # this has to be set at build-time (client-side) and at runtime (server-side)
+      - GRAPHQL_ENDPOINT=http://backend:8080/graphql # server side env! needs to point to internal address (izivi-backend)
     deploy:
       replicas: 1
       restart_policy:
@@ -53,6 +60,7 @@ services:
 
 volumes:
   db-data:
+  uploaded-files:
 
 networks:
   dbnet:
