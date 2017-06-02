@@ -4,7 +4,7 @@ An E-Recruitement tool to plan swiss civil service missions
 
 ## General Purpose
 
-The project's purpose is enable planning of zivis, when they start their employment and when they finish.
+The project's purpose is to manage planning Zivis (swiss civil service agents), when they start their employment and when they finish.
 
 ## Install required tools and checkout the project
 
@@ -70,23 +70,29 @@ GraphQL API Sandbox / Documentation explorer:
 This codebase adheres to the [Airbnb Styleguide](https://github.com/airbnb/javascript) and is
 enforced using [ESLint](http://eslint.org/).
 
-It is recommended that you install an eslint plugin for your editor of choice when working on this
-codebase, however you can always check to see if the source code is compliant by running:
+It is recommended that you install an eslint plugin for your editor of choice when working on this codebase, however you can always check to see if the source code is compliant by running:
 
 ```bash
 npm run lint
 ```
 
+### Using Git
 
-### Development-Branches
-
-Develop on branch develop and merge to master if you're finished.
+Develop on branch develop and merge to master every time you deploy to production.
 More than 2 people concurrently working at the product? please use feature branches!
 https://confluence.atlassian.com/bitbucket/workflow-for-git-feature-branching-814201830.html
 
+**Don't make this more complicated than it is. If you have write rights then just push, don't create pull requests. There are no rules for commit messages either and nobody tells you you're a good guy when you rebase your changes. What is important is that the whole system starts up before you push changes to develop/master!**
 
-### Testing Roles and API
+## Testing
 
+### Local MongoDB access
+
+mongodb://localhost:3011 (always +1 to backend port)
+
+Mac: https://robomongo.org, https://github.com/jeromelebel/MongoHub-Mac
+
+### Roles and API
 Fire this and write down the token:
     mutation {
       loginWithPassword(username: "YOUR_USER", plainPassword: "YOUR_PASSWORD") {
@@ -112,43 +118,56 @@ query {
 ```
 
 
-## Build and deploy
+## Production
 
-### Building and deploying the backend for production (docker way)
+### Build apps for production
 
-    npm run build
+npm run build
+
+This will generate minified optimized versions in ``./backend/.build/bundle`` and ``./webui/.next/dist``
+
+
+### Deploy (docker)
+
+After you generated the production builds, you can create docker images out of these by:
+
     npm run dockerize
+
+In docker-compose.yml you'll find an example of how these apps can be orchestrated together, you can try it out on my local docker engine by running:
+
     docker-compose up -d
 
 
-### Building and deploying the backend for production (manually)
+### Deploy (manual)
 
 https://guide.meteor.com/deployment.html#custom-deployment
 
-    cd backend
-    npm run build -- /path/to/build
+copy ./backend/.build/bundle to server with nodejs installed and start the backend like this:
 
-copy /path/to/build to server with nodejs installed:
+    cd programs/server
+    npm install
+    export MONGO_URL=mongodb://mongodb_host:port/izivi
+    export ROOT_URL=http://graphql-host/
+    node main.js
 
-    cd /path/to/build
-    cd programs/server && npm install
-    MONGO_URL=mongodb://mongodb_host:port/izivi ROOT_URL=http://graphql-host/ node main.js
 
-You can also use now.sh to test it: https://medium.com/@purplecones/deploying-a-meteor-app-for-free-using-zeit-now-c183329057c9
-To deploy this in SWO production, look at the internal documentation **IT -> Software -> iZivi** rather than following this guide.
-
-### Building and deploying the frontend for production
-
-https://github.com/zeit/next.js#static-html-export
+for the webui
 
     cd webui
-    GRAPHQL_ENDPOINT=http://graphql_host/graphql npm run build
+    export GRAPHQL_ENDPOINT=http://graphql_host/graphql
+    npm run build (again, **because next needs environment variables be be set at build time!!!**)
+    npm run start
 
-export:
+### Deploy (now.sh)
 
-    next export
+You can also use now.sh to test the backend: https://medium.com/@purplecones/deploying-a-meteor-app-for-free-using-zeit-now-c183329057c9
 
-now copy the contents of the out directory to any folder accessible from the internet.
+And the webui: https://github.com/zeit/next.js#production-deployment
 
-You can also use now.sh to test it: https://github.com/zeit/next.js#production-deployment
-To deploy this in SWO production, look at the internal documentation **IT -> Software -> iZivi** rather than following this guide.
+You'll need a MongoDB instance accessible from somewhere, consider MongoLab for testing (free tier).
+
+### TODO
+
+- Production Deployment for SWO, any credentials can be found by accessing the DiskStation's drive in  **IT -> Software -> iZivi**. Try using https://github.com/zeit/next.js#static-html-export
+
+- Docker engine @ SWO (hosted on Mac Mini or any VPS with a bare minimum of 500mb of ram + swap enabled, like digitalocean 5 USD)
