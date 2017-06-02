@@ -44,6 +44,8 @@ services:
     networks:
       - webnet
     restart: always
+    environment:
+      - GRAPHQL_ENDPOINT=http://izivi-backend:8080/graphql # this has to be set at build-time (client-side) and at runtime (server-side)
     deploy:
       replicas: 1
       restart_policy:

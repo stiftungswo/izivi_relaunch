@@ -6,7 +6,7 @@
   "license": "EUPL-1.1",
   "scripts": {
     "dev": "GRAPHQL_ENDPOINT=http://localhost:3010/graphql next",
-    "build": "rm -Rf .next && GRAPHQL_ENDPOINT=http://izivi-backend:8080/graphql next build",
+    "build": "GRAPHQL_ENDPOINT=http://localhost:8080/graphql next build",
     "start": "next start",
     "dockerize": "docker build . -t izivi-webui:latest"
   },

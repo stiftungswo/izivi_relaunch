@@ -135,7 +135,7 @@ After you generated the production builds, you can create docker images out of t
 
 In docker-compose.yml you'll find an example of how these apps can be orchestrated together, you can try it out on my local docker engine by running:
 
-    docker-compose up -d
+    docker-compose up
 
 
 ### Deploy (manual)
