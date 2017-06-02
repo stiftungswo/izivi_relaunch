@@ -9,8 +9,8 @@ services:
     networks:
       - dbnet
     command: --noprealloc --smallfiles
-    expose:
-      - 27017
+    ports:
+      - "27017:27017" # take care: this exposes port of mongodb without user/password, this is just for easily connecting from robomongo/mongohub to test
     restart: always
     deploy:
       replicas: 1
