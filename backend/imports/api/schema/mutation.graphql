@@ -74,6 +74,6 @@ type Mutation {
 
   # Holiday
   createHoliday(holiday: HolidayInput): Holiday
-  updateHoliday(mission: HolidayInput, _id: ID!): Holiday
+  updateHoliday(_id: ID!, holiday: HolidayInput): Holiday
   deleteHoliday(_id: ID!): Holiday
 }

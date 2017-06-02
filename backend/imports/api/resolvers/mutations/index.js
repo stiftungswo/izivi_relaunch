@@ -11,6 +11,8 @@ import createMission from './createMission';
 import updateMission from './updateMission';
 import deleteMission from './deleteMission';
 import createHoliday from './createHoliday';
+import deleteHoliday from './deleteHoliday';
+import updateHoliday from './updateHoliday';
 
 
 export default {
@@ -27,4 +29,6 @@ export default {
   updateMission,
   deleteMission,
   createHoliday,
+  deleteHoliday,
+  updateHoliday,
 };
