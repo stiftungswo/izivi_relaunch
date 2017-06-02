@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "author": "",
-  "license": "MIT",
+  "license": "EUPL-1.1",
   "scripts": {
     "dev": "UI_ENDPOINT=http://localhost:3000 meteor -p 3010",
-    "build": "meteor build --architecture os.linux.x86_64 --directory .build",
+    "build": "rm -Rf .build && meteor build --architecture os.linux.x86_64 --directory .build",
     "dockerize": "docker build . -t izivi-backend:latest"
   },
   "dependencies": {

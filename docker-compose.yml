@@ -37,10 +37,10 @@ services:
       restart_policy:
         condition: on-failure
 
-  izivi-frontend:
+  izivi-webui:
     image: izivi-webui:latest
     ports:
-      - "80:3000" # This is the frontend port
+      - "80:3000" # This is the webui port
     networks:
       - webnet
     restart: always

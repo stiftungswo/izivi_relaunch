@@ -171,3 +171,11 @@ You'll need a MongoDB instance accessible from somewhere, consider MongoLab for 
 - Production Deployment for SWO, any credentials can be found by accessing the DiskStation's drive in  **IT -> Software -> iZivi**. Try using https://github.com/zeit/next.js#static-html-export
 
 - Docker engine @ SWO (hosted on Mac Mini or any VPS with a bare minimum of 500mb of ram + swap enabled, like digitalocean 5 USD)
+
+## Why EUPL?
+
+GPLv2+: Multi-lingual & complete.
+
+https://choosealicense.com/licenses/eupl-1.1/
+https://medium.com/apinf/eupl-is-the-open-source-license-in-the-sweet-spot-5b136f53812c
+http://openisfree.blogspot.ch/2014/02/eupl-ifoss.html
