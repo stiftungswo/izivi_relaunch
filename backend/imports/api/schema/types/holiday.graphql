@@ -1,0 +1,11 @@
+enum HolidayType {
+	COMPANY_HOLIDAY
+	NATIONAL_HOLIDAY
+}
+
+type Holiday {
+	_id: ID!
+	date: Date!
+	name: String
+	type: HolidayType
+}
