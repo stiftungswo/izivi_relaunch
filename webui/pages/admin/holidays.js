@@ -41,19 +41,19 @@ const entryDates = [
 	    id: 1,
 	    date: '2017-01-01',
 	    name: 'Name 1',
-	    kind: 'Feiertag',
+	    type: 'Feiertag',
 	  },
 	  {
 	    id: 2,
 	    date: '2017-01-02',
 	    name: 'Name 2',
-	    kind: 'Betriebsferien',
+	    type: 'Betriebsferien',
 	  },
 	  {
 	    id: 3,
 	    date: '2017-01-03',
 	    name: 'Name 3',
-	    kind: 'Betriebsferien',
+	    type: 'Betriebsferien',
 	  }
 ]
 
