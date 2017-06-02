@@ -122,7 +122,7 @@ query {
 
 ### Build apps for production
 
-npm run build
+    npm run build
 
 This will generate minified optimized versions in ``./backend/.build/bundle`` and ``./webui/.next/dist``
 
