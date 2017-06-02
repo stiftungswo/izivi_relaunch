@@ -5,6 +5,8 @@ import mission from './mission';
 import allSpecifications from './allSpecifications';
 import allMissions from './allMissions';
 import user from './user';
+import holiday from './holiday';
+import holidayByYear from './holidayByYear'
 
 export default {
   me,
@@ -14,4 +16,6 @@ export default {
   mission,
   allSpecifications,
   allMissions,
+  holiday,
+  holidayByYear,
 };

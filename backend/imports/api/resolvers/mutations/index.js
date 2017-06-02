@@ -10,6 +10,8 @@ import deleteSpecification from './deleteSpecification';
 import createMission from './createMission';
 import updateMission from './updateMission';
 import deleteMission from './deleteMission';
+import createHoliday from './createHoliday';
+
 
 export default {
   updateEmail,
@@ -24,4 +26,5 @@ export default {
   createMission,
   updateMission,
   deleteMission,
+  createHoliday,
 };
