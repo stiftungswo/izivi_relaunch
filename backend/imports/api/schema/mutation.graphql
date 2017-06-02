@@ -63,17 +63,17 @@ type Mutation {
   updateUserBank(bank: UserBankInput, userId: ID): User
   updateUserSkills(skills: UserSkillsInput, userId: ID): User
   updateUserInsurance(insurance: UserInsuranceInput, userId: ID): User
-  createSpecification(specification: SpecificationInput) : Specification
-  updateSpecification(specification: SpecificationInput, _id: ID!) : Specification
-  deleteSpecification(_id: ID!) : Specification
+  createSpecification(specification: SpecificationInput): Specification
+  updateSpecification(specification: SpecificationInput, _id: ID!): Specification
+  deleteSpecification(_id: ID!): Specification
 
   # Mission
-  createMission(mission: MissionInput) : Mission
-  updateMission(mission: MissionInput, _id: ID!) : Mission
-  deleteMission(_id: ID!) : Mission
+  createMission(mission: MissionInput): Mission
+  updateMission(mission: MissionInput, _id: ID!): Mission
+  deleteMission(_id: ID!): Mission
 
   # Holiday
-  createHoliday(holiday: HolidayInput) : Holiday
-  updateHoliday(mission: HolidayInput, _id: ID!) : Holiday
-  deleteHoliday(_id: ID!) : Holiday
+  createHoliday(holiday: HolidayInput): Holiday
+  updateHoliday(mission: HolidayInput, _id: ID!): Holiday
+  deleteHoliday(_id: ID!): Holiday
 }

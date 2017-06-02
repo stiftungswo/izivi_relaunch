@@ -4,6 +4,7 @@ type Query {
   specification(_id: ID!): Specification
   mission(_id: ID!): Mission
   holiday(_id: ID!): Holiday
+  holidayByYear(year: Int!): [Holiday]!
   allUsers: [User]!
   allSpecifications(onlyActive: Boolean): [Specification]!
   allMissions(specificationId: ID): [Mission]!
