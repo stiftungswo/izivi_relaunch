@@ -1,3 +1,5 @@
+:exclamation: Attention: This project is not maintained anymore. Please head over to [the iZivi repository](https://github.com/stiftungswo/izivi) for a maintained version.
+
 # iZivi
 
 An E-Recruitement tool to plan swiss civil service missions
